@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int ft_printf(const char *restrict format, ...)
+int ft_printf(const char *format, ...)
 {
-	return ();
+	return (0);
 }

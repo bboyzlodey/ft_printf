@@ -3,11 +3,10 @@
 //
 #include "../libft/libft.h"
 
-#define CURRENT_SIZE 150
+#define	CURRENT_SIZE 150
 
 char	current[CURRENT_SIZE + 1];
 int		len;
-//int		len_one;
 
 char *get_hexodecimal(int input)
 {
@@ -27,6 +26,11 @@ char *get_hexodecimal(int input)
 		current[len] = mod + '0';
 	len++;
 	return (current);
+}
+
+char	*get_decimal(int dec)
+{
+	
 }
 
 static void initilize()
