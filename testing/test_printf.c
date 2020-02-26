@@ -14,17 +14,18 @@ char *get_hexodecimal(int input)
 	int	mod;
 
 	if (input == 0)
-		current[len++] = '0';
-	while(input)
 	{
-		mod = input % 16;
-		if (mod > 9)
-			current[len] = 'A' + mod - 10;
-		else
-			current[len] = mod + '0';
-		len++;
-		input /= 16;
+		current[len++] = '0';
+		return (current);
 	}
+	mod = input % 16;
+	if (input / 16)
+		get_hexodecimal(input / 16);
+	if (mod > 9)
+		current[len] = 'A' + mod - 10;
+	else
+		current[len] = mod + '0';
+	len++;
 	return (current);
 }
 
@@ -34,7 +35,7 @@ static void initilize()
 	len = 0;
 }
 
-static print_current(void)
+static void print_current(void)
 {
 	write(1, current, len);
 	ft_strclr(current);
@@ -49,7 +50,7 @@ int main()
 	printf("%X\n", (unsigned char)c);
 //	printf("%n\n", c);
 //	printf("%hhn\n", c);
-	get_hexodecimal(254);
+	get_hexodecimal(255);
 	print_current();
 	return 0;
 }
