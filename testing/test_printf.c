@@ -52,5 +52,7 @@ int main(int ac, char **av)
 	// get_hexodecimal(255);
 	// print_current();
 	printf("%+04d\n", atoi(av[1]), 5);
+	int a = printf("%+02p\n", av[1]);
+	printf("%d\n", a);
 	return 0;
 }

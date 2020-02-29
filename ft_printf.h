@@ -1,6 +1,6 @@
 //
 // Created by Agrajag Sybil on 22/02/2020.
-//
+//	https://cdn.intra.42.fr/pdf/pdf/1807/ft_printf.en.pdf
 
 #ifndef FT_PRINTF_FT_PRINTF_H
 # define FT_PRINTF_FT_PRINTF_H
@@ -8,6 +8,13 @@
 #include "./libft/libft.h"
 #include "./libft/get_next_line.h"
 
+/*
+** spec: d, i, u, p, x, X, o, f, s, c, %		--- спецификаторы
+** flag: -, +, #, 0, ' '  						--- флаги
+** width: *, (num)								--- ширина
+** prec: .(num), .*   							--- точность
+** leng: (none), hh, h, l, ll, L   				--- модификаторы длины
+*/
 
 #define	CURRENT_SIZE 150
 /*
@@ -17,24 +24,62 @@
 int		ft_printf(const char *format, ...);
 char	*get_decimal(int dec);
 char    *get_hexodecimal(int input);
+void	flag_management();
+
 
 /*
-*       Struct & Global variables
+**       Struct & Global variables
 */
 
-
+enum	e_flags // For flags management: 
+{
+	NONE,			//without_flags
+	OCTOTORP,		//	'#'
+	/*
+	**	При выводе чисел в формате перед числом будет указываться особенность формата
+	*/
+	SPACE,			//	' '
+	/*
+	**	Символ + имеет больший приоритет, чем пробел. Используется только для десятичных числовых значений.
+	**
+	**	В отсутсвие: вывод может начинаться с цифры.
+	**
+	*/
+	MINUS,			//	'-'
+	/*
+	**	В отсутсвие: по правому
+	*/
+	PLUS,			//	'+'
+	/*
+	**	В отсутсвие: только для отрицательных чисел
+	*/
+	NULL_FLAG		//	'0'
+	/*
+	**	Используется для типов d, i, o, u, x, X, a, A, e, E, f, F, g, G.
+	**	Для типов d, i, o, u, x, X, если точность указана, этот флаг игнорируется.
+	**	Для остальных типов поведение не определено.
+	**
+	**	В отсутсвие: дополнять пробелами
+	**
+	*/
+}	g_flags;
 
 struct	ft_printf
 {
 	int		*len;
 	void	*type;
-	char	*current;
+	char	*current_data;
+	void	(*f)(void);
 }		current;
 
-char	current[CURRENT_SIZE + 1];
+char	current_data[CURRENT_SIZE + 1];
+char	*current_adr;
 int		len;
 void    *type;
-void	flag_management();
+int		writed;
+char	*prefix;
+int		prefix_len;
+int		min_weight;
 
 
 #endif //FT_PRINTF_FT_PRINTF_H
