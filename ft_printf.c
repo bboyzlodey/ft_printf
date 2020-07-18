@@ -36,7 +36,6 @@ static void		initilize()
 
 }
 
-
 static void		print_current(void)
 {
 	writed += write(1, current_data, len);
