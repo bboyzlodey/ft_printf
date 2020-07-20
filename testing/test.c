@@ -28,73 +28,101 @@ static void test3()
 }
 
 typedef enum Test{
-	TEST_ONE,
-	TEST_TWO,
-	TEST_FREE
+	DECIMAL,
+	OX,
+	HEXODECIMAL
 } Test;
 
 char *testingc[] = {"TEST_ONE", "hello", "world"};
 
-void put_one(void), put_two(void), put_three(void);
+void put_one(int dec), put_two(int ox), put_three(int hex);
 
-void(*prints[])(void) = {
+void(*prints[])(int) = {
 		put_one,
 		put_two,
 		put_three
 };
 
-void put_one ()
+void put_one (int dec)
 {
-	write(1, "Hello ", 6);
+	convert_int(dec, 10);
 }
 
-void put_two ()
+void put_two (int ox)
 {
-	write(1, "world", 5);
+		convert_int(ox, 8);
+
 }
 
-void put_three ()
+void put_three (int hex)
 {
-	write(1, "!\n", 2);
+			convert_int(hex, 16);
+	
 }
 
 
+// int main(void)
+// {
+// 	Test testing;
 
-int main(void)
+// 	// testing = 0;
+// 	// printf("%u\n", testing);
+// 	// printf("%s\n", testingc[testing]);
+// 	// struct hello *py;
+// 	// py = (struct hello *)ft_memalloc(1);
+// 	// py->a = 4565450;
+// 	// py->b = 807851;
+// 	// printf(">%d %d<\n", py->a, py->b);
+// 	// int a = 123456;
+// 	// var = &a;
+// 	// printf("var %d\n", *((int *)var));
+// 	// printf("size of: %d\n", sizeof(var));
+// 	// test1(98765);
+// 	// printf("second: %d\n", *((int *)var));
+// 	// test2();
+// 	// printf("third: %d\n" , *((int *)var));
+// 	// printf("third: %d\n" , *((int *)var));
+// 	// printf("third: %d\n" , *((int *)var));
+// 	// printf("third: %d\n" , *((int *)var));
+// 	// test3();
+// 	// printf("four: %d\n" , *((int *)var));
+// 	// printf("four: %d\n" , *((int *)var));
+// 	// printf("four: %d\n" , *((int *)var));
+// 	// printf("four: %d\n" , *((int *)var));
+// 	// printf("size of: %lu\n", sizeof(var));
+// 	// free(var);
+// 	// printf("size of: %lu\n", sizeof(*var));
+// 	// (*prints[0])();
+// 	// (*prints[1])();
+// 	// (*prints[2])();
+// 	// char c = 255;
+// 	// printf("%hhX", c);
+	
+// 	return 0;
+// }
+
+int main(int ac, char **av)
 {
-	Test testing;
+	
+	// if(!ft_strcmp("d", av[1]))
+	// {
+	// 	(*prints[DECIMAL])(atoi(av[2]));
+	// }
+	// if(!ft_strcmp("o", av[1]))
+	// {
+	// 	(*prints[OX])(atoi(av[2]));
+	// }
+	// if(!ft_strcmp("h", av[1]))
+	// {
+	// 	(*prints[HEXODECIMAL])(atoi(av[2]));
+	// }
 
-	testing = 0;
-	printf("%u\n", testing);
-	printf("%s\n", testingc[testing]);
-	struct hello *py;
-	py = (struct hello *)ft_memalloc(1);
-	py->a = 4565450;
-	py->b = 807851;
-	printf(">%d %d<\n", py->a, py->b);
-	int a = 123456;
-	var = &a;
-	printf("var %d\n", *((int *)var));
-	printf("size of: %d\n", sizeof(var));
-	test1(98765);
-	printf("second: %d\n", *((int *)var));
-	test2();
-	printf("third: %d\n" , *((int *)var));
-	printf("third: %d\n" , *((int *)var));
-	printf("third: %d\n" , *((int *)var));
-	printf("third: %d\n" , *((int *)var));
-	test3();
-	printf("four: %d\n" , *((int *)var));
-	printf("four: %d\n" , *((int *)var));
-	printf("four: %d\n" , *((int *)var));
-	printf("four: %d\n" , *((int *)var));
-	printf("size of: %lu\n", sizeof(var));
-	free(var);
-	printf("size of: %lu\n", sizeof(*var));
-	(*prints[0])();
-	(*prints[1])();
-	(*prints[2])();
-	char c = 255;
-	printf("%hhX", c);
+	int i = 3;
+	while (i)
+	{
+		(*prints[i-1])(atoi(av[2]));
+		printf("\n");
+		i--;
+	}
 	return 0;
 }

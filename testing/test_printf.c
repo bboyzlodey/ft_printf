@@ -41,18 +41,29 @@
 // 	len = 0;
 // }
 
-int main(int ac, char **av)
+// int main(int ac, char **av)
+// {
+// 	char c = 255;
+// 	// printf("%X\n", c);
+// 	// printf("%hhX\n", c);
+// 	// printf("%X\n", (unsigned char)c);
+// //	printf("%n\n", c);
+// //	printf("%hhn\n", c);
+// 	// get_hexodecimal(255);
+// 	// print_current();
+// 	printf("%+04d\n", atoi(av[1]), 5);
+// 	int a = printf("%+02p\n", av[1]);
+// 	printf("%d\n", a);
+// 	return 0;
+// }
+
+int main()
 {
-	char c = 255;
-	// printf("%X\n", c);
-	// printf("%hhX\n", c);
-	// printf("%X\n", (unsigned char)c);
-//	printf("%n\n", c);
-//	printf("%hhn\n", c);
-	// get_hexodecimal(255);
-	// print_current();
-	printf("%+04d\n", atoi(av[1]), 5);
-	int a = printf("%+02p\n", av[1]);
-	printf("%d\n", a);
+	int PAGES = 959;
+	printf("*%d*\n", PAGES);
+	printf("*%2d*\n", PAGES);
+	printf("*%10d*\n", PAGES);
+	printf("*%-10d*\n", PAGES);
+
 	return 0;
 }

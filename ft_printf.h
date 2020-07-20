@@ -29,14 +29,14 @@ void	flag_management();
 /*
 *	Функции для перевода value в строку
 */
-char	*str(char *value);
-char	*char_str(char value);
+char	*str(void *value);
+char	*char_str(void *value);
 char	*addr_str(void *value);
-char	*dec_int_str(int value);
-char	*oct_int_str(int value);
-char	*hex_int_str(int value);
-char	*dec_unint_str(unsigned int value);
-char	*dec_float_str(float value);
+char	*dec_int_str(void *value);
+char	*oct_int_str(void *value);
+char	*hex_int_str(void *value);
+char	*dec_unint_str(void *value);
+char	*dec_float_str(void *value);
 
 void	convert_int(int src, int delim);
 
