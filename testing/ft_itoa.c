@@ -19,7 +19,9 @@ char number_arr[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B',
 void	convert_int(int src, int delim)
 {
 	int tmp = 0;
-
+	static int stat;
+	// printf("stat is: %d\n", stat);
+	stat++;
 	if(!src)
 	{
 		write(1, "0", 1);
@@ -30,5 +32,11 @@ void	convert_int(int src, int delim)
 	{
 		convert_int(src / delim, delim);
 	}
-	write(1, &(number_arr[tmp]), 1);
+	else if ( src / delim == 0){
+		g_string.len = stat;
+		g_string.str = ft_strnew(g_string.len);
+	}
+	// write(1, &(number_arr[tmp]), 1);
+	g_string.str[g_string.len - stat] = number_arr[tmp];
+	stat--;
 }

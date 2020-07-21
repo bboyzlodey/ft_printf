@@ -85,6 +85,14 @@ struct	ft_printf
 	void	(*f)(void);
 }		current;
 
+struct	string
+{
+	int				len;
+	void			*value;
+	enum e_flags	type;
+	char			*str;
+}		g_string;
+
 char	current_data[CURRENT_SIZE + 1];
 char	*current_adr;
 int		len;

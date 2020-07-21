@@ -19,5 +19,8 @@ int main(int ac, char **av)
 	}
 	convert_int(dec, delim);
 	printf("\n");
+	printf("Stroke is: %s", g_string.str);
+	free(g_string.str);
+	g_string.str = NULL;
 	// printf("%c\n", arr[atoi(av[1])]);
 }
