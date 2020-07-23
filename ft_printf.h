@@ -85,13 +85,38 @@ struct	ft_printf
 	void	(*f)(void);
 }		current;
 
-struct	string
+
+enum e_type{
+	STROKE,
+	CHAR,
+	FLOAT,
+	INTEGERS
+};
+
+	void(*prints[])(int) = {
+		put_one,
+		put_two,
+		put_three
+};
+
+
+
+typedef struct	s_string
 {
 	int				len;
-	void			*value;
-	enum e_flags	type;
 	char			*str;
-}		g_string;
+}		t_string;
+
+struct data{
+	enum e_type 		type;
+	enum e_flags[10]	flags;
+	void 				*value;
+	t_string			str;
+	void				(*print)(void);
+	void				(*que[10])(void);
+} 		g_current_data;
+
+int g_printed = 0;
 
 char	current_data[CURRENT_SIZE + 1];
 char	*current_adr;

@@ -46,12 +46,12 @@ void(*prints[])(int) = {
 void put_one (int dec)
 {
 	convert_int(dec, 10);
+
 }
 
 void put_two (int ox)
 {
 		convert_int(ox, 8);
-
 }
 
 void put_three (int hex)
