@@ -36,19 +36,22 @@ typedef long long unsigned int t_ull_int;
 char	*str(void *value);
 char	*char_str(void *value);
 char	*addr_str(void *value);
-char	*dec_int_str(void *value)
-{
-    if (flag = 'l') // h(short) hh l ll
-        return (ft_itoa_long_base((long int)(*value), 10));
-    else
-        return (ft_itoa_long_base((int)(*value), 10));
-}
+char	*dec_int_str(void *value);
 char	*oct_int_str(void *value);
 char	*hex_int_str(void *value);
 char	*dec_unint_str(void *value);
 char	*dec_float_str(void *value);
-
 void	convert_int(int src, int delim);
+
+char	*ft_itoa_base(t_ll_int value, int base);
+char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
+
+/**
+ * Вспомогательные функции (utils.c)
+ * 
+ * */
+char	*ft_strjoindel(char *s1, char *s2);
+
 
 /*
 **       Struct & Global variables
@@ -103,23 +106,32 @@ enum e_type{
 	INTEGERS
 };
 
+// enum e_delimeters{
+// 	OCT(8),
+// 	HEX(16),
+// 	DEC(10)
+// };
+
 typedef struct	s_string
 {
 	int				len;
 	char			*str;
 }				t_string;
 
+void				do_dprint(char print);
+void				convert_size_t_int(size_t src, int delim);
+
+
 struct 	data{
 	enum e_type 		type;
-	enum e_flags[10]	flags;
+	enum e_flags		flags[10];
 	void 				*value;
 	t_string			str;
-	// void				(*print)(void);
-	char				
+	void				(*print)(void);
 	void				(*que[10])(void);
 } 		g_current_data;
 
-int g_printed = 0;
+// int g_printed = 0;
 
 char	current_data[CURRENT_SIZE + 1];
 char	*current_adr;
