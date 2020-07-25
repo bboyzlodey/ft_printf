@@ -12,7 +12,7 @@ char	*char_str(void *value)
 
 char	*dec_int_str(void *value)
 {
-    int tmp = *(int*)value;
+    int tmp = ((int)*value);
     //dopisat
 
 }

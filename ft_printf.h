@@ -93,26 +93,19 @@ enum e_type{
 	INTEGERS
 };
 
-	void(*prints[])(int) = {
-		put_one,
-		put_two,
-		put_three
-};
-
-
-
 typedef struct	s_string
 {
 	int				len;
 	char			*str;
-}		t_string;
+}				t_string;
 
-struct data{
+struct 	data{
 	enum e_type 		type;
 	enum e_flags[10]	flags;
 	void 				*value;
 	t_string			str;
-	void				(*print)(void);
+	// void				(*print)(void);
+	char				
 	void				(*que[10])(void);
 } 		g_current_data;
 
