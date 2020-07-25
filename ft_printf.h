@@ -29,10 +29,20 @@ void	flag_management();
 /*
 *	Функции для перевода value в строку
 */
+
+typedef long long int t_ll_int;
+typedef long long unsigned int t_ull_int;
+
 char	*str(void *value);
 char	*char_str(void *value);
 char	*addr_str(void *value);
-char	*dec_int_str(void *value);
+char	*dec_int_str(void *value)
+{
+    if (flag = 'l') // h(short) hh l ll
+        return (ft_itoa_long_base((long int)(*value), 10));
+    else
+        return (ft_itoa_long_base((int)(*value), 10));
+}
 char	*oct_int_str(void *value);
 char	*hex_int_str(void *value);
 char	*dec_unint_str(void *value);

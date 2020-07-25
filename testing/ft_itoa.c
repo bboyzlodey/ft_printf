@@ -40,3 +40,5 @@ void	convert_int(int src, int delim)
 	g_string.str[g_string.len - stat] = number_arr[tmp];
 	stat--;
 }
+
+void
