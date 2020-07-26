@@ -7,6 +7,7 @@
 
 #include "./libft/libft.h"
 #include "./libft/get_next_line.h"
+#include <stdarg.h>
 
 /*
 ** spec: d, i, u, p, x, X, o, f, s, c, %		--- спецификаторы
@@ -41,10 +42,12 @@ char	*oct_int_str(void *value);
 char	*hex_int_str(void *value);
 char	*dec_unint_str(void *value);
 char	*dec_float_str(void *value);
-void	convert_int(int src, int delim);
+void	convert_int(long long int src, int delim);
 
 char	*ft_itoa_base(t_ll_int value, int base);
 char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
+char	*ft_strjoindel(char *s1, char *s2);
+
 
 /**
  * Вспомогательные функции (utils.c)
@@ -102,15 +105,21 @@ struct	ft_printf
 enum e_type{
 	STROKE,
 	CHAR,
+	POINTER,
 	FLOAT,
 	INTEGERS
 };
 
-// enum e_delimeters{
-// 	OCT(8),
-// 	HEX(16),
-// 	DEC(10)
-// };
+enum e_size{
+	H,
+
+};
+
+enum e_delimeters{
+	OCT = 8,
+	DEC = 10,
+	HEX = 16
+};
 
 typedef struct	s_string
 {
@@ -131,7 +140,6 @@ struct 	data{
 	void				(*que[10])(void);
 } 		g_current_data;
 
-// int g_printed = 0;
 
 char	current_data[CURRENT_SIZE + 1];
 char	*current_adr;

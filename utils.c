@@ -1,3 +1,5 @@
+#include "./ft_printf.h"
+
 char	*ft_strjoindel(char *s1, char *s2)
 {
 	char	*new;
