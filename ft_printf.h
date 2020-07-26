@@ -23,9 +23,6 @@
 */
 
 int		ft_printf(const char *format, ...);
-char	*get_decimal(int dec);
-char    *get_hexodecimal(int input);
-void	flag_management();
 
 /*
 *	Функции для перевода value в строку
@@ -42,21 +39,29 @@ char	*oct_int_str(void *value);
 char	*hex_int_str(void *value);
 char	*dec_unint_str(void *value);
 char	*dec_float_str(void *value);
+
 void	convert_int(long long int src, int delim);
 void	convert_unint(long long unsigned int src, int delim);
 
-
-char	*ft_itoa_base(t_ll_int value, int base);
-char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
 char	*ft_strjoindel(char *s1, char *s2);
 void	ft_tolowercase(char *ptr);
-
 
 /**
  * Вспомогательные функции (utils.c)
  * 
  * */
 char	*ft_strjoindel(char *s1, char *s2);
+
+/**
+ * 	Deprecated
+ * */
+void	do_dprint(char print);
+void	convert_size_t_int(size_t src, int delim);
+char	*ft_itoa_base(t_ll_int value, int base);
+char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
+char	*get_decimal(int dec);
+char    *get_hexodecimal(int input);
+void	flag_management();
 
 
 /*
@@ -96,14 +101,6 @@ enum	e_flags // For flags management:
 	*/
 }	g_flags;
 
-struct	ft_printf
-{
-	int		*len;
-	void	*type;
-	char	*current_data;
-	void	(*f)(void);
-}		current;
-
 
 enum e_type{
 	STROKE,
@@ -130,10 +127,6 @@ typedef struct	s_string
 	char			*str;
 }				t_string;
 
-void				do_dprint(char print);
-void				convert_size_t_int(size_t src, int delim);
-
-
 struct 	data{
 	enum e_type 		type;
 	enum e_flags		flags[10];
@@ -143,15 +136,4 @@ struct 	data{
 	void				(*que[10])(void);
 } 		g_current_data;
 
-
-char	current_data[CURRENT_SIZE + 1];
-char	*current_adr;
-int		len;
-void    *type;
-int		writed;
-char	*prefix;
-int		prefix_len;
-int		min_weight;
-
-
-#endif //FT_PRINTF_FT_PRINTF_H
+#endif

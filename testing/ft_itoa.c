@@ -18,6 +18,12 @@ void	convert_int(long long int src, int delim)
 		return;
 	}
 	tmp = (src % delim);
+	/**
+	 *  tmp - переменная, которая хранит остаток деления от 10
+	 * 	В этой функции обрабатывается знаковый тип. У нас может быть
+	 * отрицательное число, следовательно, остаток от деления тоже может быть отрицательным.
+	 * 	tmp = (tmp + (tmp >> 31)) ^ (tmp >> 31); - это формула для получения числа по модулю.
+	 * */
 	tmp = (tmp + (tmp >> 31)) ^ (tmp >> 31);
 	if (src / delim != 0)
 	{
@@ -29,7 +35,6 @@ void	convert_int(long long int src, int delim)
 		g_current_data.str.str = ft_strnew(g_current_data.str.len);
 		g_current_data.str.str[0] = '-';
 	}
-	// printf("tmp: %d\n", tmp);
 	g_current_data.str.str[g_current_data.str.len - stat] = number_arr[tmp];
 	stat--;
 }
@@ -56,11 +61,14 @@ void	convert_unint(long long unsigned int src, int delim)
 	{
 		g_current_data.str.str = ft_strnew(g_current_data.str.len);
 	}
-	// printf("tmp: %d\n", tmp);
 	g_current_data.str.str[g_current_data.str.len - stat] = number_arr[tmp];
 	stat--;
 }
 
+/**
+ * 	Вспомогательная функция, которая строку приводит к нижнему регистру.
+ * 	Это актуально для флага x
+ * */
 void	ft_tolowercase(char *ptr)
 {
 	ptr[0] = (char)ft_tolower(*ptr);
