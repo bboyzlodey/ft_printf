@@ -47,6 +47,7 @@ void	convert_int(long long int src, int delim);
 char	*ft_itoa_base(t_ll_int value, int base);
 char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
 char	*ft_strjoindel(char *s1, char *s2);
+void	ft_tolowercase(char *ptr);
 
 
 /**
