@@ -2,9 +2,6 @@
 
 static char number_arr[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', '\0'};
 
-/**
-*	нужно переписать в функции которые вернут строковое представление числа для int и unsigned int
-*/
 void	convert_int(long long int src, int delim)
 {
 	int			tmp = 0;
