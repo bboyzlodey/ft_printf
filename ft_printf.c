@@ -1,6 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/28 20:33:59 by asybil            #+#    #+#             */
+/*   Updated: 2020/07/28 20:37:29 by asybil           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-
+/**
+ * go_next_percent, initilize, print_current, print_stroke
+ * Устаревшие функции,
+ * которые наврядли будут использоваться в проекте.
+ * */
 static	int	go_next_percent()
 {
 	char	*tmp;
@@ -51,12 +67,5 @@ static void	print_stroke(char begin) // не нужна
 
 int ft_printf(const char *format, ...)
 {
-	va_list	record;
-	initilize();
-	current_adr = format;
-	while (current_adr && *(current_adr) && go_next_percent())
-	{
-		
-	}
-	return (writed);
+	return 1;
 }
