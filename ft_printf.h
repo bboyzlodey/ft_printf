@@ -30,46 +30,6 @@
 **       Functions
 */
 
-int		ft_printf(const char *format, ...);
-
-/*
-**	Функции для перевода value в строку
-*/
-
-char	*str(void *value);
-char	*char_str(void *value);
-char	*addr_str(void *value);
-char	*dec_int_str(void *value);
-char	*oct_int_str(void *value);
-char	*hex_int_str(void *value);
-char	*dec_unint_str(void *value);
-char	*dec_float_str(void *value);
-
-void	convert_int(long long int src, int delim);
-void	convert_unint(long long unsigned int src, int delim);
-
-char	*ft_strjoindel(char *s1, char *s2);
-void	ft_tolowercase(char *ptr);
-void	ft_printstring(t_string *str);
-
-/**
- ** Вспомогательные функции (utils.c)
- **
- * */
-char	*ft_strjoindel(char *s1, char *s2);
-
-/**
- ** 	Deprecated
- * */
-void	do_dprint(char print);
-void	convert_size_t_int(size_t src, int delim);
-char	*ft_itoa_base(t_ll_int value, int base);
-char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
-char	*get_decimal(int dec);
-char    *get_hexodecimal(int input);
-void	flag_management();
-
-
 /*
 **       Типы
 */
@@ -155,5 +115,44 @@ struct 	data{
 	void				(*print)(void);
 	void				(*que[10])(void);
 } 		g_current_data;
+
+int		ft_printf(const char *format, ...);
+
+/*
+**	Функции для перевода value в строку
+*/
+
+char	*str(void *value);
+char	*char_str(void *value);
+char	*addr_str(void *value);
+char	*dec_int_str(void *value);
+char	*oct_int_str(void *value);
+char	*hex_int_str(void *value);
+char	*dec_unint_str(void *value);
+char	*dec_float_str(void *value);
+
+void	convert_int(long long int src, int delim);
+void	convert_unint(long long unsigned int src, int delim);
+
+char	*ft_strjoindel(char *s1, char *s2);
+void	ft_tolowercase(char *ptr);
+void	ft_printstring(t_string *str);
+
+/**
+ ** Вспомогательные функции (utils.c)
+ **
+ * */
+char	*ft_strjoindel(char *s1, char *s2);
+
+/**
+ ** 	Deprecated
+ * */
+void	do_dprint(char print);
+void	convert_size_t_int(size_t src, int delim);
+char	*ft_itoa_base(t_ll_int value, int base);
+char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
+char	*get_decimal(int dec);
+char    *get_hexodecimal(int input);
+void	flag_management();
 
 #endif
