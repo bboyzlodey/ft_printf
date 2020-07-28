@@ -40,3 +40,10 @@ char	*addr_str(void *value)
 	convert_size_t_int(tmp, 16);
     return 0;
 }
+/**
+ * Print string
+ * */
+void	ft_printstring(t_string *str)
+{
+	write(1, str->str, str->len);
+}

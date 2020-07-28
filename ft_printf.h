@@ -28,9 +28,6 @@ int		ft_printf(const char *format, ...);
 *	Функции для перевода value в строку
 */
 
-typedef long long int t_ll_int;
-typedef long long unsigned int t_ull_int;
-
 char	*str(void *value);
 char	*char_str(void *value);
 char	*addr_str(void *value);
@@ -45,6 +42,7 @@ void	convert_unint(long long unsigned int src, int delim);
 
 char	*ft_strjoindel(char *s1, char *s2);
 void	ft_tolowercase(char *ptr);
+void	ft_printstring(t_string *str);
 
 /**
  * Вспомогательные функции (utils.c)
@@ -65,8 +63,10 @@ void	flag_management();
 
 
 /*
-**       Struct & Global variables
+**       Типы
 */
+typedef long long int t_ll_int;
+typedef long long unsigned int t_ull_int;
 
 enum	e_flags // For flags management: 
 {
@@ -121,12 +121,24 @@ enum e_delimeters{
 	HEX = 16
 };
 
+/**
+ * 	Структура для строки. Можно сразу выводить через write
+ **/
 typedef struct	s_string
 {
 	int				len;
 	char			*str;
 }				t_string;
 
+/**
+ * 	Глобальная структура.
+ * 	type - тип (целочисленный знаковый, беззнаковый, и тд.)
+ * 	flags - флаги
+ * 	str - текущая строка, преобразованная в строку
+ * 	print - указатель на функцию, которая ничего не принимает
+ * и не возвращает
+ * 	que[10] - массив функций. Это для очереди. Итерационно будет вызываться.  
+ * */
 struct 	data{
 	enum e_type 		type;
 	enum e_flags		flags[10];
