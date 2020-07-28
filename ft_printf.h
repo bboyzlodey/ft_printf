@@ -2,11 +2,13 @@
 // Created by Agrajag Sybil on 22/02/2020.
 //	https://cdn.intra.42.fr/pdf/pdf/1807/ft_printf.en.pdf
 
+
 #ifndef FT_PRINTF_FT_PRINTF_H
 # define FT_PRINTF_FT_PRINTF_H
 
-#include "./libft/libft.h"
-#include "./libft/get_next_line.h"
+#include "libft/libft.h"
+#include <stdarg.h>
+// #include "libft/get_next_line.h"
 
 /*
 ** spec: d, i, u, p, x, X, o, f, s, c, %		--- спецификаторы
@@ -15,6 +17,18 @@
 ** prec: .(num), .*   							--- точность
 ** leng: (none), hh, h, l, ll, L   				--- модификаторы длины
 */
+
+// ---------------------------------------------------------
+typedef long long int t_ll_int;
+typedef unsigned long long int t_ull_int;
+
+# define H 1
+# define HH 2
+# define L 3
+# define LL 4
+# define L_BIG 5
+// ---------------------------------------------------------
+
 
 #define	CURRENT_SIZE 150
 /*
@@ -36,13 +50,9 @@ typedef long long unsigned int t_ull_int;
 char	*str(void *value);
 char	*char_str(void *value);
 char	*addr_str(void *value);
-char	*dec_int_str(void *value)
-{
-    if (flag = 'l') // h(short) hh l ll
-        return (ft_itoa_long_base((long int)(*value), 10));
-    else
-        return (ft_itoa_long_base((int)(*value), 10));
-}
+char	*ft_itoa_long_base(t_ll_int value, int base);
+char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
+char	*dec_int_str(void *value); // done
 char	*oct_int_str(void *value);
 char	*hex_int_str(void *value);
 char	*dec_unint_str(void *value);

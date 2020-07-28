@@ -24,7 +24,7 @@ static char		print_nbr(int value)
     return (c);
 }
 
-char			*ft_itoa_base(t_ll_int value, int base)
+char			*ft_itoa_long_base(t_ll_int value, int base)
 {
     char	*str;
     int		count;

@@ -38,7 +38,5 @@ char			*ft_itoa_unsig_base(t_ull_int value, int base, int reg)
         value /= base;
     }
     str[--count] = print_nbr(value % base, reg);
-    while (num-- > 0)
-        str[--count] = print_nbr(0, reg);
     return (str);
 }
