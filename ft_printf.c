@@ -6,17 +6,18 @@
 /*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 20:33:59 by asybil            #+#    #+#             */
-/*   Updated: 2020/07/28 20:37:29 by asybil           ###   ########.fr       */
+/*   Updated: 2020/07/28 20:49:09 by asybil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/**
- * go_next_percent, initilize, print_current, print_stroke
- * Устаревшие функции,
- * которые наврядли будут использоваться в проекте.
+/* *
+ **	go_next_percent, initilize, print_current, print_stroke
+ **	Устаревшие функции,
+ **	которые наврядли будут использоваться в проекте.
  * */
+
 static	int	go_next_percent()
 {
 	char	*tmp;
@@ -59,7 +60,7 @@ static void		print_current(void)
 	len = 0;
 }
 
-static void	print_stroke(char begin) // не нужна
+static void	print_stroke(char begin)
 {
 
 	writed += write(1, begin, ft_strchr(begin, '%') - begin);

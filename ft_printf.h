@@ -1,6 +1,14 @@
-//
-// Created by Agrajag Sybil on 22/02/2020.
-//	https://cdn.intra.42.fr/pdf/pdf/1807/ft_printf.en.pdf
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/28 20:48:40 by asybil            #+#    #+#             */
+/*   Updated: 2020/07/28 20:48:40 by asybil           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef FT_PRINTF_FT_PRINTF_H
 # define FT_PRINTF_FT_PRINTF_H
@@ -19,13 +27,13 @@
 
 #define	CURRENT_SIZE 150
 /*
-*       Functions
+**       Functions
 */
 
 int		ft_printf(const char *format, ...);
 
 /*
-*	Функции для перевода value в строку
+**	Функции для перевода value в строку
 */
 
 char	*str(void *value);
@@ -45,13 +53,13 @@ void	ft_tolowercase(char *ptr);
 void	ft_printstring(t_string *str);
 
 /**
- * Вспомогательные функции (utils.c)
- * 
+ ** Вспомогательные функции (utils.c)
+ **
  * */
 char	*ft_strjoindel(char *s1, char *s2);
 
 /**
- * 	Deprecated
+ ** 	Deprecated
  * */
 void	do_dprint(char print);
 void	convert_size_t_int(size_t src, int delim);
@@ -122,7 +130,7 @@ enum e_delimeters{
 };
 
 /**
- * 	Структура для строки. Можно сразу выводить через write
+ ** 	Структура для строки. Можно сразу выводить через write
  **/
 typedef struct	s_string
 {
@@ -131,13 +139,13 @@ typedef struct	s_string
 }				t_string;
 
 /**
- * 	Глобальная структура.
- * 	type - тип (целочисленный знаковый, беззнаковый, и тд.)
- * 	flags - флаги
- * 	str - текущая строка, преобразованная в строку
- * 	print - указатель на функцию, которая ничего не принимает
- * и не возвращает
- * 	que[10] - массив функций. Это для очереди. Итерационно будет вызываться.  
+ ** 	Глобальная структура.
+ ** 	type - тип (целочисленный знаковый, беззнаковый, и тд.)
+ ** 	flags - флаги
+ ** 	str - текущая строка, преобразованная в строку
+ ** 	print - указатель на функцию, которая ничего не принимает
+ ** и не возвращает
+ ** 	que[10] - массив функций. Это для очереди. Итерационно будет вызываться.  
  * */
 struct 	data{
 	enum e_type 		type;

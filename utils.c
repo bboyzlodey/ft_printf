@@ -13,8 +13,8 @@
 #include "./ft_printf.h"
 
 /**
- * ft_strjoindel - join two string and free his.
- * Return value - joined string allocated with malloc.
+ ** ft_strjoindel - join two string and free his.
+ ** Return value - joined string allocated with malloc.
  * */
 char	*ft_strjoindel(char *s1, char *s2)
 {

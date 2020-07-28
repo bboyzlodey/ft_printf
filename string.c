@@ -53,7 +53,7 @@ char	*addr_str(void *value)
     return 0;
 }
 /**
- * Print string
+ ** Print string
  * */
 void	ft_printstring(t_string *str)
 {
