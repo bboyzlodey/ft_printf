@@ -14,7 +14,7 @@
 # define FT_PRINTF_FT_PRINTF_H
 
 #include "./libft/libft.h"
-#include "./libft/get_next_line.h"
+// #include "./libft/get_next_line.h"
 #include <stdarg.h>
 
 /*
@@ -71,16 +71,22 @@ enum	e_flags // For flags management:
 
 
 enum e_type{
-	STROKE,
+	NONE,
+	STRING,
 	CHAR,
 	POINTER,
 	FLOAT,
-	INTEGERS
+	INTEGERS,
+	UNSIGNED,
+	PERCENT
 };
 
 enum e_size{
 	H,
-
+	HH,
+	L,
+	LL,
+	L_BIG
 };
 
 enum e_delimeters{
@@ -107,14 +113,15 @@ typedef struct	s_string
  ** и не возвращает
  ** 	que[10] - массив функций. Это для очереди. Итерационно будет вызываться.  
  * */
-struct 	data{
+struct 				data{
 	enum e_type 		type;
-	enum e_flags		flags[10];
+	enum e_flags		flags[6];
 	void 				*value;
 	t_string			str;
-	void				(*print)(void);
+	void				(*print)(t_string);
 	void				(*que[10])(void);
-} 		g_current_data;
+	void				(*pars[5])(void);
+}					g_current_data;
 
 int		ft_printf(const char *format, ...);
 
