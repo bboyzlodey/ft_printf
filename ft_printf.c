@@ -12,61 +12,90 @@
 
 #include "ft_printf.h"
 
-/* *
- **	go_next_percent, initilize, print_current, print_stroke
- **	Устаревшие функции,
- **	которые наврядли будут использоваться в проекте.
- * */
-
-static	int	go_next_percent()
+void     float_prog(double a) // double
 {
-	char	*tmp;
+    unsigned long int bits;
+    int bit;
+    int sing;
+    int exp;
+
+    bits = *(__uint128_t *)&a;
+    sing = (bits >> 63) & 1;
+    bit = 51;
+    exp = ((bits >> 52) & 0x7ff) - 1023;
+    int g = 63;
+    while (g >= 0)
+    {
+        if (((bits >> g) & 1) == 1)
+            printf("1");
+        else 
+            printf("0");
+        if (g == 63 || g == 52)
+            printf(" ");
+        g--;
+    }
+}
+
+int		find_type(char	form)
+{
+	if (form == 'd' || form == 'i')
+		return (INTEGERS);
 	
-	tmp = NULL;
-	if (current_adr && (tmp = ft_strchr(current_adr, '%')))
-	{
-		writed += write(1, current_adr, tmp - current_adr);
-		current_adr = tmp;
-		return (1);
-	}
-	int		str;
-
-	str = 0;
-	if (current_adr)
-	{
-		writed += write(1, current_adr, (str = ft_strlen(current_adr)));
-		current_adr += (str - 1);
-	}
-	return (0);
 }
 
-static void		initilize()
+int		parsing(const char *format)
 {
-	ft_bzero(current_data, CURRENT_SIZE);
-	current_adr = NULL;
-	type = NULL;
-	prefix = NULL;
-	writed = 0;
-	prefix_len = 0;
-	min_weight = 0;
-	len = 0;
+	int i, in;
 
+	i = 0;
+	in = -1;
+	while (++in < 5)
+		i += *(g_current_data.pars[in])(&format[i]);
+	// i += find_flags(&format[i]);
+	// i += find_wid(&format[i]);
+	// i += find_pres(&format[i]);
+	// i += find_size(&format[i]);
+	// i += find_type(&format[i]);
+	
 }
 
-static void		print_current(void)
+void	creat_struct_data(void)
 {
-	writed += write(1, current_data, len);
-	ft_strclr(current_data);
-	len = 0;
-}
+	int i;
 
-static void	print_stroke(char begin)
-{
+	i = -1;
+	ft_bzero(g_current_data.flags, 6);
+	while (++i < 10)
+		g_current_data.que[i] = NULL;
+	g_current_data.str.str = NULL;
+	g_current_data.print = ft_printstring;
 
-	writed += write(1, begin, ft_strchr(begin, '%') - begin);
 }
 
 int ft_printf(const char *format, ...)
 {
+	va_list list;
+	int i;
+
+	i = 0;
+	va_start(list, format);
+	creat_struct_data();
+	while (format[i])
+	{
+		if (format[i] == '%')
+			creat_q(parsing(&format[++i]));
+		i++;
+	}
+	va_end(list);
 	return 1;
+}
+int main()
+{
+    // double a = 12.358;
+	double b = 90.1;
+	float a = (float)90.1;
+	float c = 90.1;
+	a;
+	printf("vqevvdvrv%d10.8d\n", 1);
+    // float_prog(a);
 }
