@@ -132,7 +132,7 @@ char	*dec_unint_str(void *value);
 char	*dec_float_str(void *value);
 
 void	convert_int(long long int src, int delim);
-void	convert_unint(long long unsigned int src, int delim);
+void	convert_unint(unsigned long long  int src, int delim);
 
 char	*ft_strjoindel(char *s1, char *s2);
 void	ft_tolowercase(char *ptr);
