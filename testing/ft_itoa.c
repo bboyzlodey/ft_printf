@@ -31,7 +31,7 @@ static char number_arr[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A
 
 void	convert_int(long long int src, int delim)
 {
-	int			tmp = 0;
+	long long int			tmp = 0;
 	static int	stat;
 
 	stat++;
@@ -58,7 +58,7 @@ void	convert_int(long long int src, int delim)
 	stat--;
 }
 
-void	convert_unint(long long unsigned int src, int delim)
+void	convert_unint(unsigned long long int src, int delim)
 {
 	int			tmp = 0;
 	static int	stat;
@@ -70,14 +70,14 @@ void	convert_unint(long long unsigned int src, int delim)
 		g_current_data.str.len = 1;
 		return;
 	}
-	tmp = (src % delim);
-	tmp = (tmp + (tmp >> 31)) ^ (tmp >> 31);
+	tmp = src % delim;
 	if (src / delim != 0)
 	{
-		convert_int(src / delim, delim);
+		convert_unint(src / delim, delim);
 	}
-	else if ( src / delim == 0)
+	else if (src / delim == 0)
 	{
+		g_current_data.str.len = stat;
 		g_current_data.str.str = ft_strnew(g_current_data.str.len);
 	}
 	g_current_data.str.str[g_current_data.str.len - stat] = number_arr[tmp];
