@@ -1,12 +1,20 @@
-//
-// Created by Agrajag Sybil on 22/02/2020.
-//	https://cdn.intra.42.fr/pdf/pdf/1807/ft_printf.en.pdf
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/28 20:48:40 by asybil            #+#    #+#             */
+/*   Updated: 2020/07/28 20:48:40 by asybil           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef FT_PRINTF_FT_PRINTF_H
 # define FT_PRINTF_FT_PRINTF_H
 
 #include "./libft/libft.h"
-#include "./libft/get_next_line.h"
+// #include "./libft/get_next_line.h"
 #include <stdarg.h>
 
 /*
@@ -19,54 +27,14 @@
 
 #define	CURRENT_SIZE 150
 /*
-*       Functions
+**       Functions
 */
-
-int		ft_printf(const char *format, ...);
 
 /*
-*	Функции для перевода value в строку
+**       Типы
 */
-
 typedef long long int t_ll_int;
 typedef long long unsigned int t_ull_int;
-
-char	*str(void *value);
-char	*char_str(void *value);
-char	*addr_str(void *value);
-char	*dec_int_str(void *value);
-char	*oct_int_str(void *value);
-char	*hex_int_str(void *value);
-char	*dec_unint_str(void *value);
-char	*dec_float_str(void *value);
-
-void	convert_int(long long int src, int delim);
-void	convert_unint(long long unsigned int src, int delim);
-
-char	*ft_strjoindel(char *s1, char *s2);
-void	ft_tolowercase(char *ptr);
-
-/**
- * Вспомогательные функции (utils.c)
- * 
- * */
-char	*ft_strjoindel(char *s1, char *s2);
-
-/**
- * 	Deprecated
- * */
-void	do_dprint(char print);
-void	convert_size_t_int(size_t src, int delim);
-char	*ft_itoa_base(t_ll_int value, int base);
-char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
-char	*get_decimal(int dec);
-char    *get_hexodecimal(int input);
-void	flag_management();
-
-
-/*
-**       Struct & Global variables
-*/
 
 enum	e_flags // For flags management: 
 {
@@ -103,16 +71,22 @@ enum	e_flags // For flags management:
 
 
 enum e_type{
-	STROKE,
+	NONE,
+	STRING,
 	CHAR,
 	POINTER,
 	FLOAT,
-	INTEGERS
+	INTEGERS,
+	UNSIGNED,
+	PERCENT
 };
 
 enum e_size{
 	H,
-
+	HH,
+	L,
+	LL,
+	L_BIG
 };
 
 enum e_delimeters{
@@ -121,19 +95,71 @@ enum e_delimeters{
 	HEX = 16
 };
 
+/**
+ ** 	Структура для строки. Можно сразу выводить через write
+ **/
 typedef struct	s_string
 {
 	int				len;
 	char			*str;
 }				t_string;
 
-struct 	data{
+/**
+ ** 	Глобальная структура.
+ ** 	type - тип (целочисленный знаковый, беззнаковый, и тд.)
+ ** 	flags - флаги
+ ** 	str - текущая строка, преобразованная в строку
+ ** 	print - указатель на функцию, которая ничего не принимает
+ ** и не возвращает
+ ** 	que[10] - массив функций. Это для очереди. Итерационно будет вызываться.  
+ * */
+struct 				data{
 	enum e_type 		type;
-	enum e_flags		flags[10];
+	enum e_flags		flags[6];
 	void 				*value;
 	t_string			str;
-	void				(*print)(void);
+	void				(*print)(t_string);
 	void				(*que[10])(void);
-} 		g_current_data;
+	void				(*pars[5])(void);
+}					g_current_data;
+
+int		ft_printf(const char *format, ...);
+
+/*
+**	Функции для перевода value в строку
+*/
+
+char	*str(void *value);
+char	*char_str(void *value);
+char	*addr_str(void *value);
+char	*dec_int_str(void *value);
+char	*oct_int_str(void *value);
+char	*hex_int_str(void *value);
+char	*dec_unint_str(void *value);
+char	*dec_float_str(void *value);
+
+void	convert_int(long long int src, int delim);
+void	convert_unint(unsigned long long  int src, int delim);
+
+char	*ft_strjoindel(char *s1, char *s2);
+void	ft_tolowercase(char *ptr);
+void	ft_printstring(t_string *str);
+
+/**
+ ** Вспомогательные функции (utils.c)
+ **
+ * */
+char	*ft_strjoindel(char *s1, char *s2);
+
+/**
+ ** 	Deprecated
+ * */
+void	do_dprint(char print);
+void	convert_size_t_int(size_t src, int delim);
+char	*ft_itoa_base(t_ll_int value, int base);
+char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
+char	*get_decimal(int dec);
+char    *get_hexodecimal(int input);
+void	flag_management();
 
 #endif

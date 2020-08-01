@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   string.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/28 20:32:07 by asybil            #+#    #+#             */
+/*   Updated: 2020/07/28 20:32:07 by asybil           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./ft_printf.h"
 
 // char	*str(void *value)
@@ -39,4 +51,11 @@ char	*addr_str(void *value)
 	size_t *tmp = (size_t)*value;
 	convert_size_t_int(tmp, 16);
     return 0;
+}
+/**
+ ** Print string
+ * */
+void	ft_printstring(t_string *str)
+{
+	write(1, str->str, str->len);
 }
