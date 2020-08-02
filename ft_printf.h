@@ -14,7 +14,6 @@
 # define FT_PRINTF_FT_PRINTF_H
 
 #include "./libft/libft.h"
-// #include "./libft/get_next_line.h"
 #include <stdarg.h>
 
 /*
@@ -38,7 +37,7 @@ typedef long long unsigned int t_ull_int;
 
 enum	e_flags // For flags management: 
 {
-	NONE,			//without_flags
+	// NONE,			//without_flags
 	OCTOTORP,		//	'#'
 	/*
 	**	При выводе чисел в формате перед числом будет указываться особенность формата
@@ -71,11 +70,13 @@ enum	e_flags // For flags management:
 
 
 enum e_type{
-	NONE,
+	// NONE,
 	STRING,
 	CHAR,
 	POINTER,
 	FLOAT,
+	DOUBLE,
+	LONG_DOUBLE,
 	INTEGERS,
 	UNSIGNED,
 	PERCENT
@@ -121,6 +122,7 @@ struct 				data{
 	void				(*print)(t_string);
 	void				(*que[10])(void);
 	void				(*pars[5])(void);
+	int					precision;
 }					g_current_data;
 
 int		ft_printf(const char *format, ...);
@@ -144,6 +146,20 @@ void	convert_unint(unsigned long long  int src, int delim);
 char	*ft_strjoindel(char *s1, char *s2);
 void	ft_tolowercase(char *ptr);
 void	ft_printstring(t_string *str);
+
+/**
+ ** Debuging
+ */
+void	initstructure();
+void	get_binary(unsigned int src, int delim);
+struct ft_float
+{
+    char    binary [sizeof(float) * 8];
+    char    *sign;
+    char    *exponent;
+    char    *mantissa;
+    int     size;
+} g_float;
 
 /**
  ** Вспомогательные функции (utils.c)

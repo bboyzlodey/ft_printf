@@ -6,3 +6,5 @@ test2:
 	gcc ./test2.c ../utils.c ./ft_itoa.c ../libft/libft.a -o test2
 k:
 	gcc mary.c
+floats:
+	gcc ./test2.c ../utils.c ./ft_itoa.c ../ft_float.c ../libft/libft.a -o floats
