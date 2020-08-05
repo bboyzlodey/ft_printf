@@ -1,14 +1,20 @@
-//
-// Created by Agrajag Sybil on 22/02/2020.
-//	https://cdn.intra.42.fr/pdf/pdf/1807/ft_printf.en.pdf
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/28 20:48:40 by asybil            #+#    #+#             */
+/*   Updated: 2020/07/28 20:48:40 by asybil           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef FT_PRINTF_FT_PRINTF_H
 # define FT_PRINTF_FT_PRINTF_H
 
-#include "libft/libft.h"
+#include "./libft/libft.h"
 #include <stdarg.h>
-// #include "libft/get_next_line.h"
 
 /*
 ** spec: d, i, u, p, x, X, o, f, s, c, %		--- спецификаторы
@@ -18,55 +24,20 @@
 ** leng: (none), hh, h, l, ll, L   				--- модификаторы длины
 */
 
-// ---------------------------------------------------------
-typedef long long int t_ll_int;
-typedef unsigned long long int t_ull_int;
-
-# define H 1
-# define HH 2
-# define L 3
-# define LL 4
-# define L_BIG 5
-// ---------------------------------------------------------
-
-
 #define	CURRENT_SIZE 150
 /*
-*       Functions
+**       Functions
 */
-
-int		ft_printf(const char *format, ...);
-char	*get_decimal(int dec);
-char    *get_hexodecimal(int input);
-void	flag_management();
 
 /*
-*	Функции для перевода value в строку
+**       Типы
 */
-
 typedef long long int t_ll_int;
 typedef long long unsigned int t_ull_int;
 
-char	*str(void *value);
-char	*char_str(void *value);
-char	*addr_str(void *value);
-char	*ft_itoa_long_base(t_ll_int value, int base);
-char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
-char	*dec_int_str(void *value); // done
-char	*oct_int_str(void *value);
-char	*hex_int_str(void *value);
-char	*dec_unint_str(void *value);
-char	*dec_float_str(void *value);
-
-void	convert_int(int src, int delim);
-
-/*
-**       Struct & Global variables
-*/
-
 enum	e_flags // For flags management: 
 {
-	NONE,			//without_flags
+	// NONE,			//without_flags
 	OCTOTORP,		//	'#'
 	/*
 	**	При выводе чисел в формате перед числом будет указываться особенность формата
@@ -97,30 +68,114 @@ enum	e_flags // For flags management:
 	*/
 }	g_flags;
 
-struct	ft_printf
-{
-	int		*len;
-	void	*type;
-	char	*current_data;
-	void	(*f)(void);
-}		current;
 
-struct	string
+enum e_type{
+	// NONE,
+	STRING,
+	CHAR,
+	POINTER,
+	FLOAT,
+	DOUBLE,
+	LONG_DOUBLE,
+	INTEGERS,
+	UNSIGNED,
+	PERCENT
+};
+
+enum e_size{
+	H,
+	HH,
+	L,
+	LL,
+	L_BIG
+};
+
+enum e_delimeters{
+	OCT = 8,
+	DEC = 10,
+	HEX = 16
+};
+
+/**
+ ** 	Структура для строки. Можно сразу выводить через write
+ **/
+typedef struct	s_string
 {
 	int				len;
-	void			*value;
-	enum e_flags	type;
 	char			*str;
-}		g_string;
+}				t_string;
 
-char	current_data[CURRENT_SIZE + 1];
-char	*current_adr;
-int		len;
-void    *type;
-int		writed;
-char	*prefix;
-int		prefix_len;
-int		min_weight;
+/**
+ ** 	Глобальная структура.
+ ** 	type - тип (целочисленный знаковый, беззнаковый, и тд.)
+ ** 	flags - флаги
+ ** 	str - текущая строка, преобразованная в строку
+ ** 	print - указатель на функцию, которая ничего не принимает
+ ** и не возвращает
+ ** 	que[10] - массив функций. Это для очереди. Итерационно будет вызываться.  
+ * */
+struct 				data{
+	enum e_type 		type;
+	enum e_flags		flags[6];
+	void 				*value;
+	t_string			str;
+	void				(*print)(t_string);
+	void				(*que[10])(void);
+	void				(*pars[5])(void);
+	int					precision;
+}					g_current_data;
 
+int		ft_printf(const char *format, ...);
 
-#endif //FT_PRINTF_FT_PRINTF_H
+/*
+**	Функции для перевода value в строку
+*/
+
+char	*str(void *value);
+char	*char_str(void *value);
+char	*addr_str(void *value);
+char	*dec_int_str(void *value);
+char	*oct_int_str(void *value);
+char	*hex_int_str(void *value);
+char	*dec_unint_str(void *value);
+char	*dec_float_str(void *value);
+
+void	convert_int(long long int src, int delim);
+void	convert_unint(unsigned long long  int src, int delim);
+
+char	*ft_strjoindel(char *s1, char *s2);
+void	ft_tolowercase(char *ptr);
+void	ft_printstring(t_string *str);
+
+/**
+ ** Debuging
+ */
+void	initstructure();
+void	get_binary(unsigned int src, int delim);
+struct ft_float
+{
+    char    binary [sizeof(float) * 8];
+    char    *sign;
+    char    *exponent;
+    char    *mantissa;
+    int     size;
+} g_float;
+
+/**
+ ** Вспомогательные функции (utils.c)
+ **
+ * */
+char	*ft_strjoindel(char *s1, char *s2);
+
+/**
+ ** 	Deprecated
+ * */
+void	do_dprint(char print);
+void	convert_size_t_int(size_t src, int delim);
+char	*ft_itoa_base(t_ll_int value, int base);
+char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
+char	*get_decimal(int dec);
+char    *get_hexodecimal(int input);
+void	flag_management();
+
+#endif

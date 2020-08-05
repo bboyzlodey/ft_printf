@@ -1,4 +1,10 @@
 printf:
 	gcc test.c ft_itoa.c ../libft/libft.a
 ft_itoa:
-	gcc ft_itoa.c ft_itoa_test.c ../libft/libft.a
+	# gcc ../string.c ./ft_itoa.c ../libft/libft.a
+test2:
+	gcc ./test2.c ../utils.c ./ft_itoa.c ../libft/libft.a -o test2
+k:
+	gcc mary.c
+floats:
+	gcc ./test2.c ../utils.c ./ft_itoa.c ../ft_float.c ../libft/libft.a -o floats
