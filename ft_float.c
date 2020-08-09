@@ -47,3 +47,39 @@ int     sign_calc(unsigned int raw)
 {
     return (raw >> 31);
 }
+/***************************/
+static simple_float *get_structure()
+{
+    simple_float *tmp;
+    tmp = (simple_float)malloc(sizeof(simple_float));
+    return tmp;
+}
+
+static unsigned int manti_calc(unsigned int tmp)
+{
+    return tmp & 0x007FFFFFu;
+}
+
+static unsigned int float_to_unint(float f)
+{
+	return *((unsigned int*) &f);
+}
+
+static unsigned int calcutate_real(float f, const int precision)
+{
+    unsigned int fi = float_to_unint(f);
+    int exp = exp_calc(fi) - 127;
+    unsigned int mantissa = manti_calc(fi);
+}
+
+static simple_float *init_floats(float f, simple_float toInit)
+{
+    toInit.integer_part = (int) f;
+    toInit.precision = 3;
+    toInit.real_part = calcutate_real(f, toInit.precision);
+}
+
+void convert_float_str(float f)
+{
+
+}

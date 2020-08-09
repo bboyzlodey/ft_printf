@@ -33,6 +33,19 @@ void printdoubles()
 	write(1, "\n", 1);
 }
 
+static void print_binary(int c){
+	convert_unint(c, 2);
+	printf("Value: %d\t", c);
+	printf(ANSI_COLOR_YELLOW"Count of Bits:%d\n"ANSI_COLOR_RESET, g_current_data.str.len);
+	printf(ANSI_COLOR_GREEN"Bits: %s\n\n"ANSI_COLOR_RESET, g_current_data.str.str);
+	ft_strdel(&(g_current_data.str.str));
+}
+
+static unsigned int float_to_unint(float f)
+{
+	return *((unsigned int*) &f);
+}
+
 void printu(double f)
 {
 	unsigned long long int i, j;
@@ -54,14 +67,23 @@ static void helper_float(float f)
 
 int main()
 {
-	initstructure();
-	// printu(2.5);
-	helper_float(-2.5f);
-	// printf("sign: ");
-	write(1, g_float.sign, 1);
-	// printf("\nexponent: ");
-	write(1, g_float.exponent, 8);
-	// printf("\nmantissa: ");
-	write(1, g_float.mantissa, 23);
+	char a = 1;
+
+	print_binary(exp_calc(float_to_unint(25)));
+	print_binary(sign_calc(float_to_unint(-25)));
+	float tmp = 10.78;
+	unsigned int tmpf = (unsigned int) tmp;
+	printf("test: %d\n", tmpf);
+	tmp = tmp - (float) tmpf;
+	tmpf = (unsigned int) (tmp * 10);
+	tmp *= 10;
+	printf("test: %d\tfloat: %f\n", tmpf, tmp);
+	tmp = tmp - tmpf;
+	tmpf = (unsigned int) (tmp * 10);
+	printf("test: %d\tfloat: %f\n", tmpf, tmp);
+	printf("float is: %lf\n", (10.78f - 10) * 10);
+	printf("Max value of unsigned int: %u\n", (unsigned int)-1);
+	printf("Max value of unsigned long int: %lu\n", (unsigned long int) -1);
+	printf("Max value of unsigned long long int: %llu\n", (unsigned long long int) -1);
 	return 0;
 }

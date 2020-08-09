@@ -16,6 +16,14 @@
 #include "./libft/libft.h"
 #include <stdarg.h>
 
+typedef struct some_float
+{
+	int integer_part;
+	int real_part;
+	int precision;
+}	simple_float;
+
+
 /*
 ** spec: d, i, u, p, x, X, o, f, s, c, %		--- спецификаторы
 ** flag: -, +, #, 0, ' '  						--- флаги
