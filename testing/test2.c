@@ -46,24 +46,22 @@ void printu(double f)
 	ft_strdel(&(g_current_data.str.str));
 }
 
+static void helper_float(float f)
+{
+    unsigned int src = *((unsigned int *)&f);
+    get_binary(src, 2);
+}
 
 int main()
 {
-	// printf("%.10f\n", 50);
-	// printf("%.10lf\n", 50);
-	// printf("%.10Lf\n", 50);
-	/**
-	 * Размеры типов чисел с плавающей точкой
-	 * */
-	// printf("size of float: %d\n", sizeof(float));
-	// printf("size of double: %d\n", sizeof(double));
-	// printf("size of float: %d\n", sizeof(long double));
-	double a = 255;
-	double b = 0.5;
-	double c = 1;
-	printu(a);
-	printu(b);
-	printu(c);
-	printf("%f\n", -255.0);
+	initstructure();
+	// printu(2.5);
+	helper_float(-2.5f);
+	// printf("sign: ");
+	write(1, g_float.sign, 1);
+	// printf("\nexponent: ");
+	write(1, g_float.exponent, 8);
+	// printf("\nmantissa: ");
+	write(1, g_float.mantissa, 23);
 	return 0;
 }
