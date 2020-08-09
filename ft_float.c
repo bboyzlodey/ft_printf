@@ -37,3 +37,13 @@ void	get_binary(unsigned int src, int delim)
 		get_binary(src / delim, delim);
 	}
 }
+
+int     exp_calc(unsigned int raw)
+{
+    return (raw << 1) >> 24;
+}
+
+int     sign_calc(unsigned int raw)
+{
+    return (raw >> 31);
+}
