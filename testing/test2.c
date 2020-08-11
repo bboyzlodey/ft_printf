@@ -64,26 +64,30 @@ static void helper_float(float f)
     unsigned int src = *((unsigned int *)&f);
     get_binary(src, 2);
 }
+static unsigned int manti_calc(unsigned int tmp)
+{
+    return tmp & 0x007FFFFFu;
+}
+
+typedef struct personal_float
+{
+	unsigned int
+	sign :1,
+	exponenta :8,
+	mantissa :23;
+} m_fl;
+
 
 int main()
 {
-	char a = 1;
-
-	print_binary(exp_calc(float_to_unint(25)));
-	print_binary(sign_calc(float_to_unint(-25)));
-	float tmp = 10.78;
-	unsigned int tmpf = (unsigned int) tmp;
-	printf("test: %d\n", tmpf);
-	tmp = tmp - (float) tmpf;
-	tmpf = (unsigned int) (tmp * 10);
-	tmp *= 10;
-	printf("test: %d\tfloat: %f\n", tmpf, tmp);
-	tmp = tmp - tmpf;
-	tmpf = (unsigned int) (tmp * 10);
-	printf("test: %d\tfloat: %f\n", tmpf, tmp);
-	printf("float is: %lf\n", (10.78f - 10) * 10);
-	printf("Max value of unsigned int: %u\n", (unsigned int)-1);
-	printf("Max value of unsigned long int: %lu\n", (unsigned long int) -1);
-	printf("Max value of unsigned long long int: %llu\n", (unsigned long long int) -1);
+	// print_binary(1 | (1 << 23));
+	int i = 1;
+	// while (i < 100)
+	// {
+	// 	printf("positive_pow(%d): ", i);
+	// 	positive_pow(i);
+	// 	i++;
+	// }
+	print_big_int(positive_pow(99)) ;
 	return 0;
 }

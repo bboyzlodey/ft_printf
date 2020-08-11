@@ -12,15 +12,29 @@
 
 #ifndef FT_PRINTF_FT_PRINTF_H
 # define FT_PRINTF_FT_PRINTF_H
+# define MAX_DIGITS 100
+# define BIG_INT_BASE 10
 
 #include "./libft/libft.h"
 #include <stdarg.h>
 
+typedef int t_big_int[MAX_DIGITS];
+
+/*
+** 	Structure for big number
+*/
+typedef struct long_num{
+	int value[MAX_DIGITS];
+} t_long_num;
+
 typedef struct some_float
 {
-	int integer_part;
-	int real_part;
-	int precision;
+	t_long_num integer_part;
+	t_long_num real_part;
+	int sign;
+	int exponenta;
+	int mantissa;
+	unsigned int precision;
 }	simple_float;
 
 
@@ -33,9 +47,6 @@ typedef struct some_float
 */
 
 #define	CURRENT_SIZE 150
-/*
-**       Functions
-*/
 
 /*
 **       Типы
@@ -160,14 +171,7 @@ void	ft_printstring(t_string *str);
  */
 void	initstructure();
 void	get_binary(unsigned int src, int delim);
-struct ft_float
-{
-    char    binary [sizeof(float) * 8];
-    char    *sign;
-    char    *exponent;
-    char    *mantissa;
-    int     size;
-} g_float;
+
 
 /**
  ** Вспомогательные функции (utils.c)
@@ -185,5 +189,9 @@ char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
 char	*get_decimal(int dec);
 char    *get_hexodecimal(int input);
 void	flag_management();
+
+
+t_long_num positive_pow(int exp);
+void print_big_int(t_long_num tmp);
 
 #endif
