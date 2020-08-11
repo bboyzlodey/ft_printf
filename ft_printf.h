@@ -195,5 +195,7 @@ void	flag_management();
 t_long_num positive_pow(int exp);
 void print_big_int(t_long_num tmp);
 t_long_num summ_big_int(t_long_num one, t_long_num two);
+void convert_float_str(float f);
+int calcutate_integer(simple_float f);
 
 #endif

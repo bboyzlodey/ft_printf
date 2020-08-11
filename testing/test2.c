@@ -80,14 +80,10 @@ typedef struct personal_float
 
 int main()
 {
-	// print_binary(1 | (1 << 23));
 	int i = 1;
-	// while (i < 100)
-	// {
-	// 	printf("positive_pow(%d): ", i);
-	// 	positive_pow(i);
-	// 	i++;
-	// }
-	print_big_int(positive_pow(99)) ;
+
+	// print_big_int(summ_big_int(positive_pow(113), positive_pow(3)));
+	// print_big_int(summ_big_int(positive_pow(98), positive_pow(50)));
+	convert_float_str(10.11);
 	return 0;
 }

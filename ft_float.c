@@ -35,15 +35,13 @@ static int calcutate_real(float f, const int precision)
     unsigned int fi = float_to_unint(f);
     int exp = exp_calc(fi) - 127;
     unsigned int mantissa = manti_calc(fi);
-
-    int bigr;
-    return bigr;
+    return 0;
 }
 
-/*
-**  Using fo print big_int 
-*/
 
+/*
+**  Sum of big numbers
+*/
 t_long_num summ_big_int(t_long_num one, t_long_num two)
 {
     int max = 0;
@@ -67,9 +65,12 @@ t_long_num summ_big_int(t_long_num one, t_long_num two)
     one.digits = max;
     return one;
 }
-
+/*
+**  Using fo print big_int 
+*/
 void print_big_int(t_long_num tmp)
 {
+    printf("print acumm: ");
     int i = 0;
     int flag = 1;
 
@@ -134,16 +135,26 @@ t_long_num positive_pow(int exp)
    return tmp;
 }
 
-static int calcutate_integer(simple_float f)
+int calcutate_integer(simple_float f)
 {
     int current_exp = f.exponenta;
-    int count_bits = 24;
-    t_big_int accum;
+    int count_bits = 23;
+    t_long_num accum;
+    ft_bzero(&accum.value, sizeof(accum.value));
+    accum.digits = 0;
 
+    while (current_exp >= 0 && count_bits)
+    {
+        if (f.mantissa >> count_bits)
+            accum = summ_big_int(accum, positive_pow(current_exp));
+        current_exp--;
+        count_bits--;
+    }
+    print_big_int(accum);
     return 0;
 }
 
-static simple_float *init_floats(float f, simple_float toInit)
+static simple_float init_floats(float f, simple_float toInit)
 {
     unsigned int fi = float_to_unint(f);
     toInit.sign = f >= 0 ? 0 : -1;
@@ -151,10 +162,10 @@ static simple_float *init_floats(float f, simple_float toInit)
     toInit.mantissa = manti_calc(fi) | (1 << 23);
     toInit.precision = 3;
 
-    return &toInit;
+    return toInit;
 }
 
 void convert_float_str(float f)
 {
-
+    calcutate_integer(init_floats(f, *get_structure()));
 }
