@@ -25,6 +25,7 @@ typedef int t_big_int[MAX_DIGITS];
 */
 typedef struct long_num{
 	int value[MAX_DIGITS];
+	int digits;
 } t_long_num;
 
 typedef struct some_float
@@ -193,5 +194,6 @@ void	flag_management();
 
 t_long_num positive_pow(int exp);
 void print_big_int(t_long_num tmp);
+t_long_num summ_big_int(t_long_num one, t_long_num two);
 
 #endif

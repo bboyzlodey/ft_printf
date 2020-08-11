@@ -44,6 +44,13 @@ static int calcutate_real(float f, const int precision)
 **  Using fo print big_int 
 */
 
+// static t_long_num summ_big_int(t_long_num one, t_long_num two)
+// {
+//     t_long_num result;
+
+//     return result;
+// }
+
 void print_big_int(t_long_num tmp)
 {
     int i = 0;
@@ -63,6 +70,17 @@ void print_big_int(t_long_num tmp)
     printf("\n");
 }
 /*
+**  int count_digits(t_long_num count)
+**  Считает количество десятичных цифр
+*/
+int count_digits(t_long_num count)
+{
+    int i = MAX_DIGITS - 1;
+    while (count.value[i] == 0)
+        i--;
+    return i + 1;
+}
+/*
 ** Возводит число 2 в степень
 */
 t_long_num positive_pow(int exp)
@@ -70,6 +88,7 @@ t_long_num positive_pow(int exp)
     t_long_num tmp;
     ft_bzero(&tmp.value, sizeof(tmp.value));
     tmp.value[0] = 1;
+    tmp.digits = 1;
     int i = 0;
 
     while (exp > 0)
@@ -92,6 +111,7 @@ t_long_num positive_pow(int exp)
         }
         exp--;
     }
+    printf("digits: %d\n", count_digits(tmp));
    return tmp;
 }
 
