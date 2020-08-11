@@ -44,12 +44,29 @@ static int calcutate_real(float f, const int precision)
 **  Using fo print big_int 
 */
 
-// static t_long_num summ_big_int(t_long_num one, t_long_num two)
-// {
-//     t_long_num result;
-
-//     return result;
-// }
+t_long_num summ_big_int(t_long_num one, t_long_num two)
+{
+    int max = 0;
+    max = one.digits > two.digits ? one.digits : two.digits;
+    int i = 0;
+    int c = 0;
+    printf("one.digits: %d\n", one.digits);
+    printf("two.digits: %d\n", two.digits);
+    while (i <= max)
+    {
+        c = c + one.value[i] + two.value[i];
+        one.value[i] = c % BIG_INT_BASE;
+        c = c / BIG_INT_BASE;
+        i++;
+    }
+    if (c > 0)
+    {
+        max = max + 1;
+        one.value[max] = c;
+    }
+    one.digits = max;
+    return one;
+}
 
 void print_big_int(t_long_num tmp)
 {
@@ -80,6 +97,7 @@ int count_digits(t_long_num count)
         i--;
     return i + 1;
 }
+
 /*
 ** Возводит число 2 в степень
 */
@@ -112,6 +130,7 @@ t_long_num positive_pow(int exp)
         exp--;
     }
     printf("digits: %d\n", count_digits(tmp));
+    tmp.digits = count_digits(tmp);
    return tmp;
 }
 
