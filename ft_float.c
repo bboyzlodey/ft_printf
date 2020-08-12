@@ -67,11 +67,11 @@ t_long_num summ_big_int(t_long_num one, t_long_num two)
     return one;
 }
 /*
-**  Using fo print big_int 
+**  Используется для печати больших чисел
 */
 void print_big_int(t_long_num tmp)
 {
-    printf("print acumm: ");
+    printf(ANSI_COLOR_YELLOW"print acumm: ");
     int i = 0;
     int flag = 1;
 
@@ -86,7 +86,7 @@ void print_big_int(t_long_num tmp)
         }
         printf("%d", tmp.value[i]);
     }
-    printf("\n");
+    printf("\n" ANSI_COLOR_RESET);
 }
 /*
 **  int count_digits(t_long_num count)
@@ -135,7 +135,10 @@ t_long_num positive_pow(int exp)
     tmp.digits = count_digits(tmp);
    return tmp;
 }
-
+/*
+**  Возводит число base в степень exp.
+**  И возвращает тип большого числа
+*/
 t_long_num base_pow(int exp, int base)
 {
     t_long_num tmp;
@@ -174,18 +177,19 @@ t_long_num base_pow(int exp, int base)
 **  Divideder - делитель
 **  tmp - временное число
 */
-t_real_num negative_pow(int exp, int precision){
-    t_real_num tmp;
-    t_long_num dividend;
-    t_long_num delimeter;
-    
-    tmp.negative_pow = precision + 1;
-    dividend.digits = tmp.negative_pow;
-    dividend.value[tmp.negative_pow] = 1;
 
-    delimeter = positive_pow(exp);
-    tmp.number = base_pow(exp, 2);
-}
+// t_real_num negative_pow(int exp, int precision){
+//     t_real_num tmp;
+//     t_long_num dividend;
+//     t_long_num delimeter;
+    
+//     tmp.negative_pow = precision + 1;
+//     dividend.digits = tmp.negative_pow;
+//     dividend.value[tmp.negative_pow] = 1;
+
+//     delimeter = positive_pow(exp);
+//     tmp.number = base_pow(exp, 2);
+// }
 
 int calcutate_integer(simple_float f)
 {
@@ -208,6 +212,23 @@ int calcutate_integer(simple_float f)
      * */
     print_big_int(accum);
     return 0;
+}
+
+/*
+**  int comp_big_int(t_long_num a, t_long_num b);
+**  Компаратор. Сравнивает большие числа a и b.
+*/
+int comp_big_int(t_long_num a, t_long_num b)
+{
+    printf(ANSI_COLOR_YELLOW"*******COMPARE*******\n");
+    print_big_int(a);
+    print_big_int(b);
+    printf("*********************\n"ANSI_COLOR_RESET);
+    if (a.digits > b.digits)
+        return 1;
+    else if (a.digits < b.digits)
+        return -1;
+    return (ft_memcmp(&a, &b, a.digits * 4));
 }
 
 static simple_float init_floats(float f, simple_float toInit)

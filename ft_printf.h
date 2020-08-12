@@ -203,5 +203,7 @@ t_long_num summ_big_int(t_long_num one, t_long_num two);
 void convert_float_str(float f);
 int calcutate_integer(simple_float f);
 t_real_num negative_pow(int exp);
+int comp_big_int(t_long_num a, t_long_num b);
+t_long_num base_pow(int exp, int base);
 
 #endif

@@ -83,18 +83,13 @@ int main()
 	int i = 1;
 
 /*
-** 	Тесты для проверки корректного выделения целой части float
+** 	Тесты для проверки правильного сравнивания
 */
-	printf(ANSI_COLOR_MAGENTA"************\n"ANSI_COLOR_RESET);
-	convert_float_str(10.11);
-	printf(ANSI_COLOR_YELLOW"************\n"ANSI_COLOR_RESET);
-	convert_float_str(15000.11);
-	printf(ANSI_COLOR_YELLOW"************\n"ANSI_COLOR_RESET);
-	convert_float_str(36987.11);
-	printf(ANSI_COLOR_YELLOW"************\n"ANSI_COLOR_RESET);
-	convert_float_str(123796.11);
-	printf(ANSI_COLOR_YELLOW"************\n"ANSI_COLOR_RESET);
-	convert_float_str(1.15711);
+
+	printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 2), base_pow(2,2)));
+	printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 3), base_pow(2,2)));
+	printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 2), base_pow(2,4)));
+	printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 10), base_pow(2,2)));
 /*
 ** 	Протестировано. Работает хорошо!
 */
