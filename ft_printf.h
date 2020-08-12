@@ -184,7 +184,7 @@ char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
 char	*get_decimal(int dec);
 char	*get_hexodecimal(int input);
 void	flag_management();
-
+void	add_prefix(char *prefix);
 
 /**
  ** Parsing functions

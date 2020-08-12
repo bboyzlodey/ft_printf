@@ -51,17 +51,24 @@ static void helper_float(float f)
     unsigned int src = *((unsigned int *)&f);
     get_binary(src, 2);
 }
-
+static void ho(void)
+{
+	printf("Hello");
+}
 int main()
 {
-	initstructure();
-	// printu(2.5);
-	helper_float(-2.5f);
-	// printf("sign: ");
-	write(1, g_float.sign, 1);
-	// printf("\nexponent: ");
-	write(1, g_float.exponent, 8);
-	// printf("\nmantissa: ");
-	write(1, g_float.mantissa, 23);
+	// initstructure();
+	// // printu(2.5);
+	// helper_float(-2.5f);
+	// // printf("sign: ");
+	// write(1, g_float.sign, 1);
+	// // printf("\nexponent: ");
+	// write(1, g_float.exponent, 8);
+	// // printf("\nmantissa: ");
+	// write(1, g_float.mantissa, 23);
+	void (*f)(char *);
+	f = ho;
+	f();
+	printf("ifdj");
 	return 0;
 }

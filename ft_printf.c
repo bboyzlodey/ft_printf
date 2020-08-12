@@ -6,7 +6,7 @@
 /*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 20:33:59 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/05 18:20:09 by jsabina          ###   ########.fr       */
+/*   Updated: 2020/08/12 17:26:05 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,39 @@ void     float_prog(double a) // double
     }
 }
 
+// int		find_type(char	form)
+// {
+// 	if (form == 'd' || form == 'i')
+// 		return (INTEGERS);
+	
+// }
+
 int		find_type(char	form)
 {
 	if (form == 'd' || form == 'i')
-		return (INTEGERS);
+		g_current_data.type = INTEGERS;
+	return 0;
 	
 }
+
+int find_precision(char *prec)
+{
+	
+}
+
+int find_width(char *width)
+{
+	
+}
+
+int find_flags(char *flags)
+{
+	int i = 0;
+	
+	if (*flags == '+')
+		g_current_data.flags[i++] = PLUS;
+}
+
 
 int		parsing(const char *format)
 {
@@ -58,7 +85,7 @@ int		parsing(const char *format)
 				break;
 }
 
-void	creat_struct_data(void)
+void	init_struct_data(void)
 {
 	int i;
 
@@ -78,14 +105,33 @@ void	creat_struct_data(void)
 	g_current_data.skip = 0;
 }
 
-int ft_printf(const char *format, ...)
+int		ft_printf(const char *format, ...)
 {
 	va_list list;
 	int i;
 
 	i = 0;
 	va_start(list, format);
-	creat_struct_data();
+	init_struct_data();
+	
+int		print_before_procent(char *format)
+{
+	int i;
+
+	i = 0;
+	while (format[i])
+	{	
+		if (format[i] != '%')
+			i++;
+		if (format[i] == '%' && format[i + 1] == '%')
+			i++;
+		else if (format[i] == '%')
+			write (1, format + i, i);
+			return (i);
+	}
+}
+
+	
 	while (format[i])
 	{
 		if (format[i] == '%')

@@ -16,16 +16,16 @@
  ** ft_strjoindel - join two string and free his.
  ** Return value - joined string allocated with malloc.
  * */
-// char	*ft_strjoindel(char *s1, char *s2)
-// {
-// 	char	*new;
+char	*ft_strjoindel(char *s1, char *s2)
+{
+	char	*new;
 
-// 	new = ft_strjoin(s1, s2);
-// 	free(s1);
-// 	s1 = NULL;
-// 	ft_strclr(s2);
-// 	return (new);
-// }
+	new = ft_strjoin(s1, s2);
+	free(s1);
+	s1 = NULL;
+	ft_strclr(s2);
+	return (new);
+}
 int main()
 {
 	printf("%0020d", 45123);
