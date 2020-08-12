@@ -139,13 +139,14 @@ int calcutate_integer(simple_float f)
 {
     int current_exp = f.exponenta;
     int count_bits = 23;
+    int mask = 1;
     t_long_num accum;
     ft_bzero(&accum.value, sizeof(accum.value));
     accum.digits = 0;
 
     while (current_exp >= 0 && count_bits)
     {
-        if (f.mantissa >> count_bits)
+        if ((f.mantissa & (mask << count_bits)) != 0)
             accum = summ_big_int(accum, positive_pow(current_exp));
         current_exp--;
         count_bits--;

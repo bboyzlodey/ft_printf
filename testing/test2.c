@@ -82,8 +82,22 @@ int main()
 {
 	int i = 1;
 
-	// print_big_int(summ_big_int(positive_pow(113), positive_pow(3)));
-	// print_big_int(summ_big_int(positive_pow(98), positive_pow(50)));
+
+/*
+** 	Тесты для проверки корректного выделения целой части float
+*/
+	printf(ANSI_COLOR_MAGENTA"************\n"ANSI_COLOR_RESET);
 	convert_float_str(10.11);
+	printf(ANSI_COLOR_YELLOW"************\n"ANSI_COLOR_RESET);
+	convert_float_str(15000.11);
+	printf(ANSI_COLOR_YELLOW"************\n"ANSI_COLOR_RESET);
+	convert_float_str(36987.11);
+	printf(ANSI_COLOR_YELLOW"************\n"ANSI_COLOR_RESET);
+	convert_float_str(123796.11);
+	printf(ANSI_COLOR_YELLOW"************\n"ANSI_COLOR_RESET);
+	convert_float_str(1.15711);
+/*
+** 	Протестировано. Работает хорошо!
+*/
 	return 0;
 }
