@@ -29,7 +29,9 @@ static unsigned int float_to_unint(float f)
 {
 	return *((unsigned int*) &f);
 }
-
+/**
+ * Unused function
+ * */
 static int calcutate_real(float f, const int precision)
 {
     unsigned int fi = float_to_unint(f);
@@ -48,8 +50,7 @@ t_long_num summ_big_int(t_long_num one, t_long_num two)
     max = one.digits > two.digits ? one.digits : two.digits;
     int i = 0;
     int c = 0;
-    printf("one.digits: %d\n", one.digits);
-    printf("two.digits: %d\n", two.digits);
+
     while (i <= max)
     {
         c = c + one.value[i] + two.value[i];
@@ -135,6 +136,57 @@ t_long_num positive_pow(int exp)
    return tmp;
 }
 
+t_long_num base_pow(int exp, int base)
+{
+    t_long_num tmp;
+    ft_bzero(&tmp.value, sizeof(tmp.value));
+    tmp.value[0] = 1;
+    tmp.digits = 1;
+    int i = 0;
+
+    while (exp > 0)
+    {
+        i = 0;
+        while (i < MAX_DIGITS)
+        {
+            tmp.value[i] *= base;
+            i++;
+        }
+        i = 0;
+        while (i < MAX_DIGITS - 1)
+        {
+            if (tmp.value[i] >= BIG_INT_BASE)
+            {
+                tmp.value[i + 1] += tmp.value[i] / BIG_INT_BASE;
+                tmp.value[i] %= BIG_INT_BASE;
+            }
+            i++;
+        }
+        exp--;
+    }
+    printf("digits: %d\n", count_digits(tmp));
+    tmp.digits = count_digits(tmp);
+    return tmp;
+}
+
+/* t_real_num negative_pow(int exp, int precision)
+**  dividend -  делимое
+**  Divideder - делитель
+**  tmp - временное число
+*/
+t_real_num negative_pow(int exp, int precision){
+    t_real_num tmp;
+    t_long_num dividend;
+    t_long_num delimeter;
+    
+    tmp.negative_pow = precision + 1;
+    dividend.digits = tmp.negative_pow;
+    dividend.value[tmp.negative_pow] = 1;
+
+    delimeter = positive_pow(exp);
+    tmp.number = base_pow(exp, 2);
+}
+
 int calcutate_integer(simple_float f)
 {
     int current_exp = f.exponenta;
@@ -151,6 +203,9 @@ int calcutate_integer(simple_float f)
         current_exp--;
         count_bits--;
     }
+    /**
+     *  print_big_int(accum) -  for debug
+     * */
     print_big_int(accum);
     return 0;
 }

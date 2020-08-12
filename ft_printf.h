@@ -28,6 +28,11 @@ typedef struct long_num{
 	int digits;
 } t_long_num;
 
+typedef struct real_num{
+	t_long_num number;
+	int negative_pow;
+} t_real_num;
+
 typedef struct some_float
 {
 	t_long_num integer_part;
@@ -197,5 +202,6 @@ void print_big_int(t_long_num tmp);
 t_long_num summ_big_int(t_long_num one, t_long_num two);
 void convert_float_str(float f);
 int calcutate_integer(simple_float f);
+t_real_num negative_pow(int exp);
 
 #endif
