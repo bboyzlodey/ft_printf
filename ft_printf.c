@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vheidy <vheidy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 20:33:59 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/12 17:26:05 by jsabina          ###   ########.fr       */
+/*   Updated: 2020/08/13 17:27:28 by vheidy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,23 @@ int find_width(char *width)
 	
 }
 
-int find_flags(char *flags)
+int		find_flags(char **format)
 {
-	int i = 0;
-	
-	if (*flags == '+')
-		g_current_data.flags[i++] = PLUS;
-}
+	char form;
 
+	form = **format;
+	if (form == '#' && (*format)++ && g_current_data.skip++)
+		g_current_data.flags[OCTOTORP] = OCTOTORP;
+	if (form == ' ' && (*format)++ && g_current_data.skip++)
+		g_current_data.flags[SPACE] = SPACE;
+	if (form == '-' && (*format)++ && g_current_data.skip++)
+		g_current_data.flags[MINUS] = MINUS;
+	if (form == '+' && (*format)++ && g_current_data.skip++)
+		g_current_data.flags[PLUS] = PLUS;
+	if (form == '0' && (*format)++ && g_current_data.skip++)
+		g_current_data.flags[NULL_FLAG] = NULL_FLAG;
+	return (0);
+}
 
 int		parsing(const char *format)
 {
@@ -113,25 +122,6 @@ int		ft_printf(const char *format, ...)
 	i = 0;
 	va_start(list, format);
 	init_struct_data();
-	
-int		print_before_procent(char *format)
-{
-	int i;
-
-	i = 0;
-	while (format[i])
-	{	
-		if (format[i] != '%')
-			i++;
-		if (format[i] == '%' && format[i + 1] == '%')
-			i++;
-		else if (format[i] == '%')
-			write (1, format + i, i);
-			return (i);
-	}
-}
-
-	
 	while (format[i])
 	{
 		if (format[i] == '%')
@@ -141,6 +131,48 @@ int		print_before_procent(char *format)
 	va_end(list);
 	return 1;
 }
+	
+int print_percent(char **format, char **next_percent)
+{
+	int		count;
+
+	count = 0;
+	write(1, *format, *next_percent - *format);
+	count += *next_percent - *format;
+	*format = *next_percent;
+	return (count);
+}
+
+
+int		print_before_procent(char *format)
+{
+	int		count;
+	int len;
+
+	count = 0;
+	char *next_percent;
+	next_percent = ft_strchr(format, '%');
+	while (*format != '\0' && next_percent) {
+		count += print_percent(&format, &next_percent);
+		if (*(format + 1) == '%') {
+			write(1, "%", 1);
+			format++;
+			count++;
+		}
+		else
+			return (count);
+		format++;
+		next_percent = ft_strchr(format, '%');
+	}
+	len = ft_strlen(format);
+	write(1, format, len);
+	count += len;
+	return (count);
+}
+
+
+	
+
 int main()
 {
     // double a = 12.358;
