@@ -6,7 +6,7 @@
 /*   By: vheidy <vheidy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 20:33:59 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/13 17:27:28 by vheidy           ###   ########.fr       */
+/*   Updated: 2020/08/13 18:54:17 by vheidy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,49 @@ int		find_flags(char **format)
 	char form;
 
 	form = **format;
-	if (form == '#' && (*format)++ && g_current_data.skip++)
-		g_current_data.flags[OCTOTORP] = OCTOTORP;
-	if (form == ' ' && (*format)++ && g_current_data.skip++)
-		g_current_data.flags[SPACE] = SPACE;
-	if (form == '-' && (*format)++ && g_current_data.skip++)
-		g_current_data.flags[MINUS] = MINUS;
-	if (form == '+' && (*format)++ && g_current_data.skip++)
-		g_current_data.flags[PLUS] = PLUS;
-	if (form == '0' && (*format)++ && g_current_data.skip++)
-		g_current_data.flags[NULL_FLAG] = NULL_FLAG;
-	return (0);
+	// if (form == '#' && (*format)++ && g_current_data.skip++)
+	// 	g_current_data.flags[OCTOTORP] = OCTOTORP;
+	// if (form == ' ' && (*format)++ && g_current_data.skip++)
+	// 	g_current_data.flags[SPACE] = SPACE;
+	// if (form == '-' && (*format)++ && g_current_data.skip++)
+	// 	g_current_data.flags[MINUS] = MINUS;
+	// if (form == '+' && (*format)++ && g_current_data.skip++)
+	// 	g_current_data.flags[PLUS] = PLUS;
+	// if (form == '0' && (*format)++ && g_current_data.skip++)
+	// 	g_current_data.flags[NULL_FLAG] = NULL_FLAG;
+	// return (0);
+
+	// while (1)
+	// {
+	// 	if (*format != "+" && *format != '-' && *format != '0'\
+	// 	 && *format != ' ' && *format != '#')
+	// 		return (0);
+	// 	if (*format == "+")
+	// 		g_current_data.flags = PLUS;
+	// 	if (*format == "-")
+	// 		g_current_data.flags = MINUS;
+	// 	if (*format == "0")
+	// 		g_current_data.flags = NULL_FLAG;
+	// 	if (*format == " ")
+	// 		g_current_data.flags = SPACE;
+	// 	if (*format == "#")
+	// 		g_current_data.flags = OCTOTORP;
+	// 	(*format)++;
+	// }
+	while (1)
+	{
+		if (form = '+')
+			g_current_data.flags = PLUS;
+		if (form = '-')
+			g_current_data.flags = MINUS;
+		if (form = '0')
+			g_current_data.flags = NULL_FLAG;
+		if (form = ' ')
+			g_current_data.flags = SPACE;
+		if (form = '#')
+			g_current_data.flags = OCTOTORP;
+		form++;
+	}
 }
 
 int		parsing(const char *format)
@@ -147,10 +179,11 @@ int print_percent(char **format, char **next_percent)
 int		print_before_procent(char *format)
 {
 	int		count;
-	int len;
-
-	count = 0;
+	int		len;
 	char *next_percent;
+	
+	count = 0;
+	
 	next_percent = ft_strchr(format, '%');
 	while (*format != '\0' && next_percent) {
 		count += print_percent(&format, &next_percent);

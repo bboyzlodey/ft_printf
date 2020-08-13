@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "libft/libft.h"
+#include "printf.h"
 // int		print_before_procent(char *format)
 // {
 // 	int i;
@@ -68,53 +69,52 @@
 // 	}
 // 	return (count);
 // }
-int print_percent(char **format, char **next_percent)
+
+
+char		find_flags(char **format)
 {
-	int		count;
+	// char form;
 
-	count = 0;
-	write(1, *format, *next_percent - *format);
-	count += *next_percent - *format;
-	*format = *next_percent;
-	
-	return (count);
-}
+	// form = **format;
+	// if (form == '#' && (*format)++ && g_current_data.skip++)
+	// 	g_current_data.flags[OCTOTORP] = OCTOTORP;
+	// if (form == ' ' && (*format)++ && g_current_data.skip++)
+	// 	g_current_data.flags[SPACE] = SPACE;
+	// if (form == '-' && (*format)++ && g_current_data.skip++)
+	// 	g_current_data.flags[MINUS] = MINUS;
+	// if (form == '+' && (*format)++ && g_current_data.skip++)
+	// 	g_current_data.flags[PLUS] = PLUS;
+	// if (form == '0' && (*format)++ && g_current_data.skip++)
+	// 	g_current_data.flags[NULL_FLAG] = NULL_FLAG;
+	// return (0);
 
-
-int		print_before_procent(char *format)
-{
-	int		count;
-	int len;
-
-	count = 0;
-	char *next_percent;
-	next_percent = ft_strchr(format, '%');
-	while (*format != '\0' && next_percent) {
-		count += print_percent(&format, &next_percent);
-		if (*(format + 1) == '%') {
-			write(1, "%", 1);
-			format++;
-			count++;
-		}
-		else
-			return (count);
-		format++;
-		next_percent = ft_strchr(format, '%');
+	while (1)
+	{
+		if (**format != '+' && **format != '-' && **format != '0'\
+		 && **format != ' ' && **format != '#')
+			return (0);
+		if (**format == '+')
+			return '+';
+		if (**format == '-')
+			return '-';
+		if (**format == '0')
+			return '0';
+		if (**format == ' ')
+			return ' ';
+		if (**format == '#')
+			return '#';
+		(*format)++;
 	}
-	len = ft_strlen(format);
-	write(1, format, len);
-	count += len;
-	return (count);
 }
-
 
 int		main()
 {
 	char *str;
-	str = strdup("ABCD");
-	// int i = print_before_procent(str);
-	// printf("\n%d\n", i);
-	int c = printf("% 10d", 11);
-	printf("\n%d\n", c);
+	// init_struct_data();
+	str = strdup("0");
+	int i = find_flags(&str);
+	printf("%c\n", find_flags(&str));
+	// int c = printf("%we32423");
+	// printf("\n%d\n", c);
 	return (0);
 }
