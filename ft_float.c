@@ -29,15 +29,56 @@ static unsigned int float_to_unint(float f)
 {
 	return *((unsigned int*) &f);
 }
-/**
- * Unused function
- * */
-static int calcutate_real(float f, const int precision)
+
+t_long_num mul_long(t_long_num a, int b)
 {
-    unsigned int fi = float_to_unint(f);
-    int exp = exp_calc(fi) - 127;
-    unsigned int mantissa = manti_calc(fi);
-    return 0;
+    int c, i;
+
+    c = 0;
+    i = 0;
+    while (i < a.digits)
+    {
+        a.value[i] = a.value[i] * b + c;
+        c = a.value[i] / 10;
+        a.value[i] = a.value[i] % 10;
+        i++;
+    }
+    while (c > 0)
+    {
+        a.digits++;
+        a.value[a.digits - 1] = c % 10;
+        c = c / 10;
+    }
+    print_big_int(a);
+    return a;
+}
+
+/**
+ * used function
+ * */
+static t_real_num calcutate_real(simple_float *fl)
+{
+    t_real_num result;
+    int exp = (fl->current_exp) * (-1);
+    int bits = fl->current_bit;
+    int mask = 1;
+    int mantissa = fl->mantissa;
+    t_long_num tmp;
+    result.negative_pow = 0;
+    result.number.digits = 0;
+    ft_bzero(&result.number.value, sizeof(result.number.value));
+
+    while (bits >= 0)
+    {
+        if ((mantissa & (mask << bits)) != 0)
+        {
+            tmp = base_pow(5, exp);
+            // result.number = summ_big_int();
+        }
+        exp++;
+        bits--;
+    }
+    return result;
 }
 
 
@@ -198,9 +239,9 @@ t_real_num negative_pow(int exp, int precision){
 //     t_long_num  down;
 //     t_long_num  result;
 // }
-int calcutate_integer(simple_float f)
+t_long_num calcutate_integer(simple_float *f)
 {
-    int current_exp = f.exponenta;
+    int current_exp = f->exponenta;
     int count_bits = 23;
     int mask = 1;
     t_long_num accum;
@@ -209,7 +250,7 @@ int calcutate_integer(simple_float f)
 
     while (current_exp >= 0 && count_bits)
     {
-        if ((f.mantissa & (mask << count_bits)) != 0)
+        if ((f->mantissa & (mask << count_bits)) != 0)
             accum = summ_big_int(accum, positive_pow(current_exp));
         current_exp--;
         count_bits--;
@@ -218,7 +259,9 @@ int calcutate_integer(simple_float f)
      *  print_big_int(accum) -  for debug
      * */
     print_big_int(accum);
-    return 0;
+    f->current_bit = count_bits;
+    f->current_exp = current_exp;
+    return accum;
 }
 
 /*
@@ -249,18 +292,24 @@ int comp_big_int(t_long_num a, t_long_num b)
     return 0;    
 }
 
-static simple_float init_floats(float f, simple_float toInit)
+static simple_float *init_floats(float f, simple_float *toInit)
 {
     unsigned int fi = float_to_unint(f);
-    toInit.sign = f >= 0 ? 0 : -1;
-    toInit.exponenta = exp_calc(fi) - 127;
-    toInit.mantissa = manti_calc(fi) | (1 << 23);
-    toInit.precision = 3;
+    toInit->sign = f >= 0 ? 0 : -1;
+    toInit->exponenta = exp_calc(fi) - 127;
+    toInit->mantissa = manti_calc(fi) | (1 << 23);
+    toInit->precision = 3;
 
     return toInit;
 }
 
 void convert_float_str(float f)
 {
-    calcutate_integer(init_floats(f, *get_structure()));
+    simple_float *flo;
+    t_real_num real;
+    t_long_num integ;
+
+    flo = init_floats(f, get_structure());
+    integ = calcutate_integer(flo);
+    real = calcutate_real(flo);
 }

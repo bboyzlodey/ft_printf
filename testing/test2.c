@@ -86,13 +86,17 @@ int main()
 ** 	Тесты для проверки правильного сравнивания
 */
 	t_long_num tmp;
-	tmp = base_pow(2, 25);
-	printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 25), base_pow(2,2)));
-	printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 25), base_pow(2,30)));
-	printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 25), base_pow(2,24)));
-	printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 100), base_pow(2,2)));
-	printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 25), tmp));
-	printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 26), base_pow(2, 27)));
+	tmp = base_pow(2, 23);
+	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 25), base_pow(2,2)));
+	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 25), base_pow(2,30)));
+	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 25), base_pow(2,24)));
+	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 100), base_pow(2,2)));
+	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 25), tmp));
+	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 26), base_pow(2, 27)));
+	mul_long(tmp, 2);
+	mul_long(tmp, 1);
+	mul_long(tmp, 10);
+	mul_long(tmp, 13);
 /*
 ** 	Протестировано. Работает хорошо!
 */

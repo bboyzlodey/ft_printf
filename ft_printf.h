@@ -41,6 +41,8 @@ typedef struct some_float
 	int exponenta;
 	int mantissa;
 	unsigned int precision;
+	int current_bit;
+	int current_exp;
 }	simple_float;
 
 
@@ -197,13 +199,14 @@ char    *get_hexodecimal(int input);
 void	flag_management();
 
 
-t_long_num positive_pow(int exp);
-void print_big_int(t_long_num tmp);
-t_long_num summ_big_int(t_long_num one, t_long_num two);
-void convert_float_str(float f);
-int calcutate_integer(simple_float f);
-t_real_num negative_pow(int exp, int precision);
-int comp_big_int(t_long_num a, t_long_num b);
-t_long_num base_pow(int base, int exp);
+t_long_num	positive_pow(int exp);
+void		print_big_int(t_long_num tmp);
+t_long_num	summ_big_int(t_long_num one, t_long_num two);
+void		convert_float_str(float f);
+t_long_num	calcutate_integer(simple_float *f);
+t_real_num	negative_pow(int exp, int precision);
+int			comp_big_int(t_long_num a, t_long_num b);
+t_long_num	base_pow(int base, int exp);
+t_long_num	mul_long(t_long_num a, int b);
 
 #endif
