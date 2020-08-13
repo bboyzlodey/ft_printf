@@ -139,7 +139,7 @@ t_long_num positive_pow(int exp)
 **  Возводит число base в степень exp.
 **  И возвращает тип большого числа
 */
-t_long_num base_pow(int exp, int base)
+t_long_num base_pow(int base,int exp) 
 {
     t_long_num tmp;
     ft_bzero(&tmp.value, sizeof(tmp.value));
@@ -177,20 +177,27 @@ t_long_num base_pow(int exp, int base)
 **  Divideder - делитель
 **  tmp - временное число
 */
-
-// t_real_num negative_pow(int exp, int precision){
-//     t_real_num tmp;
-//     t_long_num dividend;
-//     t_long_num delimeter;
+t_real_num negative_pow(int exp, int precision){
+    t_real_num tmp;
+    t_long_num dividend;
+    t_long_num delimeter;
     
-//     tmp.negative_pow = precision + 1;
-//     dividend.digits = tmp.negative_pow;
-//     dividend.value[tmp.negative_pow] = 1;
+    tmp.negative_pow = precision + 1;
+    dividend.digits = tmp.negative_pow;
+    dividend.value[tmp.negative_pow] = 1;
 
-//     delimeter = positive_pow(exp);
-//     tmp.number = base_pow(exp, 2);
+    delimeter = positive_pow(exp);
+    tmp.number = base_pow(exp, 2);
+    
+    return tmp;
+}
+
+// t_long_num  division_big_int(t_long_num a, t_long_num b)
+// {
+//     t_long_num  up;
+//     t_long_num  down;
+//     t_long_num  result;
 // }
-
 int calcutate_integer(simple_float f)
 {
     int current_exp = f.exponenta;
@@ -220,6 +227,9 @@ int calcutate_integer(simple_float f)
 */
 int comp_big_int(t_long_num a, t_long_num b)
 {
+    int i;
+
+    i = a.digits - 1;
     printf(ANSI_COLOR_YELLOW"*******COMPARE*******\n");
     print_big_int(a);
     print_big_int(b);
@@ -228,7 +238,15 @@ int comp_big_int(t_long_num a, t_long_num b)
         return 1;
     else if (a.digits < b.digits)
         return -1;
-    return (ft_memcmp(&a, &b, a.digits * 4));
+    while (i >= 0)
+    {
+        if (a.value[i] > b.value[i])
+            return 1;
+        else if (a.value[i] < b.value[i])
+            return -1;
+        i--;
+    }
+    return 0;    
 }
 
 static simple_float init_floats(float f, simple_float toInit)

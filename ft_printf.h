@@ -202,8 +202,8 @@ void print_big_int(t_long_num tmp);
 t_long_num summ_big_int(t_long_num one, t_long_num two);
 void convert_float_str(float f);
 int calcutate_integer(simple_float f);
-t_real_num negative_pow(int exp);
+t_real_num negative_pow(int exp, int precision);
 int comp_big_int(t_long_num a, t_long_num b);
-t_long_num base_pow(int exp, int base);
+t_long_num base_pow(int base, int exp);
 
 #endif
