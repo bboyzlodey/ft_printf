@@ -36,7 +36,7 @@ typedef struct real_num{
 typedef struct some_float
 {
 	t_long_num integer_part;
-	t_long_num real_part;
+	t_real_num real_part;
 	int sign;
 	int exponenta;
 	int mantissa;

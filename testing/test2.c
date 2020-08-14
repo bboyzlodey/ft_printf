@@ -32,9 +32,7 @@ void printdoubles()
 	write(1, "]", 1);
 	write(1, "\n", 1);
 }
-//   1000011100001010001111
-//   1000011100001010001111
-// 101000011100001010001111
+
 void print_binary(unsigned int c){
 	convert_unint(c, 2);
 	printf("Value: %d\t", c);
@@ -46,29 +44,6 @@ void print_binary(unsigned int c){
 static unsigned int float_to_unint(float f)
 {
 	return *((unsigned int*) &f);
-}
-
-void printu(double f)
-{
-	unsigned long long int i, j;
-	i = (unsigned long long int) f;
-	j = *((unsigned long long int*)&f);
-	int size_double = sizeof (double);
-	int iterations = 0;
-
-	convert_unint(j, 2);
-	printdoubles();
-	ft_strdel(&(g_current_data.str.str));
-}
-
-static void helper_float(float f)
-{
-    unsigned int src = *((unsigned int *)&f);
-    get_binary(src, 2);
-}
-static unsigned int manti_calc(unsigned int tmp)
-{
-    return tmp & 0x007FFFFFu;
 }
 
 typedef struct personal_float
@@ -88,27 +63,28 @@ int main()
 ** 	Тесты для проверки правильного сравнивания
 */
 	t_long_num tmp;
-	// tmp = base_pow(2, 23);
-	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 25), base_pow(2,2)));
-	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 25), base_pow(2,30)));
-	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 25), base_pow(2,24)));
-	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 100), base_pow(2,2)));
-	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 25), tmp));
-	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 26), base_pow(2, 27)));
-	// mul_long(tmp, 2);
-	// mul_long(tmp, 1);
-	// mul_long(tmp, 10);
-	// mul_long(tmp, 13);
-	double f = 10.11f;
-	// float f = 10.47854f;
+	float f = 10.00002f;
+	float f1 = 10.1f;
+	float f2 = 10.11f;
+	float f3 = 10.000001f;
+	float f4 = 45.547924f;
+
+	g_current_data.precision = 3;
+
 	convert_float_str(f);
-	// char *u = "1999965667724609375"
-	printf("\nFrom printf: %.20f", f);
-	// f = 1578.0076f;
-	// convert_float_str(f);
-	// printf("\nFrom printf: %f\n", f);
-/*
-** 	Протестировано. Работает хорошо!
-*/
+	printf("%4f\n", f);
+	convert_float_str(f1);
+	printf("%4f\n", f1);
+	convert_float_str(f2);
+	printf("%4f\n", f2);
+	convert_float_str(f3);
+	printf("%4f\n", f3);
+	convert_float_str(f4);
+	printf("%4f\n", f4);
+		
+	/*
+	** 	Протестировано. Работает хорошо!
+	*/
+// "548024041748046875"
 	return 0;
 }
