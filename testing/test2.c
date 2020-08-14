@@ -32,8 +32,10 @@ void printdoubles()
 	write(1, "]", 1);
 	write(1, "\n", 1);
 }
-
-static void print_binary(int c){
+//   1000011100001010001111
+//   1000011100001010001111
+// 101000011100001010001111
+void print_binary(unsigned int c){
 	convert_unint(c, 2);
 	printf("Value: %d\t", c);
 	printf(ANSI_COLOR_YELLOW"Count of Bits:%d\n"ANSI_COLOR_RESET, g_current_data.str.len);
@@ -86,17 +88,25 @@ int main()
 ** 	Тесты для проверки правильного сравнивания
 */
 	t_long_num tmp;
-	tmp = base_pow(2, 23);
+	// tmp = base_pow(2, 23);
 	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 25), base_pow(2,2)));
 	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 25), base_pow(2,30)));
 	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 25), base_pow(2,24)));
 	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 100), base_pow(2,2)));
 	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 25), tmp));
 	// printf(ANSI_COLOR_GREEN"%d\n"ANSI_COLOR_RESET, comp_big_int(base_pow(2, 26), base_pow(2, 27)));
-	mul_long(tmp, 2);
-	mul_long(tmp, 1);
-	mul_long(tmp, 10);
-	mul_long(tmp, 13);
+	// mul_long(tmp, 2);
+	// mul_long(tmp, 1);
+	// mul_long(tmp, 10);
+	// mul_long(tmp, 13);
+	double f = 10.11f;
+	// float f = 10.47854f;
+	convert_float_str(f);
+	// char *u = "1999965667724609375"
+	printf("\nFrom printf: %.20f", f);
+	// f = 1578.0076f;
+	// convert_float_str(f);
+	// printf("\nFrom printf: %f\n", f);
 /*
 ** 	Протестировано. Работает хорошо!
 */

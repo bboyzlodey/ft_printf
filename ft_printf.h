@@ -208,5 +208,5 @@ t_real_num	negative_pow(int exp, int precision);
 int			comp_big_int(t_long_num a, t_long_num b);
 t_long_num	base_pow(int base, int exp);
 t_long_num	mul_long(t_long_num a, int b);
-
+void		print_binary(unsigned int c);
 #endif
