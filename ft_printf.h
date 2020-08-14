@@ -14,6 +14,7 @@
 # define FT_PRINTF_FT_PRINTF_H
 # define MAX_DIGITS 100
 # define BIG_INT_BASE 10
+# define DEFAULT_PRECISION_FLOAT
 
 #include "./libft/libft.h"
 #include <stdarg.h>

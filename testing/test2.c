@@ -67,20 +67,22 @@ int main()
 	float f1 = 10.1f;
 	float f2 = 10.11f;
 	float f3 = 10.000001f;
-	float f4 = 45.547924f;
+	float f4 = 45.47f;
+	float test;
 
-	g_current_data.precision = 3;
+	g_current_data.precision = 10;
 
-	convert_float_str(f);
-	printf("%4f\n", f);
-	convert_float_str(f1);
-	printf("%4f\n", f1);
-	convert_float_str(f2);
-	printf("%4f\n", f2);
-	convert_float_str(f3);
-	printf("%4f\n", f3);
-	convert_float_str(f4);
-	printf("%4f\n", f4);
+	// convert_float_str(f);
+	// printf("%.*f\n",g_current_data.precision , f);
+	// convert_float_str(f1);
+	// printf("%.*f\n",g_current_data.precision , f1);
+	// convert_float_str(f2);
+	// printf("%.*f\n",g_current_data.precision , f2);
+	// convert_float_str(f3);
+	// printf("%.*f\n",g_current_data.precision , f3);
+	test = f4;
+	convert_float_str(test);
+	printf("%.*f\n",g_current_data.precision , test);
 		
 	/*
 	** 	Протестировано. Работает хорошо!

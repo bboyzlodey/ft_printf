@@ -310,7 +310,7 @@ static void print_real_part(t_real_num real)
 	int i = real.negative_pow - 1;
 	int count = 0;
 	t_long_num tmp = real.number;
-	printf("\n");
+	// printf("\n");
 	while (i >= 0 && count < g_current_data.precision)
 	{
 		printf("%d", tmp.value[i]);
@@ -320,30 +320,61 @@ static void print_real_part(t_real_num real)
 	printf("\n");
 }
 
+static void	round_integer_part(simple_float *f)
+{
+	f->integer_part = summ_big_int(f->real_part.number, base_pow(10, 3));
+}
+
 static void round_simple_float(simple_float *f)
 {
 	int i;
 	int	old_digits;
 
-	old_digits = 0;
-	i = f->real_part.number.digits - (f->precision + 1);
-	if (i > 0)
+	old_digits = f->real_part.number.digits;;
+	i = f->real_part.number.digits - f->precision - 1;
+	if (i > 0 && i < old_digits - 1)
 	{
-		old_digits = f->real_part.number.digits;
-		if (f->real_part.number.value[i] > 5)
+		if (f->real_part.number.value[i - 1] > 5)
 		{
+			printf("1\n");
 			f->real_part.number = summ_big_int(f->real_part.number, base_pow(10, i));
 		}
-		else if (i > 1 && i < 99 && (f->real_part.number.value[i] == 5 && f->real_part.number.value[i] % 2 == 0))
+		else if (i > 1 && i < 99 && (f->real_part.number.value[i - 1] == 5 && f->real_part.number.value[i] % 2 == 1))
 		{
+			printf("2\n");
 			f->real_part.number = summ_big_int(f->real_part.number, base_pow(10, i));
 		}
 		if (old_digits < f->real_part.number.digits)
 		{
+			printf("fodgjdoijg\n");
 			f->real_part.number.digits--;
 			f->integer_part = summ_big_int(f->integer_part, base_pow(10, 0));
 		}
 	}
+	if ((i == (old_digits - 1)) && (f->real_part.number.value[i - 1] > 5))
+		f->integer_part = summ_big_int(f->integer_part, base_pow(10, 0));
+	printf("i: %d\t old_digits: %d\n", i, old_digits);
+	printf("i: %d\t", (f->real_part.number.value[i - 1]));
+}
+
+static void    print_integer_part(t_long_num tmp)
+{
+	printf(ANSI_COLOR_YELLOW"");
+	int i = 0;
+	int flag = 1;
+
+	for (i = 99; i >= 0; i--) {
+		
+		if (flag == 1)
+		{
+			if (tmp.value[i] == 0)
+				continue;
+			else
+				flag = 0;
+		}
+		printf("%d", tmp.value[i]);
+	}
+	printf("." ANSI_COLOR_RESET);
 }
 
 void    convert_float_str(float f)
@@ -357,10 +388,12 @@ void    convert_float_str(float f)
 	// print_big_int(integ);
 	real = calcutate_real(flo);
 	// print_real_part(real);
-	// print_big_int(real.number);
+	printf(ANSI_COLOR_BLUE"**************\n"ANSI_COLOR_RESET);
 	flo->real_part = real;
 	flo->integer_part = integ;
 	round_simple_float(flo);
+	print_integer_part(flo->integer_part);
 	print_real_part(flo->real_part);
+	
 	// print_big_int(flo->real_part.number);
 }
