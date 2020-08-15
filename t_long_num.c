@@ -6,7 +6,7 @@
 /*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 07:14:58 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/15 07:25:45 by asybil           ###   ########.fr       */
+/*   Updated: 2020/08/15 07:35:33 by asybil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,37 @@
 **     See it.
 */
 
+void	round_integer_part(simple_float *f)
+{
+	f->integer_part = summ_big_int(f->real_part.number, base_pow(10, 3));
+}
 
+void round_simple_float(simple_float *f)
+{
+	int i;
+	int	old_digits;
+
+	old_digits = f->real_part.number.digits;;
+	i = f->real_part.number.digits - f->precision - 1;
+	if (i > 0 && i < old_digits - 1)
+	{
+		if (f->real_part.number.value[i - 1] > 5)
+		{
+			f->real_part.number = summ_big_int(f->real_part.number, base_pow(10, i));
+		}
+		else if (i > 1 && i < 99 && (f->real_part.number.value[i - 1] == 5 && f->real_part.number.value[i] % 2 == 1))
+		{
+			f->real_part.number = summ_big_int(f->real_part.number, base_pow(10, i));
+		}
+		if (old_digits < f->real_part.number.digits)
+		{
+			f->real_part.number.digits--;
+			f->integer_part = summ_big_int(f->integer_part, base_pow(10, 0));
+		}
+	}
+	if ((i == (old_digits - 1)) && (f->real_part.number.value[i - 1] > 5))
+		f->integer_part = summ_big_int(f->integer_part, base_pow(10, 0));
+}
 
 /*
 **  Sum of large numbers

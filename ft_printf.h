@@ -214,6 +214,9 @@ t_string	integer_part_str(t_long_num num);
 t_string	real_part_str(t_real_num real, int precision);
 t_string	ft_concat(t_string a, t_string b);
 int			count_digits(t_long_num count);
+void		round_integer_part(simple_float *f);
+void		round_simple_float(simple_float *f);
+
 
 
 /*
