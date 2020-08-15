@@ -201,7 +201,6 @@ void	flag_management();
 
 
 t_long_num	positive_pow(int exp);
-void		print_big_int(t_long_num tmp);
 t_long_num	summ_big_int(t_long_num one, t_long_num two);
 void		convert_float_str(float f);
 t_long_num	calcutate_integer(simple_float *f);
@@ -213,5 +212,13 @@ void		print_binary(unsigned int c);
 t_string	integer_part_str(t_long_num num);
 t_string	real_part_str(t_real_num real, int precision);
 t_string	ft_concat(t_string a, t_string b);
+
+
+/*
+** For debuging only
+*/
+void	print_real_part(t_real_num real);
+void	print_big_int(t_long_num tmp);
+void	print_integer_part(t_long_num tmp);
 
 #endif

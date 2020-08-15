@@ -65,7 +65,7 @@ int main()
 	int i = 0;
 	int size = sizeof(floats) / 4;
 
-	g_current_data.precision = 0;
+	g_current_data.precision = 3;
 	
 	
 	while (i < size)
@@ -75,9 +75,22 @@ int main()
 		write(1, "\n", 1);
 		i++;
 	}
+	
 	/*
 	** 	Протестировано. Работает хорошо!
 	*/
 	// ft_printstring(g_current_data.str);
 	return 0;
 }
+
+/*
+**  Хорошая фича внизу
+*/
+// float f = 90.001f;
+	// void *file;
+	// file = ft_memalloc(sizeof(f));
+	// file = ft_memcpy(file, &f, sizeof(f));
+	// floats[i] = *((float *)file);
+	// convert_float_str(floats[i]);
+	// 	printf(ANSI_COLOR_BLUE"[%.*f]\n"ANSI_COLOR_RESET,g_current_data.precision , (float) floats[i]);
+	// 	write(1, "\n", 1);

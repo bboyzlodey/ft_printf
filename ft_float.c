@@ -2,13 +2,22 @@
 
 #define FLOAT_SIZE ((sizeof(float) * 8))
 
+static unsigned int float_to_unint(float f)
+{
+	return *((unsigned int*) &f);
+}
+
+static unsigned int manti_calc(unsigned int tmp)
+{
+	return tmp & 0x007FFFFFu;
+}
 
 int     exp_calc(unsigned int raw)
 {
 	return (raw << 1) >> 24;
 }
 
-int     sign_calc(unsigned int raw)
+int		sign_calc(unsigned int raw)
 {
 	return (raw >> 31);
 }
@@ -21,16 +30,10 @@ static simple_float *get_structure()
 	return tmp;
 }
 
-static unsigned int manti_calc(unsigned int tmp)
-{
-	return tmp & 0x007FFFFFu;
-}
-
-static unsigned int float_to_unint(float f)
-{
-	return *((unsigned int*) &f);
-}
-
+/*
+**  Function t_long_num mul_long(t_long_num a, int b)
+**  return result of operation 'a * b'
+*/
 t_long_num mul_long(t_long_num a, int b)
 {
 	int c, i;
@@ -86,7 +89,7 @@ static t_real_num calcutate_real(simple_float *fl)
 
 
 /*
-**  Sum of big numbers
+**  Sum of large numbers
 */
 t_long_num summ_big_int(t_long_num one, t_long_num two)
 {
@@ -112,31 +115,8 @@ t_long_num summ_big_int(t_long_num one, t_long_num two)
 }
 
 /*
-**  Используется для печати больших чисел
-*/
-void    print_big_int(t_long_num tmp)
-{
-	printf(ANSI_COLOR_YELLOW"\nprint acumm: ");
-	int i = 0;
-	int flag = 1;
-
-	for (i = 99; i >= 0; i--) {
-		
-		if (flag == 1)
-		{
-			if (tmp.value[i] == 0)
-				continue;
-			else
-				flag = 0;
-		}
-		printf("%d", tmp.value[i]);
-	}
-	printf("\n" ANSI_COLOR_RESET);
-}
-
-/*
 **  int count_digits(t_long_num count)
-**  Считает количество десятичных цифр
+**  Returns the number of digits of a large number
 */
 int     count_digits(t_long_num count)
 {
@@ -217,26 +197,6 @@ t_long_num base_pow(int base,int exp)
 	return tmp;
 }
 
-/* t_real_num negative_pow(int exp, int precision)
-**  dividend -  делимое
-**  Divideder - делитель
-**  tmp - временное число
-*/
-t_real_num negative_pow(int exp, int precision){
-	t_real_num tmp;
-	t_long_num dividend;
-	t_long_num delimeter;
-	
-	tmp.negative_pow = precision + 1;
-	dividend.digits = tmp.negative_pow;
-	dividend.value[tmp.negative_pow] = 1;
-
-	delimeter = positive_pow(exp);
-	tmp.number = base_pow(exp, 2);
-	
-	return tmp;
-}
-
 t_long_num calcutate_integer(simple_float *f)
 {
 	int current_exp = f->exponenta;
@@ -292,21 +252,6 @@ static simple_float *init_floats(float f, simple_float *toInit)
 	return toInit;
 }
 
-static void print_real_part(t_real_num real)
-{
-	int i = real.negative_pow - 1;
-	int count = 0;
-	t_long_num tmp = real.number;
-
-	while (i >= 0 && count < g_current_data.precision)
-	{
-		printf("%d", tmp.value[i]);
-		i--;
-		count++;
-	}
-	printf("\n");
-}
-
 static void	round_integer_part(simple_float *f)
 {
 	f->integer_part = summ_big_int(f->real_part.number, base_pow(10, 3));
@@ -323,110 +268,21 @@ static void round_simple_float(simple_float *f)
 	{
 		if (f->real_part.number.value[i - 1] > 5)
 		{
-			// printf("1\n");
 			f->real_part.number = summ_big_int(f->real_part.number, base_pow(10, i));
 		}
 		else if (i > 1 && i < 99 && (f->real_part.number.value[i - 1] == 5 && f->real_part.number.value[i] % 2 == 1))
 		{
-			// printf("2\n");
 			f->real_part.number = summ_big_int(f->real_part.number, base_pow(10, i));
 		}
 		if (old_digits < f->real_part.number.digits)
 		{
-			// printf("fodgjdoijg\n");
 			f->real_part.number.digits--;
 			f->integer_part = summ_big_int(f->integer_part, base_pow(10, 0));
 		}
 	}
 	if ((i == (old_digits - 1)) && (f->real_part.number.value[i - 1] > 5))
 		f->integer_part = summ_big_int(f->integer_part, base_pow(10, 0));
-	// printf("i: %d\t old_digits: %d\n", i, old_digits);
-	// printf("i: %d\t", (f->real_part.number.value[i - 1]));
 }
-
-static void    print_integer_part(t_long_num tmp)
-{
-	printf(ANSI_COLOR_YELLOW"");
-	int i = 0;
-	int flag = 1;
-
-	for (i = 99; i >= 0; i--) {
-		
-		if (flag == 1)
-		{
-			if (tmp.value[i] == 0)
-				continue;
-			else
-				flag = 0;
-		}
-		printf("%d", tmp.value[i]);
-	}
-	printf("." ANSI_COLOR_RESET);
-}
-
-/********DELETE***********/
-static int	bytes_int(int nbr)
-{
-	int	i;
-
-	i = 0;
-	while (nbr)
-	{
-		nbr = nbr / 10;
-		i++;
-	}
-	if (nbr < 0)
-		i++;
-	else if (!nbr && !i)
-		i++;
-	return (i);
-}
-
-static void	ft_revstring(char *s1, int j, int i)
-{
-	char	h;
-
-	if (!s1[i])
-		return ;
-	h = s1[i];
-	ft_revstring(s1, j - 1, i + 1);
-	s1[j] = h;
-}
-
-static int	del_int(int n)
-{
-	int	j;
-
-	j = n % 10;
-	if (j >= 0)
-		return (j);
-	return (j * (-1));
-}
-
-static char		*toa(int n)
-{
-	char	*new;
-	int		i;
-
-	i = 0;
-	new = NULL;
-	new = ft_strnew(bytes_int(n));
-	if (new && n < 0)
-		new[i++] = '-';
-	else if (!n)
-		new[i] = '0';
-	while (n && new)
-	{
-		new[i++] = del_int(n) + '0';
-		n = n / 10;
-	}
-	if (new && new[0] != '-')
-		ft_revstring(new, ft_strlen(new) - 1, 0);
-	else if (new && new[0] == '-')
-		ft_revstring(new + 1, ft_strlen(new) - 2, 0);
-	return (new);
-}
-/******DELETE********/
 
 t_string	integer_part_str(t_long_num num)
 {
@@ -440,7 +296,7 @@ t_string	integer_part_str(t_long_num num)
 	str.str = NULL;
 	while (i >= 0)
 	{
-		tmp = toa(num.value[i]);
+		tmp = ft_itoa(num.value[i]);
 		str.str = ft_strjoindel(str.str, tmp);
 		i--;
 	}
@@ -462,13 +318,13 @@ t_string	real_part_str(t_real_num real, int precision)
 
 	while (i >= 0 && count < precision)
 	{
-		str.str = ft_strjoindel(str.str, toa(tmp.value[i]));
+		str.str = ft_strjoindel(str.str, ft_itoa(tmp.value[i]));
 		i--;
 		count++;
 	}
 	while (count < precision)
 	{
-		str.str = ft_strjoindel(str.str, toa(0));
+		str.str = ft_strjoindel(str.str, ft_itoa(0));
 		count++;
 	}
 	str.len = ft_strlen(str.str);
