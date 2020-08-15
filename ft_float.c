@@ -292,25 +292,12 @@ static simple_float *init_floats(float f, simple_float *toInit)
 	return toInit;
 }
 
-// static void print_real_part(t_real_num real)
-// {
-//     int i;
-
-//     i = real.negative_pow - real.number.digits;
-//     while (i > 0)
-//     {
-//         printf("0");
-//         i--;
-//     }
-//     print_big_int(real.number);
-// }
-
 static void print_real_part(t_real_num real)
 {
 	int i = real.negative_pow - 1;
 	int count = 0;
 	t_long_num tmp = real.number;
-	// printf("\n");
+
 	while (i >= 0 && count < g_current_data.precision)
 	{
 		printf("%d", tmp.value[i]);
@@ -336,25 +323,25 @@ static void round_simple_float(simple_float *f)
 	{
 		if (f->real_part.number.value[i - 1] > 5)
 		{
-			printf("1\n");
+			// printf("1\n");
 			f->real_part.number = summ_big_int(f->real_part.number, base_pow(10, i));
 		}
 		else if (i > 1 && i < 99 && (f->real_part.number.value[i - 1] == 5 && f->real_part.number.value[i] % 2 == 1))
 		{
-			printf("2\n");
+			// printf("2\n");
 			f->real_part.number = summ_big_int(f->real_part.number, base_pow(10, i));
 		}
 		if (old_digits < f->real_part.number.digits)
 		{
-			printf("fodgjdoijg\n");
+			// printf("fodgjdoijg\n");
 			f->real_part.number.digits--;
 			f->integer_part = summ_big_int(f->integer_part, base_pow(10, 0));
 		}
 	}
 	if ((i == (old_digits - 1)) && (f->real_part.number.value[i - 1] > 5))
 		f->integer_part = summ_big_int(f->integer_part, base_pow(10, 0));
-	printf("i: %d\t old_digits: %d\n", i, old_digits);
-	printf("i: %d\t", (f->real_part.number.value[i - 1]));
+	// printf("i: %d\t old_digits: %d\n", i, old_digits);
+	// printf("i: %d\t", (f->real_part.number.value[i - 1]));
 }
 
 static void    print_integer_part(t_long_num tmp)
@@ -377,23 +364,140 @@ static void    print_integer_part(t_long_num tmp)
 	printf("." ANSI_COLOR_RESET);
 }
 
-void    convert_float_str(float f)
+/********DELETE***********/
+static int	bytes_int(int nbr)
 {
-	simple_float *flo;
-	t_real_num real;
-	t_long_num integ;
+	int	i;
+
+	i = 0;
+	while (nbr)
+	{
+		nbr = nbr / 10;
+		i++;
+	}
+	if (nbr < 0)
+		i++;
+	else if (!nbr && !i)
+		i++;
+	return (i);
+}
+
+static void	ft_revstring(char *s1, int j, int i)
+{
+	char	h;
+
+	if (!s1[i])
+		return ;
+	h = s1[i];
+	ft_revstring(s1, j - 1, i + 1);
+	s1[j] = h;
+}
+
+static int	del_int(int n)
+{
+	int	j;
+
+	j = n % 10;
+	if (j >= 0)
+		return (j);
+	return (j * (-1));
+}
+
+static char		*toa(int n)
+{
+	char	*new;
+	int		i;
+
+	i = 0;
+	new = NULL;
+	new = ft_strnew(bytes_int(n));
+	if (new && n < 0)
+		new[i++] = '-';
+	else if (!n)
+		new[i] = '0';
+	while (n && new)
+	{
+		new[i++] = del_int(n) + '0';
+		n = n / 10;
+	}
+	if (new && new[0] != '-')
+		ft_revstring(new, ft_strlen(new) - 1, 0);
+	else if (new && new[0] == '-')
+		ft_revstring(new + 1, ft_strlen(new) - 2, 0);
+	return (new);
+}
+/******DELETE********/
+
+t_string	integer_part_str(t_long_num num)
+{
+	char		*tmp;
+	int			i;
+	t_string	str;
+
+	num.digits = count_digits(num);
+	i = num.digits - 1;
+	tmp = NULL;
+	str.str = NULL;
+	while (i >= 0)
+	{
+		tmp = toa(num.value[i]);
+		str.str = ft_strjoindel(str.str, tmp);
+		i--;
+	}
+	str.len = ft_strlen(str.str);
+	// ft_printstring(str);
+	return str;
+}
+
+t_string	real_part_str(t_real_num real, int precision)
+{
+	t_string	str;
+	t_long_num	tmp;
+	int			i;
+	int			count;
+
+	i = real.negative_pow - 1;
+	tmp = real.number;
+	str.str = ft_strdup(".");
+
+	while (i >= 0 && count < precision)
+	{
+		str.str = ft_strjoindel(str.str, toa(tmp.value[i]));
+		i--;
+		count++;
+	}
+	while (count < precision)
+	{
+		str.str = ft_strjoindel(str.str, toa(0));
+		count++;
+	}
+	str.len = ft_strlen(str.str);
+	return str;
+}
+
+t_string	ft_concat(t_string a, t_string b)
+{
+	t_string	result;
+
+	result.str = ft_strjoindel(a.str, b.str);
+	result.len = a.len + b.len;
+	ft_printstring(result);
+	return result;
+}
+
+void	convert_float_str(float f)
+{
+	simple_float	*flo;
+	t_string		integer;
+	t_string		real;
 
 	flo = init_floats(f, get_structure());
-	integ = calcutate_integer(flo);
-	// print_big_int(integ);
-	real = calcutate_real(flo);
-	// print_real_part(real);
-	printf(ANSI_COLOR_BLUE"**************\n"ANSI_COLOR_RESET);
-	flo->real_part = real;
-	flo->integer_part = integ;
+	flo->integer_part = calcutate_integer(flo);
+	flo->real_part  = calcutate_real(flo);
 	round_simple_float(flo);
-	print_integer_part(flo->integer_part);
-	print_real_part(flo->real_part);
-	
-	// print_big_int(flo->real_part.number);
+	integer = integer_part_str(flo->integer_part);
+	real = real_part_str(flo->real_part, g_current_data.precision);
+	// ft_printstring(integer);
+	// ft_printstring(real);
+	g_current_data.str = ft_concat(integer, real);
 }

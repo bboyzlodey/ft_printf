@@ -48,14 +48,14 @@
 
 char	*addr_str(void *value)
 {
-	size_t *tmp = (size_t)*value;
-	convert_size_t_int(tmp, 16);
+	// size_t *tmp = (size_t*)value;
+	// convert_size_t_int(tmp, 16);
     return 0;
 }
 /**
  ** Print string
  * */
-void	ft_printstring(t_string *str)
+void	ft_printstring(t_string str)
 {
-	write(1, str->str, str->len);
+	write(1, str.str, str.len);
 }

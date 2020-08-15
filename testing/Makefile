@@ -3,7 +3,7 @@ printf:
 ft_itoa:
 	# gcc ../string.c ./ft_itoa.c ../libft/libft.a
 test2:
-	gcc ../ft_float.c ./test2.c ../utils.c ./ft_itoa.c ../libft/libft.a -o test2
+	gcc ../string.c ../ft_float.c ./test2.c ../utils.c ./ft_itoa.c ../libft/libft.a -o test2
 	./test2
 k:
 	gcc mary.c

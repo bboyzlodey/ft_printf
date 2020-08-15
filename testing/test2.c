@@ -57,36 +57,27 @@ typedef struct personal_float
 
 int main()
 {
-	int i = 1;
 
 /*
-** 	Тесты для проверки правильного сравнивания
+** 	Тесты для проверки пребразования флота в строку
 */
-	t_long_num tmp;
-	float f = 10.00002f;
-	float f1 = 10.1f;
-	float f2 = 10.11f;
-	float f3 = 10.000001f;
-	float f4 = 45.47f;
-	float test;
+	float floats[] = {1.0, 1.1, 10.01, 10.91 , 215.215, 123.321};
+	int i = 0;
+	int size = sizeof(floats) / 4;
 
-	g_current_data.precision = 10;
-
-	// convert_float_str(f);
-	// printf("%.*f\n",g_current_data.precision , f);
-	// convert_float_str(f1);
-	// printf("%.*f\n",g_current_data.precision , f1);
-	// convert_float_str(f2);
-	// printf("%.*f\n",g_current_data.precision , f2);
-	// convert_float_str(f3);
-	// printf("%.*f\n",g_current_data.precision , f3);
-	test = f4;
-	convert_float_str(test);
-	printf("%.*f\n",g_current_data.precision , test);
-		
+	g_current_data.precision = 0;
+	
+	
+	while (i < size)
+	{
+		convert_float_str(floats[i]);
+		printf(ANSI_COLOR_BLUE"[%.*f]\n"ANSI_COLOR_RESET,g_current_data.precision , (float) floats[i]);
+		write(1, "\n", 1);
+		i++;
+	}
 	/*
 	** 	Протестировано. Работает хорошо!
 	*/
-// "548024041748046875"
+	// ft_printstring(g_current_data.str);
 	return 0;
 }

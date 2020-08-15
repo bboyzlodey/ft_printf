@@ -173,7 +173,7 @@ void	convert_unint(unsigned long long  int src, int delim);
 
 char	*ft_strjoindel(char *s1, char *s2);
 void	ft_tolowercase(char *ptr);
-void	ft_printstring(t_string *str);
+void	ft_printstring(t_string str);
 
 /**
  ** Debuging
@@ -210,4 +210,8 @@ int			comp_big_int(t_long_num a, t_long_num b);
 t_long_num	base_pow(int base, int exp);
 t_long_num	mul_long(t_long_num a, int b);
 void		print_binary(unsigned int c);
+t_string	integer_part_str(t_long_num num);
+t_string	real_part_str(t_real_num real, int precision);
+t_string	ft_concat(t_string a, t_string b);
+
 #endif
