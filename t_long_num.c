@@ -6,7 +6,7 @@
 /*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 07:14:58 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/15 07:35:33 by asybil           ###   ########.fr       */
+/*   Updated: 2020/08/15 07:43:13 by asybil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	round_integer_part(simple_float *f)
 	f->integer_part = summ_big_int(f->real_part.number, base_pow(10, 3));
 }
 
-void round_simple_float(simple_float *f)
+void    round_simple_float(simple_float *f)
 {
 	int i;
 	int	old_digits;

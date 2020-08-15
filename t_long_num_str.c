@@ -6,7 +6,7 @@
 /*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 07:37:54 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/15 07:38:37 by asybil           ###   ########.fr       */
+/*   Updated: 2020/08/15 07:41:51 by asybil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ t_string	integer_part_str(t_long_num num)
 		i--;
 	}
 	str.len = ft_strlen(str.str);
-	// ft_printstring(str);
-	return str;
+	return (str);
 }
 
 t_string	real_part_str(t_real_num real, int precision)
@@ -43,7 +42,6 @@ t_string	real_part_str(t_real_num real, int precision)
 	i = real.negative_pow - 1;
 	tmp = real.number;
 	str.str = ft_strdup(".");
-
 	while (i >= 0 && count < precision)
 	{
 		str.str = ft_strjoindel(str.str, ft_itoa(tmp.value[i]));
@@ -56,5 +54,5 @@ t_string	real_part_str(t_real_num real, int precision)
 		count++;
 	}
 	str.len = ft_strlen(str.str);
-	return str;
+	return (str);
 }
