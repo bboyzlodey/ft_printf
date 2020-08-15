@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 20:33:59 by asybil            #+#    #+#             */
-/*   Updated: 2020/07/28 20:49:09 by asybil           ###   ########.fr       */
+/*   Updated: 2020/08/05 18:20:09 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,17 @@ int		find_type(char	form)
 
 int		parsing(const char *format)
 {
-	int i, in;
+	int		i;
+	int		in;
+	char	*tmp;
 
-	i = 0;
+	i = -1;
 	in = -1;
-	while (++in < 5)
-		i += *(g_current_data.pars[in])(&format[i]);
-	// i += find_flags(&format[i]);
-	// i += find_wid(&format[i]);
-	// i += find_pres(&format[i]);
-	// i += find_size(&format[i]);
-	// i += find_type(&format[i]);
-	
+	tmp = format;
+	while (format[++i])
+		while (++in < 5)
+			if (*(g_current_data.pars[in])(&tmp) == DONE_PARS)
+				break;
 }
 
 void	creat_struct_data(void)
@@ -69,7 +68,14 @@ void	creat_struct_data(void)
 		g_current_data.que[i] = NULL;
 	g_current_data.str.str = NULL;
 	g_current_data.print = ft_printstring;
-
+	g_current_data.pars[0] = find_flags(char *);
+	g_current_data.pars[1] = find_wid(char *);
+	g_current_data.pars[2] = find_pres(char *);
+	g_current_data.pars[3] = find_size(char *);
+	g_current_data.pars[4] = find_type(char *);
+	g_current_data.width = 0;
+	g_current_data.precision = -1;
+	g_current_data.skip = 0;
 }
 
 int ft_printf(const char *format, ...)

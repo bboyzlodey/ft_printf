@@ -16,8 +16,12 @@
 # define BIG_INT_BASE 10
 # define DEFAULT_PRECISION_FLOAT
 
-#include "./libft/libft.h"
-#include <stdarg.h>
+# include "./libft/libft.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdarg.h>
+# include <math.h>
 
 typedef int t_big_int[MAX_DIGITS];
 
@@ -56,6 +60,10 @@ typedef struct some_float
 */
 
 #define	CURRENT_SIZE 150
+# define DONE_PARS 1
+/*
+**       Functions
+*/
 
 /*
 **       Типы
@@ -66,7 +74,7 @@ typedef long long unsigned int t_ull_int;
 enum	e_flags // For flags management: 
 {
 	// NONE,			//without_flags
-	OCTOTORP,		//	'#'
+	OCTOTORP = 1,		//	'#'
 	/*
 	**	При выводе чисел в формате перед числом будет указываться особенность формата
 	*/
@@ -149,8 +157,10 @@ struct 				data{
 	t_string			str;
 	void				(*print)(t_string);
 	void				(*que[10])(void);
-	void				(*pars[5])(void);
+	int					(*pars[5])(void); 
 	int					precision;
+	int					width;
+	int					skip;
 }					g_current_data;
 
 int		ft_printf(const char *format, ...);
@@ -196,7 +206,7 @@ void	convert_size_t_int(size_t src, int delim);
 char	*ft_itoa_base(t_ll_int value, int base);
 char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
 char	*get_decimal(int dec);
-char    *get_hexodecimal(int input);
+char	*get_hexodecimal(int input);
 void	flag_management();
 
 
@@ -225,5 +235,12 @@ void		round_simple_float(simple_float *f);
 void	print_real_part(t_real_num real);
 void	print_big_int(t_long_num tmp);
 void	print_integer_part(t_long_num tmp);
+/**
+ ** Parsing functions
+ * */
+int		find_flags(char **format);
+int		find_wid_and_pres(char **format);
+int		find_size(char **format);
+int		find_type(char **format);
 
 #endif
