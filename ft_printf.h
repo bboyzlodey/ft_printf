@@ -204,6 +204,7 @@ t_long_num	positive_pow(int exp);
 t_long_num	summ_big_int(t_long_num one, t_long_num two);
 void		convert_float_str(float f);
 t_long_num	calcutate_integer(simple_float *f);
+t_real_num	calcutate_real(simple_float *fl);
 t_real_num	negative_pow(int exp, int precision);
 int			comp_big_int(t_long_num a, t_long_num b);
 t_long_num	base_pow(int base, int exp);
@@ -212,6 +213,7 @@ void		print_binary(unsigned int c);
 t_string	integer_part_str(t_long_num num);
 t_string	real_part_str(t_real_num real, int precision);
 t_string	ft_concat(t_string a, t_string b);
+int			count_digits(t_long_num count);
 
 
 /*
