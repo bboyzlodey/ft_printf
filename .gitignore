@@ -4,3 +4,6 @@
 ./*/*.out
 ./*/*.exe
 ./.vscode
+testing/test2
+./*test*
+./*test*/*test*

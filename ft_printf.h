@@ -12,6 +12,9 @@
 
 #ifndef FT_PRINTF_FT_PRINTF_H
 # define FT_PRINTF_FT_PRINTF_H
+# define MAX_DIGITS 100
+# define BIG_INT_BASE 10
+# define DEFAULT_PRECISION_FLOAT 6
 
 # include "./libft/libft.h"
 # include <stdlib.h>
@@ -19,6 +22,34 @@
 # include <stdio.h>
 # include <stdarg.h>
 # include <math.h>
+
+typedef int t_big_int[MAX_DIGITS];
+
+/*
+** 	Structure for big number
+*/
+typedef struct long_num{
+	int value[MAX_DIGITS];
+	int digits;
+} t_long_num;
+
+typedef struct real_num{
+	t_long_num number;
+	int negative_pow;
+} t_real_num;
+
+typedef struct some_float
+{
+	t_long_num integer_part;
+	t_real_num real_part;
+	int sign;
+	int exponenta;
+	int mantissa;
+	unsigned int precision;
+	int current_bit;
+	int current_exp;
+}	simple_float;
+
 
 /*
 ** spec: d, i, u, p, x, X, o, f, s, c, %		--- спецификаторы
@@ -28,8 +59,11 @@
 ** leng: (none), hh, h, l, ll, L   				--- модификаторы длины
 */
 
-#define	CURRENT_SIZE 150
+# define CURRENT_SIZE 150
 # define DONE_PARS 1
+# define COUNT_FLAGS 5
+# define COUNT_TYPES 9
+# define QUE_COUNT 10
 /*
 **       Functions
 */
@@ -87,6 +121,25 @@ enum e_type{
 	PERCENT
 };
 
+enum e_specs{
+	D,
+	I,
+	U,
+	S,
+	C,
+	P,
+	X,
+	O,
+	F
+};
+
+enum e_conversions{
+	CALCULATION,
+	PRECISION,
+	FLAG_CONVERS,
+	WIDTH_CONV,
+};
+
 enum e_size{
 	H,
 	HH,
@@ -123,6 +176,7 @@ struct 				data{
 	enum e_type 		type;
 	enum e_flags		flags[6];
 	enum e_delimeters	delimeters;
+	enum e_specs		spec;
 	void 				*value;
 	t_string			str;
 	void				(*print)(t_string);
@@ -132,7 +186,11 @@ struct 				data{
 	int					width;
 	int					skip;
 	int					upper;
+	char				sign;
 }					g_current_data;
+
+void				(*flags_convertions[COUNT_TYPES])(void);
+void				(*size_management[COUNT_TYPES])(void);
 
 int		ft_printf(const char *format, ...);
 
@@ -154,21 +212,14 @@ void	convert_unint(unsigned long long  int src, int delim);
 
 char	*ft_strjoindel(char *s1, char *s2);
 void	ft_tolowercase(char *ptr);
-void	ft_printstring(t_string *str);
+void	ft_printstring(t_string str);
 
 /**
  ** Debuging
  */
 void	initstructure();
 void	get_binary(unsigned int src, int delim);
-struct ft_float
-{
-    char    binary [sizeof(float) * 8];
-    char    *sign;
-    char    *exponent;
-    char    *mantissa;
-    int     size;
-} g_float;
+
 
 /**
  ** Вспомогательные функции (utils.c)
@@ -185,9 +236,39 @@ char	*ft_itoa_base(t_ll_int value, int base);
 char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
 char	*get_decimal(int dec);
 char	*get_hexodecimal(int input);
-void	flag_management();
 void	add_prefix(char *prefix);
 
+
+void	flag_management(void);
+
+
+t_long_num	positive_pow(int exp);
+t_long_num	summ_big_int(t_long_num one, t_long_num two);
+void		convert_float_str(float f);
+t_long_num	calcutate_integer(simple_float *f);
+t_real_num	calcutate_real(simple_float *fl);
+t_real_num	negative_pow(int exp, int precision);
+int			comp_big_int(t_long_num a, t_long_num b);
+t_long_num	base_pow(int base, int exp);
+t_long_num	mul_long(t_long_num a, int b);
+void		print_binary(unsigned int c);
+t_string	integer_part_str(t_long_num num);
+t_string	real_part_str(t_real_num real, int precision);
+t_string	ft_concat(t_string a, t_string b);
+t_string	repeat_char(char a, size_t size);
+int			count_digits(t_long_num count);
+void		round_integer_part(simple_float *f);
+void		round_simple_float(simple_float *f);
+void		init_flags_convertions(void);
+
+
+
+/*
+** For debuging only
+*/
+void	print_real_part(t_real_num real);
+void	print_big_int(t_long_num tmp);
+void	print_integer_part(t_long_num tmp);
 /**
  ** Parsing functions
  * */

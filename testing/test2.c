@@ -33,42 +33,68 @@ void printdoubles()
 	write(1, "\n", 1);
 }
 
-void printu(double f)
-{
-	unsigned long long int i, j;
-	i = (unsigned long long int) f;
-	j = *((unsigned long long int*)&f);
-	int size_double = sizeof (double);
-	int iterations = 0;
-
-	convert_unint(j, 2);
-	printdoubles();
+void print_binary(unsigned int c){
+	convert_unint(c, 2);
+	printf("Value: %d\t", c);
+	printf(ANSI_COLOR_YELLOW"Count of Bits:%d\n"ANSI_COLOR_RESET, g_current_data.str.len);
+	printf(ANSI_COLOR_GREEN"Bits: %s\n\n"ANSI_COLOR_RESET, g_current_data.str.str);
 	ft_strdel(&(g_current_data.str.str));
 }
 
-static void helper_float(float f)
+static unsigned int float_to_unint(float f)
 {
-    unsigned int src = *((unsigned int *)&f);
-    get_binary(src, 2);
+	return *((unsigned int*) &f);
 }
-static void ho(void)
+
+typedef struct personal_float
 {
-	printf("Hello");
-}
+	unsigned int
+	sign :1,
+	exponenta :8,
+	mantissa :23;
+} m_fl;
+
+
 int main()
 {
-	// initstructure();
-	// // printu(2.5);
-	// helper_float(-2.5f);
-	// // printf("sign: ");
-	// write(1, g_float.sign, 1);
-	// // printf("\nexponent: ");
-	// write(1, g_float.exponent, 8);
-	// // printf("\nmantissa: ");
-	// write(1, g_float.mantissa, 23);
-	void (*f)(char *);
-	f = ho;
-	f();
-	printf("ifdj");
+
+/*
+** 	Тесты для проверки пребразования флота в строку
+*/
+	float floats[] = {1.0, 1.1, 10.01, 10.91 , 215.215, 123.321};
+	int i = 0;
+	int size = sizeof(floats) / 4;
+
+	g_current_data.precision = 3;
+	
+	
+	// while (i < size)
+	// 
+	// 	convert_float_str(floats[i]);
+	// 	printf(ANSI_COLOR_BLUE"[%.*f]\n"ANSI_COLOR_RESET,g_current_data.precision , (float) floats[i]);
+	// 	write(1, "\n", 1);
+	// 	i++;
+	// }
+	
+	printf("\n%d\n", printf("%0+16.3f", 10.5));
+	printf("\n%d\n", printf("%-016f", 10.5));
+	printf("\n%d\n", printf("% 016f", -10.5));
+	printf("\n%d\n", printf("%#016f", 10.5));
+	/*
+	** 	Протестировано. Работает хорошо!
+	*/
+	// ft_printstring(g_current_data.str);
 	return 0;
 }
+
+/*
+**  Хорошая фича внизу
+*/
+// float f = 90.001f;
+	// void *file;
+	// file = ft_memalloc(sizeof(f));
+	// file = ft_memcpy(file, &f, sizeof(f));
+	// floats[i] = *((float *)file);
+	// convert_float_str(floats[i]);
+	// 	printf(ANSI_COLOR_BLUE"[%.*f]\n"ANSI_COLOR_RESET,g_current_data.precision , (float) floats[i]);
+	// 	write(1, "\n", 1);
