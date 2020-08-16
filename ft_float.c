@@ -1,49 +1,58 @@
 #include "ft_printf.h"
 
 #define FLOAT_SIZE ((sizeof(float) * 8))
-// static char number_arr[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', '\0'};
 
-// struct ft_float
-// {
-//     char    binary [sizeof(float) * 8];
-//     char    *sign;
-//     char    *exponent;
-//     char    *mantissa;
-//     int     size;
-// } g_float;
-
-void initstructure()
+static unsigned int float_to_unint(float f)
 {
-    ft_memset(g_float.binary,'0', FLOAT_SIZE);
-    g_float.sign = g_float.binary;
-    g_float.exponent = &g_float.binary[1];
-    g_float.mantissa = g_float.exponent + 8;
-    g_float.size = FLOAT_SIZE;
+	return *((unsigned int*) &f);
 }
 
-
-
-void	get_binary(unsigned int src, int delim)
+static unsigned int manti_calc(unsigned int tmp)
 {
-	int			tmp = 0;
-	static int	stat;
-
-	
-	tmp = src % delim;
-    g_float.binary[g_float.size - stat] = tmp + '0';
-    stat++;
-	if (src / delim != 0)
-	{
-		get_binary(src / delim, delim);
-	}
+	return tmp & 0x007FFFFFu;
 }
 
 int     exp_calc(unsigned int raw)
 {
-    return (raw << 1) >> 24;
+	return (raw << 1) >> 24;
 }
 
-int     sign_calc(unsigned int raw)
+int		sign_calc(unsigned int raw)
 {
-    return (raw >> 31);
+	return (raw >> 31);
+}
+
+/***************************/
+static simple_float *get_structure()
+{
+	simple_float *tmp;
+	tmp = (simple_float*)malloc(sizeof(simple_float));
+	return tmp;
+}
+
+static simple_float *init_floats(float f, simple_float *toInit)
+{
+	unsigned int fi = float_to_unint(f);
+	toInit->sign = f >= 0 ? 0 : -1;
+	toInit->exponenta = exp_calc(fi) - 127;
+	toInit->mantissa = manti_calc(fi) | (1 << 23);
+	toInit->precision = g_current_data.precision;
+	return toInit;
+}
+
+void	convert_float_str(float f)
+{
+	simple_float	*flo;
+	t_string		integer;
+	t_string		real;
+
+	flo = init_floats(f, get_structure());
+	flo->integer_part = calcutate_integer(flo);
+	flo->real_part  = calcutate_real(flo);
+	round_simple_float(flo);
+	integer = integer_part_str(flo->integer_part);
+	real = real_part_str(flo->real_part, g_current_data.precision);
+	// ft_printstring(integer);
+	// ft_printstring(real);
+	g_current_data.str = ft_concat(integer, real);
 }
