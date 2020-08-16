@@ -29,3 +29,12 @@ t_string	ft_concat(t_string a, t_string b)
 	ft_printstring(result);
 	return result;
 }
+
+t_string	repeat_char(char a, size_t size)
+{
+	t_string	tmp;
+
+	tmp.str = ft_memset(ft_strnew(size), a, size);
+	tmp.len += size;
+	return tmp;
+}

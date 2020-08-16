@@ -59,8 +59,10 @@ typedef struct some_float
 ** leng: (none), hh, h, l, ll, L   				--- модификаторы длины
 */
 
-#define	CURRENT_SIZE 150
+# define CURRENT_SIZE 150
 # define DONE_PARS 1
+# define COUNT_FLAGS 5
+# define COUNT_TYPES 9
 /*
 **       Functions
 */
@@ -118,6 +120,24 @@ enum e_type{
 	PERCENT
 };
 
+enum e_specs{
+	D,
+	I,
+	U,
+	S,
+	C,
+	P,
+	X,
+	O
+};
+
+enum e_conversions{
+	CALCULATION,
+	PRECISION,
+	FLAG_CONVERS,
+	WIDTH_CONV,
+};
+
 enum e_size{
 	H,
 	HH,
@@ -153,6 +173,7 @@ typedef struct	s_string
 struct 				data{
 	enum e_type 		type;
 	enum e_flags		flags[6];
+	enum e_specs		spec;
 	void 				*value;
 	t_string			str;
 	void				(*print)(t_string);
@@ -161,7 +182,11 @@ struct 				data{
 	int					precision;
 	int					width;
 	int					skip;
+	char				sign;
 }					g_current_data;
+
+void				(*flags_convertions[COUNT_TYPES])(void);
+void				(*size_management[COUNT_TYPES])(void);
 
 int		ft_printf(const char *format, ...);
 
@@ -207,7 +232,7 @@ char	*ft_itoa_base(t_ll_int value, int base);
 char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
 char	*get_decimal(int dec);
 char	*get_hexodecimal(int input);
-void	flag_management();
+void	flag_management(void);
 
 
 t_long_num	positive_pow(int exp);
@@ -223,9 +248,11 @@ void		print_binary(unsigned int c);
 t_string	integer_part_str(t_long_num num);
 t_string	real_part_str(t_real_num real, int precision);
 t_string	ft_concat(t_string a, t_string b);
+t_string	repeat_char(char a, size_t size);
 int			count_digits(t_long_num count);
 void		round_integer_part(simple_float *f);
 void		round_simple_float(simple_float *f);
+void		init_flags_convertions(void);
 
 
 

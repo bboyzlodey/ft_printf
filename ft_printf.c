@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 20:33:59 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/05 18:20:09 by jsabina          ###   ########.fr       */
+/*   Updated: 2020/08/16 02:27:22 by asybil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,4 @@ int ft_printf(const char *format, ...)
 	}
 	va_end(list);
 	return 1;
-}
-int main()
-{
-    // double a = 12.358;
-	double b = 90.1;
-	float a = (float)90.1;
-	float c = 90.1;
-	a;
-	printf("vqevvdvrv%d10.8d\n", 1);
-    // float_prog(a);
 }

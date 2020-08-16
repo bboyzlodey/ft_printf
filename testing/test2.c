@@ -68,14 +68,18 @@ int main()
 	g_current_data.precision = 3;
 	
 	
-	while (i < size)
-	{
-		convert_float_str(floats[i]);
-		printf(ANSI_COLOR_BLUE"[%.*f]\n"ANSI_COLOR_RESET,g_current_data.precision , (float) floats[i]);
-		write(1, "\n", 1);
-		i++;
-	}
+	// while (i < size)
+	// 
+	// 	convert_float_str(floats[i]);
+	// 	printf(ANSI_COLOR_BLUE"[%.*f]\n"ANSI_COLOR_RESET,g_current_data.precision , (float) floats[i]);
+	// 	write(1, "\n", 1);
+	// 	i++;
+	// }
 	
+	printf("\n%d\n", printf("%09.3d", 50));
+	// printf("\n%d\n", printf("%#.12x", 0xffa));
+	printf("\n%d\n", printf("%#016x", 0xffa));
+	printf("\n%d\n", printf("%+x", 50));
 	/*
 	** 	Протестировано. Работает хорошо!
 	*/
