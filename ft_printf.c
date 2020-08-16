@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheidy <vheidy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 20:33:59 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/13 18:54:17 by vheidy           ###   ########.fr       */
+/*   Updated: 2020/08/16 18:02:06 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,56 +45,68 @@ void     float_prog(double a) // double
 
 int		find_type(char	form)
 {
-	if (form == 'd' || form == 'i')
-		g_current_data.type = INTEGERS;
-	return 0;
-	
+	g_current_data.type = (form == 'd' || form == 'i' || form == 'D' || form == 'I') ? INTEGERS : 0;
+	g_current_data.type = (form == 'c' || form == 'C') ? CHAR : 0;
+	g_current_data.type = (form == 's' || form == 'S') ? STRING : 0;
+	g_current_data.type = (form == 'p' || form == 'P') ? POINTER : 0;
+	g_current_data.type = (form == 'f' || form == 'F') ? FLOAT : 0;
+	g_current_data.type = (form == 'o' || form == 'O' || form == 'u' || form == 'U' || form == 'x' || form == 'X') ? UNSIGNED : 0;
+	g_current_data.delimeters = (form == 'o' || form == 'O') ? OCT : 0;
+	g_current_data.delimeters = (form == 'u' || form == 'U') ? DEC : 0;
+	g_current_data.delimeters = (form == 'x' || form ==  'X') ? HEX : 0;
+	if (form ==  'X')
+		g_current_data.upper = 1;
+	return g_current_data.type == -1 ? 0 : 1;
 }
 
-int find_precision(char *prec)
+
+int		ft_int_len(int	num)
+{	
+	int count;
+
+	count = 0;
+	while ((num / 10) > 0)
+	{
+		num = num / 10;
+		count++;
+	}
+	count++;
+	return count;
+}
+
+
+int find_precision(char *prec)  // пропускает точку и возвращает что и иширина
 {
-	
+	int count;
+
+	count = 0;
+	if (prec == '.')
+	{
+		count++;
+		g_current_data.precision = ft_atoi(prec + 1);
+		count = ft_int_len(g_current_data.precision);
+	}
+	return count;
 }
 
-int find_width(char *width)
+
+
+int find_width(char *width) // вернет количество на которое нужно сдвинуть
 {
-	
+	int count;
+
+	g_current_data.width = ft_atoi(width);
+	count = ft_int_len(g_current_data.width);
+	return count;
 }
 
-int		find_flags(char **format)
+int		find_flags(char **format) // тоже что и ширина
 {
 	char form;
+	int count;
 
+	count = 0;
 	form = **format;
-	// if (form == '#' && (*format)++ && g_current_data.skip++)
-	// 	g_current_data.flags[OCTOTORP] = OCTOTORP;
-	// if (form == ' ' && (*format)++ && g_current_data.skip++)
-	// 	g_current_data.flags[SPACE] = SPACE;
-	// if (form == '-' && (*format)++ && g_current_data.skip++)
-	// 	g_current_data.flags[MINUS] = MINUS;
-	// if (form == '+' && (*format)++ && g_current_data.skip++)
-	// 	g_current_data.flags[PLUS] = PLUS;
-	// if (form == '0' && (*format)++ && g_current_data.skip++)
-	// 	g_current_data.flags[NULL_FLAG] = NULL_FLAG;
-	// return (0);
-
-	// while (1)
-	// {
-	// 	if (*format != "+" && *format != '-' && *format != '0'\
-	// 	 && *format != ' ' && *format != '#')
-	// 		return (0);
-	// 	if (*format == "+")
-	// 		g_current_data.flags = PLUS;
-	// 	if (*format == "-")
-	// 		g_current_data.flags = MINUS;
-	// 	if (*format == "0")
-	// 		g_current_data.flags = NULL_FLAG;
-	// 	if (*format == " ")
-	// 		g_current_data.flags = SPACE;
-	// 	if (*format == "#")
-	// 		g_current_data.flags = OCTOTORP;
-	// 	(*format)++;
-	// }
 	while (1)
 	{
 		if (form = '+')
@@ -107,6 +119,9 @@ int		find_flags(char **format)
 			g_current_data.flags = SPACE;
 		if (form = '#')
 			g_current_data.flags = OCTOTORP;
+		if (form != '+' || form != '-' || form != '0' || form != ' ' || form != '#')
+			return count;
+		count++;
 		form++;
 	}
 }

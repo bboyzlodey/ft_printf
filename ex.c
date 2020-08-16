@@ -107,14 +107,62 @@ char		find_flags(char **format)
 	}
 }
 
+int		ft_int_len(int	num)
+{	
+	int count;
+
+	count = 0;
+	while ((num / 10) > 0)
+	{
+		num = num / 10;
+		count++;
+	}
+	count++;
+	return count;
+}
+
+
+int find_precision(char *prec)  // пропускает точку и возвращает что и иширина
+{
+	int count;
+
+	count = 0;
+	if (prec == '.')
+	{
+		count++;
+		g_current_data.precision = ft_atoi(prec + 1);
+		count = ft_int_len(g_current_data.precision);
+	}
+	return count;
+}
+
+
+
+int find_width(char *width) // вернет количество на которое нужно сдвинуть
+{
+	int count;
+
+	g_current_data.width = ft_atoi(width);
+	count = ft_int_len(g_current_data.width);
+	return count;
+}
+
+
 int		main()
 {
-	char *str;
-	// init_struct_data();
-	str = strdup("0");
-	int i = find_flags(&str);
-	printf("%c\n", find_flags(&str));
-	// int c = printf("%we32423");
-	// printf("\n%d\n", c);
+	char str = 'i';
+	char *prec;
+
+	prec = ft_strdup("3123.208");
+	// int i = 0;
+	// init_struct_data(); 
+	// str = strdup("0");
+	// int i = find_flags(&str);
+	// printf("%c\n", find_flags(&str));
+	int i = ft_int_len(123456789);
+	int c = ft_atoi((prec + 1));
+	// i = (str == 'd' || str == 'i' || str ==  'D' || str == 'I') ? 1 : 2;
+	// int c = printf("%C\n%c\n", 'A', 'B');
+	printf("%d\n", c);
 	return (0);
 }

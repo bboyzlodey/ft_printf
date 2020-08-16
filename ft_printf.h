@@ -122,6 +122,7 @@ typedef struct	s_string
 struct 				data{
 	enum e_type 		type;
 	enum e_flags		flags[6];
+	enum e_delimeters	delimeters;
 	void 				*value;
 	t_string			str;
 	void				(*print)(t_string);
@@ -130,6 +131,7 @@ struct 				data{
 	int					precision;
 	int					width;
 	int					skip;
+	int					upper;
 }					g_current_data;
 
 int		ft_printf(const char *format, ...);
