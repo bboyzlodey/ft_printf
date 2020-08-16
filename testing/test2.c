@@ -76,10 +76,10 @@ int main()
 	// 	i++;
 	// }
 	
-	printf("\n%d\n", printf("%09.3d", 50));
-	// printf("\n%d\n", printf("%#.12x", 0xffa));
-	printf("\n%d\n", printf("%#016x", 0xffa));
-	printf("\n%d\n", printf("%+x", 50));
+	printf("\n%d\n", printf("%0+16.3f", 10.5));
+	printf("\n%d\n", printf("%-016f", 10.5));
+	printf("\n%d\n", printf("% 016f", -10.5));
+	printf("\n%d\n", printf("%#016f", 10.5));
 	/*
 	** 	Протестировано. Работает хорошо!
 	*/

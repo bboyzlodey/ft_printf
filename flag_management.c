@@ -6,7 +6,7 @@
 /*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/16 02:49:12 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/16 05:34:17 by asybil           ###   ########.fr       */
+/*   Updated: 2020/08/16 06:00:27 by asybil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void		flag_management(void)
 	flags = g_current_data.flags;
 	if (flags[PLUS] && flags[SPACE])
 		delete_flag(SPACE);
-	if ((flags[MINUS] && flags[NULL_FLAG] || g_current_data.precision != 0))
+	if ((flags[MINUS] && flags[NULL_FLAG]) || 
+	(g_current_data.precision != 0 && g_current_data.spec != F))
 	{
 		delete_flag(NULL_FLAG);
 	}
@@ -66,6 +67,12 @@ void		flag_management_x(void)
 	}
 	if (g_current_data.upper == 0)
 		ft_tolowercase(g_current_data.str.str);
+}
+
+void		flag_management_f(void)
+{
+	if (g_current_data.flags[SPACE] && g_current_data.sign == '+')
+		g_current_data.str = ft_concat(repeat_char(' ', 1), g_current_data.str);
 }
 
 void		init_flags_convertions(void)

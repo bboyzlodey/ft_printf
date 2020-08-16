@@ -14,7 +14,7 @@
 # define FT_PRINTF_FT_PRINTF_H
 # define MAX_DIGITS 100
 # define BIG_INT_BASE 10
-# define DEFAULT_PRECISION_FLOAT
+# define DEFAULT_PRECISION_FLOAT 6
 
 # include "./libft/libft.h"
 # include <stdlib.h>
@@ -63,6 +63,7 @@ typedef struct some_float
 # define DONE_PARS 1
 # define COUNT_FLAGS 5
 # define COUNT_TYPES 9
+# define QUE_COUNT 10
 /*
 **       Functions
 */
@@ -128,7 +129,8 @@ enum e_specs{
 	C,
 	P,
 	X,
-	O
+	O,
+	F
 };
 
 enum e_conversions{
@@ -232,6 +234,7 @@ char	*ft_itoa_base(t_ll_int value, int base);
 char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
 char	*get_decimal(int dec);
 char	*get_hexodecimal(int input);
+
 void	flag_management(void);
 
 
