@@ -20,18 +20,17 @@ static void delete_flag(enum e_flags flag)
 void		flag_management(void)
 {
 	enum e_type		type;
-	enum e_flags	flags[COUNT_FLAGS];
 
 	type = g_current_data.type;
-	flags = g_current_data.flags;
-	if (flags[PLUS] && flags[SPACE])
+	if (g_current_data.flags[PLUS] && g_current_data.flags[SPACE])
 		delete_flag(SPACE);
-	if ((flags[MINUS] && flags[NULL_FLAG]) || 
+	if ((g_current_data.flags[MINUS] && g_current_data.flags[NULL_FLAG]) || 
 	(g_current_data.precision != 0 && g_current_data.spec != F))
 	{
 		delete_flag(NULL_FLAG);
 	}
-	g_current_data.que[FLAG_CONVERS] = flags_convertions[g_current_data.spec];
+	if (flags_convertions[g_current_data.spec] != NULL)
+		flags_convertions[g_current_data.spec]();
 }
 
 void		flag_management_d(void)

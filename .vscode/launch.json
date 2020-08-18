@@ -5,10 +5,31 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"type": "lldb",
+			"name": "(gdb) Запустить",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/testing/test2",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"miDebuggerPath": "/path/to/gdb",
+			"setupCommands": [
+				{
+					"description": "Включить автоматическое форматирование для gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				}
+			]
+		},
+
+		{
+			"type": "cppdbg",
 			"request": "launch",
 			"name": "Debug",
-			"program": "${workspaceFolder}/a.out",
+			"program": "${workspaceFolder}/testing/test2",
 			"args": [],
 			"cwd": "${workspaceFolder}"
 		}

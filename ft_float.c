@@ -52,7 +52,5 @@ void	convert_float_str(float f)
 	round_simple_float(flo);
 	integer = integer_part_str(flo->integer_part);
 	real = real_part_str(flo->real_part, g_current_data.precision);
-	// ft_printstring(integer);
-	// ft_printstring(real);
 	g_current_data.str = ft_concat(integer, real);
 }

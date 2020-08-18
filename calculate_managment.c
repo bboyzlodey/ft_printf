@@ -17,17 +17,17 @@ void	integer_calculate(void)
 	if (g_current_data.type == INTEGERS)
 	{
 		g_current_data.sign = (*((long long*)g_current_data.value)) >= 0 ? '+' : '-';
-		convert_int(*((long long*)g_current_data.value), g_current_data.delimtr);
+		convert_int(*((long long*)g_current_data.value), g_current_data.delimeters);
 	}
 	else if (g_current_data.type == UNSIGNED)
 	{
-		convert_unint(*((unsigned long long*)g_current_data.value),g_current_data.delimtr));
+		convert_unint(*((unsigned long long*)g_current_data.value), g_current_data.delimeters);
 	}
 }
 
 void	float_calculate(void)
 {
-	if (g_current_data.type == FLOAT && g_current_data.spec = F)
+	if (g_current_data.type == FLOAT)
 	{
 		if (g_current_data.precision == 0)
 			g_current_data.precision = DEFAULT_PRECISION_FLOAT;
@@ -58,15 +58,20 @@ void	pointer_calculate(void)
 {
 	size_t	val;
 
-	val = (*(size_t *)g_current_data.value);
-	
+	val = ((size_t)g_current_data.value);
+	convert_size_t_int(val, g_current_data.delimeters);
 }
 
 void	calculate(void)
 {
-	if (g_current_data.spec = S)
+	if (g_current_data.type == STRING)
 		str_calculate();
-	else if (g_current_data.spec = C)
+	else if (g_current_data.type == CHAR)
+		char_calculate();
+	else if (g_current_data.type == INTEGERS || g_current_data.type == UNSIGNED)
+		integer_calculate();
+	else if (g_current_data.type == POINTER)
+		pointer_calculate();
+	else if (g_current_data.type == FLOAT)
 		float_calculate();
-	
 }

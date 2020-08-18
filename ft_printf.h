@@ -61,7 +61,7 @@ typedef struct some_float
 
 # define CURRENT_SIZE 150
 # define DONE_PARS 1
-# define COUNT_FLAGS 5
+# define COUNT_FLAGS 6
 # define COUNT_TYPES 9
 # define QUE_COUNT 10
 /*
@@ -177,10 +177,12 @@ struct 				data{
 	enum e_flags		flags[6];
 	enum e_delimeters	delimeters;
 	enum e_specs		spec;
+	enum e_size			size;
 	void 				*value;
 	t_string			str;
 	void				(*print)(t_string);
 	void				(*que[10])(void);
+	va_list				list;
 	int					(*pars[5])(void); 
 	int					precision;
 	int					width;
@@ -226,6 +228,7 @@ void	get_binary(unsigned int src, int delim);
  **
  * */
 char	*ft_strjoindel(char *s1, char *s2);
+void	global_free(void);
 
 /**
  ** 	Deprecated
@@ -260,6 +263,11 @@ int			count_digits(t_long_num count);
 void		round_integer_part(simple_float *f);
 void		round_simple_float(simple_float *f);
 void		init_flags_convertions(void);
+void		calculate(void);
+void		precision_management(void);
+void		flag_management(void);
+void		width_management(void);
+void		init_size_management(void);
 
 
 
@@ -272,9 +280,12 @@ void	print_integer_part(t_long_num tmp);
 /**
  ** Parsing functions
  * */
-int		find_flags(char **format);
-int		find_wid_and_pres(char **format);
-int		find_size(char **format);
-int		find_type(char **format);
+int		find_flags(char *format);
+int		find_width(char *width);
+int		find_size(char *format);
+int		find_type(char *f);
+int		find_precision(char *prec);
+int		print_before_procent(char *format);
+int		print_percent(char **format, char **next_percent);
 
 #endif

@@ -57,33 +57,19 @@ typedef struct personal_float
 
 int main()
 {
+	char i;
 
-/*
-** 	Тесты для проверки пребразования флота в строку
-*/
-	float floats[] = {1.0, 1.1, 10.01, 10.91 , 215.215, 123.321};
-	int i = 0;
-	int size = sizeof(floats) / 4;
-
-	g_current_data.precision = 3;
-	
-	
-	// while (i < size)
-	// 
-	// 	convert_float_str(floats[i]);
-	// 	printf(ANSI_COLOR_BLUE"[%.*f]\n"ANSI_COLOR_RESET,g_current_data.precision , (float) floats[i]);
-	// 	write(1, "\n", 1);
-	// 	i++;
-	// }
-	
-	printf("\n%d\n", printf("%0+16.3f", 10.5));
-	printf("\n%d\n", printf("%-016f", 10.5));
-	printf("\n%d\n", printf("% 016f", -10.5));
-	printf("\n%d\n", printf("%#016f", 10.5));
-	/*
-	** 	Протестировано. Работает хорошо!
-	*/
-	// ft_printstring(g_current_data.str);
+	i = 0;
+	// ft_printf("With f: %f\n",10.5);
+	// ft_printf("With d: %d\n",11);
+	// ft_printf("With i: %i\n",11);
+	// ft_printf("With x: %x\n", 564);
+	// ft_printf("With X: %X\n", 564);
+	// ft_printf("With o: %o\n", 564);
+	ft_printf("With p: %p\n", &i);
+	// printf("With p: %p\n", &i);
+	// ft_printf("With c: %c\n", 'c');
+	// ft_printf("With s: %c\n", "Hello World!");
 	return 0;
 }
 

@@ -12,66 +12,65 @@
 
 #include "ft_printf.h"
 
-void     float_prog(double a) // double
-{
-    unsigned long int bits;
-    int bit;
-    int sing;
-    int exp;
 
-    bits = *(__uint128_t *)&a;
-    sing = (bits >> 63) & 1;
-    bit = 51;
-    exp = ((bits >> 52) & 0x7ff) - 1023;
-    int g = 63;
-    while (g >= 0)
-    {
-        if (((bits >> g) & 1) == 1)
-            printf("1");
-        else 
-            printf("0");
-        if (g == 63 || g == 52)
-            printf(" ");
-        g--;
-    }
+static void	set_spec(char form)
+{
+	if (form == 'i')
+		g_current_data.spec = I;
+	else if (form == 'd')
+		g_current_data.spec = D;
+	else if (form == 'x' || form == 'X')
+		g_current_data.spec = X;
+	else if (form == 'o')
+		g_current_data.spec = O;
+	else if (form == 'u')
+		g_current_data.spec = U;
+	else if (form == 'f')
+		g_current_data.spec = F;
+	else if (form == 's')
+		g_current_data.spec = S;
+	else if (form == 'c')
+		g_current_data.spec = C;
+	else if (form == 'p')
+		g_current_data.spec = P;
 }
 
-// int		find_type(char	form)
-// {
-// 	if (form == 'd' || form == 'i')
-// 		return (INTEGERS);
-	
-// }
-
-int		find_type(char	form)
+int		find_type(char	*f)
 {
-	g_current_data.type = (form == 'd' || form == 'i' || form == 'D' || form == 'I') ? INTEGERS : 0;
-	g_current_data.type = (form == 'c' || form == 'C') ? CHAR : 0;
-	g_current_data.type = (form == 's' || form == 'S') ? STRING : 0;
-	g_current_data.type = (form == 'p' || form == 'P') ? POINTER : 0;
-	g_current_data.type = (form == 'f' || form == 'F') ? FLOAT : 0;
-	g_current_data.type = (form == 'o' || form == 'O' || form == 'u' || form == 'U' || form == 'x' || form == 'X') ? UNSIGNED : 0;
-	g_current_data.delimeters = (form == 'o' || form == 'O') ? OCT : 0;
-	g_current_data.delimeters = (form == 'u' || form == 'U') ? DEC : 0;
-	g_current_data.delimeters = (form == 'x' || form ==  'X') ? HEX : 0;
-	if (form ==  'X')
-		g_current_data.upper = 1;
-	return g_current_data.type == -1 ? 0 : 1;
-}
+	char	form;
 
-
-int		ft_int_len(int	num)
-{	
-	int count;
-
-	count = 0;
-	while ((num / 10) > 0)
+	form = *f;
+	set_spec(*f);
+	if (form == 'x' || form == 'X' || form == 'd' || form == 'i' || form == 'o')
 	{
-		num = num / 10;
-		count++;
+		g_current_data.type = INTEGERS;
+		if (form == 'd' || form == 'i')
+			g_current_data.delimeters = DEC;
+		else if (form == 'x' || form == 'X')
+		{
+			g_current_data.delimeters = HEX;
+			g_current_data.upper = (form == 'X') ? 1 : 0;
+		}
+		else
+			g_current_data.delimeters = OCT;
 	}
-	count++;
-	return count;
+	else if (form == 'f')
+		g_current_data.type = FLOAT;
+	else if (form == 'c')
+		g_current_data.type = CHAR;
+	else if (form == 's')
+		g_current_data.type = STRING;
+	else if (form == 'p')
+	{
+		g_current_data.type = POINTER;
+		g_current_data.delimeters = HEX;
+	}
+	else if (form == 'u')
+	{
+		g_current_data.type = UNSIGNED;
+		g_current_data.delimeters = DEC;
+	}
+	return g_current_data.type == -1 ? 0 : 1;
 }
 
 
@@ -80,11 +79,12 @@ int find_precision(char *prec)  // пропускает точку и возвр
 	int count;
 
 	count = 0;
-	if (prec == '.')
+	if (prec[count] == '.')
 	{
 		count++;
-		g_current_data.precision = ft_atoi(prec + 1);
-		count = ft_int_len(g_current_data.precision);
+		g_current_data.precision = ft_atoi(prec + count);
+		while (ft_isdigit(prec[count]))
+			count++;
 	}
 	return count;
 }
@@ -95,87 +95,119 @@ int find_width(char *width) // вернет количество на котор
 {
 	int count;
 
+	count = 0;
 	g_current_data.width = ft_atoi(width);
-	count = ft_int_len(g_current_data.width);
+	while (ft_isdigit(width[count]))
+	{
+		count++;
+	}
 	return count;
 }
 
-int		find_flags(char **format) // тоже что и ширина
+static int	isflag(char c)
 {
-	char form;
+	if (c == '+' || c == '-' || c == ' ' || c == '#' || c == '0')
+		return 1;
+	return 0;
+}
+
+int		find_flags(char *format) // тоже что и ширина
+{
 	int count;
 
 	count = 0;
-	form = **format;
-	while (1)
+	while (isflag(format[count]))
 	{
-		if (form = '+')
-			g_current_data.flags = PLUS;
-		if (form = '-')
-			g_current_data.flags = MINUS;
-		if (form = '0')
-			g_current_data.flags = NULL_FLAG;
-		if (form = ' ')
-			g_current_data.flags = SPACE;
-		if (form = '#')
-			g_current_data.flags = OCTOTORP;
-		if (form != '+' || form != '-' || form != '0' || form != ' ' || form != '#')
-			return count;
+		if (format[count] == '+')
+			g_current_data.flags[PLUS] = PLUS;
+		if (format[count] == '-')
+			g_current_data.flags[MINUS] = MINUS;
+		if (format[count] == '0')
+			g_current_data.flags[NULL_FLAG] = NULL_FLAG;
+		if (format[count] == ' ')
+			g_current_data.flags[SPACE] = SPACE;
+		if (format[count] == '#')
+			g_current_data.flags[OCTOTORP] = OCTOTORP;
 		count++;
-		form++;
 	}
+	return count;
 }
 
-int		parsing(const char *format)
+int		find_size(char *format)
 {
-	int		i;
-	int		in;
-	char	*tmp;
-
-	i = -1;
-	in = -1;
-	tmp = format;
-	while (format[++i])
-		while (++in < 5)
-			if (*(g_current_data.pars[in])(&tmp) == DONE_PARS)
-				break;
+	if (format[0] == 'h')
+	{
+		g_current_data.size = (format[1] == 'h') ? HH : H;
+		return format[1] == 'h' ? 2 : 0;
+	}
+	else if (format[0] == 'l')
+	{
+		g_current_data.size = (format[1] == 'l') ? LL : L;
+		return format[1] == 'l' ? 2 : 1;
+	}
+	else if (format[0] == 'L')
+	{
+		g_current_data.size = L_BIG;
+		return 1;
+	}
+	else
+		g_current_data.size = -1;
+	return 0;
 }
+// void	init_struct_data(void)
+// {
+// 	int i;
+// 	i = -1;
+// 	ft_bzero(g_current_data.flags, 6);
+// 	while (++i < 10)
+// 		g_current_data.que[i] = NULL;
+// 	g_current_data.str.str = NULL;
+// 	g_current_data.print = ft_printstring;
+// 	g_current_data.pars[0] = find_flags(char *);
+// 	g_current_data.pars[1] = find_wid(char *);
+// 	g_current_data.pars[2] = find_pres(char *);
+// 	g_current_data.pars[3] = find_size(char *);
+// 	g_current_data.pars[4] = find_type(char *);
+// 	g_current_data.width = 0;
+// 	g_current_data.precision = -1;
+// 	g_current_data.skip = 0;
+// }
 
-void	init_struct_data(void)
+static void evaluate(void)
 {
-	int i;
-
-	i = -1;
-	ft_bzero(g_current_data.flags, 6);
-	while (++i < 10)
-		g_current_data.que[i] = NULL;
-	g_current_data.str.str = NULL;
-	g_current_data.print = ft_printstring;
-	g_current_data.pars[0] = find_flags(char *);
-	g_current_data.pars[1] = find_wid(char *);
-	g_current_data.pars[2] = find_pres(char *);
-	g_current_data.pars[3] = find_size(char *);
-	g_current_data.pars[4] = find_type(char *);
-	g_current_data.width = 0;
-	g_current_data.precision = -1;
-	g_current_data.skip = 0;
+	init_size_management();
+	calculate();
+	precision_management();
+	flag_management();
+	width_management();
+	ft_printstring(g_current_data.str);
+	global_free();
 }
 
 int		ft_printf(const char *format, ...)
 {
-	va_list list;
 	int i;
 
 	i = 0;
-	va_start(list, format);
-	init_struct_data();
+	va_start(g_current_data.list, format);
+	// init_struct_data();
+	init_flags_convertions();
+	global_free();
 	while (format[i])
 	{
+		i += print_before_procent(((char *)format + i));
 		if (format[i] == '%')
-			creat_q(parsing(&format[++i]));
-		i++;
+		{
+			i++;
+			i += find_flags(((char *)format + i));
+			i += find_width(((char *)format + i));
+			i += find_precision(((char *)format + i));
+			i += find_size(((char *)format + i));
+			i += find_type((((char *)format + i)));
+			evaluate();
+		}
 	}
-	va_end(list);
+	va_end(g_current_data.list);
 	return 1;
 }
 	
@@ -197,37 +229,12 @@ int		print_before_procent(char *format)
 	int		len;
 	char *next_percent;
 	
-	count = 0;
-	
-	next_percent = ft_strchr(format, '%');
-	while (*format != '\0' && next_percent) {
-		count += print_percent(&format, &next_percent);
-		if (*(format + 1) == '%') {
-			write(1, "%", 1);
-			format++;
-			count++;
-		}
-		else
-			return (count);
-		format++;
-		next_percent = ft_strchr(format, '%');
+	while (format && format[count] && format[count] != '%')
+	{
+		count++;
 	}
-	len = ft_strlen(format);
-	write(1, format, len);
-	count += len;
-	return (count);
+	if (format && format[count] == '%' && format[count + 1] == '%')
+		count++;
+	return (write(1, format, count));
 }
 
-
-	
-
-int main()
-{
-    // double a = 12.358;
-	double b = 90.1;
-	float a = (float)90.1;
-	float c = 90.1;
-	a;
-	printf("vqevvdvrv%d10.8d\n", 1);
-    // float_prog(a);
-}

@@ -17,6 +17,8 @@
  * */
 void	ft_printstring(t_string str)
 {
+	if (str.str == 0)
+		return;
 	write(1, str.str, str.len);
 }
 
@@ -26,7 +28,6 @@ t_string	ft_concat(t_string a, t_string b)
 
 	result.str = ft_strjoindel(a.str, b.str);
 	result.len = a.len + b.len;
-	ft_printstring(result);
 	return result;
 }
 

@@ -92,3 +92,29 @@ void	ft_tolowercase(char *ptr)
 {
 	ptr[0] = (char)ft_tolower(*ptr);
 }
+
+void	convert_size_t_int(size_t src, int delim)
+{
+	int			tmp = 0;
+	static int	stat;
+
+	stat++;
+	if(src == 0)
+	{
+		g_current_data.str.str = ft_strdup("0");
+		g_current_data.str.len = 1;
+		return;
+	}
+	tmp = src % delim;
+	if (src / delim != 0)
+	{
+		convert_size_t_int(src / delim, delim);
+	}
+	else if (src / delim == 0)
+	{
+		g_current_data.str.len = stat;
+		g_current_data.str.str = ft_strnew(g_current_data.str.len);
+	}
+	g_current_data.str.str[g_current_data.str.len - stat] = number_arr[tmp];
+	stat--;
+}

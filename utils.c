@@ -30,6 +30,8 @@ void	global_free(void)
 {
 	ft_strdel(&(g_current_data.str.str));
 	g_current_data.str.len = 0;
+	g_current_data.size = 0;
+	g_current_data.width = 0;
 	ft_bzero(g_current_data.flags, sizeof(g_current_data.flags));
 	ft_bzero(g_current_data.pars, sizeof(g_current_data.pars));
 	ft_bzero(g_current_data.que, sizeof(g_current_data.que));

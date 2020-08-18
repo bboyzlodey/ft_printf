@@ -14,10 +14,11 @@
 
 void precision_management(void)
 {
-    int size;
+	int size;
 
-    size = g_current_data.precision;
-    if (g_current_data.spec = F)
-        return;
-    g_current_data.str = ft_concat(repeat_char('0', size),g_current_data.str);
+	size = g_current_data.precision - g_current_data.str.len;
+	if (g_current_data.spec == F){
+		return;}
+	if (size > 0)
+		g_current_data.str = ft_concat(repeat_char('0', size),g_current_data.str);
 }
