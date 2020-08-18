@@ -39,3 +39,22 @@ void	global_free(void)
 	g_current_data.type = 0;
 	ft_memdel(&(g_current_data.value));	
 }
+
+void	initstructure()
+{
+	g_current_data.value = NULL;
+	g_current_data.str.str = NULL;
+	g_current_data.delimeters = 0;
+	g_current_data.precision = 0;
+	g_current_data.sign = 0;
+	g_current_data.skip = 0;
+	g_current_data.str.len = 0;
+	g_current_data.size = 0;
+	g_current_data.upper = 0;
+	g_current_data.type = -1;
+	g_current_data.width = 0;
+	ft_bzero(g_current_data.flags, sizeof(g_current_data.flags));
+	ft_bzero(g_current_data.pars, sizeof(g_current_data.pars));
+	ft_bzero(g_current_data.que, sizeof(g_current_data.que));
+	g_current_data.spec = -1;
+}

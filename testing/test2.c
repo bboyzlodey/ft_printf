@@ -60,16 +60,16 @@ int main()
 	char i;
 
 	i = 0;
-	// ft_printf("With f: %f\n",10.5);
-	// ft_printf("With d: %d\n",11);
-	// ft_printf("With i: %i\n",11);
-	// ft_printf("With x: %x\n", 564);
-	// ft_printf("With X: %X\n", 564);
-	// ft_printf("With o: %o\n", 564);
+	 ft_printf("With f: %f\n",10.5);
+	 ft_printf("With d: %d\n",11);
+	 ft_printf("With i: %i\n",11);
+	 ft_printf("With x: %x\n", 564);
+	 ft_printf("With X: %X\n", 564);
+	 ft_printf("With o: %o\n", 564);
 	ft_printf("With p: %p\n", &i);
-	// printf("With p: %p\n", &i);
-	// ft_printf("With c: %c\n", 'c');
-	// ft_printf("With s: %c\n", "Hello World!");
+//	 printf("With p: %p\n", &i);
+	 ft_printf("With c: %c\n", 'c');
+	 ft_printf("With s: %s\n", "Hello World!");
 	return 0;
 }
 

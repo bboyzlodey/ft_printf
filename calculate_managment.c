@@ -41,7 +41,7 @@ void	str_calculate(void)
 
 	str = NULL;
 	str = ((char *)g_current_data.value);
-	g_current_data.str.str = str;
+	g_current_data.str.str = ft_strdup(str);
 	g_current_data.str.len = ft_strlen(str);
 }
 
@@ -50,8 +50,8 @@ void	char_calculate(void)
 	char	*ch;
 	
 	ch = ((char *)g_current_data.value);
-	g_current_data.str.str = ch;
-	g_current_data.str.len = ft_strlen(ch);
+	g_current_data.str.str = ft_strncpy(ft_strnew(1), ch, 1);
+	g_current_data.str.len = 1;
 }
 
 void	pointer_calculate(void)

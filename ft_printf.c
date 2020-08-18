@@ -154,24 +154,19 @@ int		find_size(char *format)
 		g_current_data.size = -1;
 	return 0;
 }
-// void	init_struct_data(void)
-// {
-// 	int i;
-// 	i = -1;
-// 	ft_bzero(g_current_data.flags, 6);
-// 	while (++i < 10)
-// 		g_current_data.que[i] = NULL;
-// 	g_current_data.str.str = NULL;
-// 	g_current_data.print = ft_printstring;
-// 	g_current_data.pars[0] = find_flags(char *);
-// 	g_current_data.pars[1] = find_wid(char *);
-// 	g_current_data.pars[2] = find_pres(char *);
-// 	g_current_data.pars[3] = find_size(char *);
-// 	g_current_data.pars[4] = find_type(char *);
-// 	g_current_data.width = 0;
-// 	g_current_data.precision = -1;
-// 	g_current_data.skip = 0;
-// }
+ void	init_struct_data(void)
+ {
+ 	int i;
+ 	i = -1;
+ 	ft_bzero(g_current_data.flags, 6);
+ 	while (++i < 10)
+ 		g_current_data.que[i] = NULL;
+ 	g_current_data.str.str = NULL;
+ 	g_current_data.print = ft_printstring;
+ 	g_current_data.width = 0;
+ 	g_current_data.precision = -1;
+ 	g_current_data.skip = 0;
+ }
 
 static void evaluate(void)
 {
@@ -189,10 +184,11 @@ int		ft_printf(const char *format, ...)
 	int i;
 
 	i = 0;
-	va_start(g_current_data.list, format);
+
 	// init_struct_data();
 	init_flags_convertions();
-	global_free();
+	initstructure();
+	va_start(g_current_data.list, format);
 	while (format[i])
 	{
 		i += print_before_procent(((char *)format + i));
@@ -210,25 +206,11 @@ int		ft_printf(const char *format, ...)
 	va_end(g_current_data.list);
 	return 1;
 }
-	
-int print_percent(char **format, char **next_percent)
-{
-	int		count;
-
-	count = 0;
-	write(1, *format, *next_percent - *format);
-	count += *next_percent - *format;
-	*format = *next_percent;
-	return (count);
-}
-
 
 int		print_before_procent(char *format)
 {
 	int		count;
-	int		len;
-	char *next_percent;
-	
+
 	while (format && format[count] && format[count] != '%')
 	{
 		count++;
