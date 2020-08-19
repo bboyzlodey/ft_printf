@@ -19,7 +19,7 @@ void	width_management(void)
 	size = g_current_data.width - g_current_data.str.len;
 	if (size <= 0)
 		return;
-	if (g_current_data.flags[NULL_FLAG] = NULL_FLAG)
+	if (g_current_data.flags[NULL_FLAG] == NULL_FLAG)
 	{
 		g_current_data.str = ft_concat(repeat_char('0', size), g_current_data.str);
 		if (g_current_data.flags[PLUS] == PLUS || g_current_data.sign == '-')

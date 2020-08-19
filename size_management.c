@@ -111,15 +111,11 @@ void    init_size_management(void)
 	else if (g_current_data.type == UNSIGNED)
 	{	size_management_unsigned();}
 	else if (g_current_data.type == POINTER)
-	{	size_management_ponter;}
+	{	size_management_ponter();}
 	else if (g_current_data.type == STRING)
 	{	size_management_string();}
 	else if (g_current_data.type == FLOAT)
 	{	size_management_float();}
 	else if (g_current_data.type == CHAR)
 	{	size_management_char();}
-	else if (g_current_data.type == POINTER)
-	{
-		size_management_ponter();
-	}
 }
