@@ -95,17 +95,17 @@ void	ft_tolowercase(char *ptr)
 
 void	convert_size_t_int(size_t src, int delim)
 {
-	int			tmp = 0;
+	size_t		tmp;
 	static int	stat;
 
 	stat++;
+	tmp = src % delim;
 	if(src == 0)
 	{
 		g_current_data.str.str = ft_strdup("0");
 		g_current_data.str.len = 1;
 		return;
 	}
-	tmp = src % delim;
 	if (src / delim != 0)
 	{
 		convert_size_t_int(src / delim, delim);

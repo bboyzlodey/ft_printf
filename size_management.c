@@ -54,8 +54,10 @@ static void	size_management_ponter(void)
 
 	tmp = 0;
 	
-	tmp = (size_t) va_arg(g_current_data.list, char *);
+	tmp = (size_t) va_arg(g_current_data.list, size_t);
 	g_current_data.value = ft_memcpy(ft_memalloc(sizeof(tmp)), &tmp, sizeof(tmp));
+	// printf("tmp : %#lx", tmp);
+	// printf("tmp : %#lx", (*(size_t*)g_current_data.value));
 }
 
 static void	size_management_char(void)

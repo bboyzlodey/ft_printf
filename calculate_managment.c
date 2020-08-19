@@ -58,7 +58,7 @@ void	pointer_calculate(void)
 {
 	size_t	val;
 
-	val = ((size_t)g_current_data.value);
+	val = *((size_t*)g_current_data.value);
 	convert_size_t_int(val, g_current_data.delimeters);
 }
 
