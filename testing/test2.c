@@ -63,11 +63,11 @@ int main()
 	 ft_printf("With f: %f\n",10.5);
 	 ft_printf("With d: %-012d\n",11);
 	 ft_printf("With i:% i\n",11);
-	 ft_printf("With x: %x\n", 564);
+	 ft_printf("With x: %#x\n", 255);
 	 ft_printf("With X: %X\n", 564);
 	 ft_printf("With o: %o\n", 564);
 	ft_printf("With p: %p\n", &i);
-	//  printf("With p: %p\n", &i);
+	 printf("With p: %030p\n", &i);
 	 ft_printf("With c: %c\n", 'c');
 	 ft_printf("With s: %7s\n", "Hello World!");
 	return 0;
