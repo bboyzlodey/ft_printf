@@ -19,9 +19,6 @@ static void delete_flag(enum e_flags flag)
 
 void		flag_management(void)
 {
-	enum e_type		type;
-
-	type = g_current_data.type;
 	if (g_current_data.flags[PLUS] && g_current_data.flags[SPACE])
 		delete_flag(SPACE);
 	if ((g_current_data.flags[MINUS] && g_current_data.flags[NULL_FLAG]) || 

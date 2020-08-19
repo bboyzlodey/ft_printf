@@ -36,6 +36,6 @@ t_string	repeat_char(char a, size_t size)
 	t_string	tmp;
 
 	tmp.str = ft_memset(ft_strnew(size), a, size);
-	tmp.len += size;
+	tmp.len = size;
 	return tmp;
 }

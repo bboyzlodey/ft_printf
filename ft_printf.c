@@ -70,7 +70,9 @@ int		find_type(char	*f)
 		g_current_data.type = UNSIGNED;
 		g_current_data.delimeters = DEC;
 	}
-	return g_current_data.type == -1 ? 0 : 1;
+	else
+		return 0;
+	return 1;
 }
 
 
@@ -189,28 +191,34 @@ int		ft_printf(const char *format, ...)
 	init_flags_convertions();
 	initstructure();
 	va_start(g_current_data.list, format);
-	while (format[i])
+
+	char *tmp;
+
+	tmp = ft_strdup(format);
+	// i += print_before_procent(((char *)tmp + i));
+	while (tmp[i])
 	{
-		i += print_before_procent(((char *)format + i));
-		if (format[i] == '%')
+		i += print_before_procent(((char *)tmp + i));
+		if (tmp[i] == '%')
 		{
 			i++;
-			i += find_flags(((char *)format + i));
-			i += find_width(((char *)format + i));
-			i += find_precision(((char *)format + i));
-			i += find_size(((char *)format + i));
-			i += find_type((((char *)format + i)));
+			i += find_flags(((char *)tmp + i));
+			i += find_width(((char *)tmp + i));
+			i += find_precision(((char *)tmp + i));
+			i += find_size(((char *)tmp + i));
+			i += find_type((((char *)tmp + i)));
 			evaluate();
 		}
 	}
 	va_end(g_current_data.list);
-	return 1;
+	return 0;
 }
 
 int		print_before_procent(char *format)
 {
 	int		count;
 
+	count = 0;
 	while (format && format[count] && format[count] != '%')
 	{
 		count++;
