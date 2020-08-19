@@ -69,7 +69,7 @@ int main()
 	ft_printf("With p: %p\n", &i);
 	 printf("With p: %p\n", &i);
 	 ft_printf("With c: %c\n", 'c');
-	 ft_printf("With s: %s\n", "Hello World!");
+	 ft_printf("With s: %60s\n", "Hello World!");
 	return 0;
 }
 
