@@ -41,10 +41,10 @@ void print_binary(unsigned int c){
 	ft_strdel(&(g_current_data.str.str));
 }
 
-static unsigned int float_to_unint(float f)
-{
-	return *((unsigned int*) &f);
-}
+// static unsigned int float_to_unint(float f)
+// {
+// 	return *((unsigned int*) &f);
+// }
 
 typedef struct personal_float
 {
