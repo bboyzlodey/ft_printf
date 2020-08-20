@@ -62,7 +62,7 @@ void		flag_management_x(void)
 		g_current_data.str.len += 2;
 	}
 	if (g_current_data.upper == 0)
-		ft_tolowercase(g_current_data.str.str);
+		ft_striter(g_current_data.str.str, ft_tolowercase);
 }
 
 void		flag_management_f(void)

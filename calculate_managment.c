@@ -60,6 +60,7 @@ void	pointer_calculate(void)
 
 	val = *((size_t*)g_current_data.value);
 	convert_size_t_int(val, g_current_data.delimeters);
+	ft_striter(g_current_data.str.str, ft_tolowercase);
 }
 
 void	calculate(void)
