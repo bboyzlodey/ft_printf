@@ -60,7 +60,10 @@ int main()
 	char i;
 
 	i = 0;
-	 ft_printf("With f: %f\n",10.5);
+	 i = ft_printf("With f: %f\n",10.5);
+	 printf("writed: %llu\n", g_ft_printf_writed_count);
+	 i = printf("With f: %f\n",10.5);
+	 printf("writed ft_printf: %llu\n", g_ft_printf_writed_count);
 	 ft_printf("With d: %-012d\n",11);
 	 ft_printf("With i:%+07i\n",11);
 	 printf("With i:%+7i\n",11);

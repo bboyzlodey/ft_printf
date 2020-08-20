@@ -186,7 +186,7 @@ int		ft_printf(const char *format, ...)
 	int i;
 
 	i = 0;
-
+	g_ft_printf_writed_count = 0;
 	// init_struct_data();
 	init_flags_convertions();
 	initstructure();
@@ -211,7 +211,7 @@ int		ft_printf(const char *format, ...)
 		}
 	}
 	va_end(g_current_data.list);
-	return 0;
+	return g_ft_printf_writed_count;
 }
 
 int		print_before_procent(char *format)
@@ -225,6 +225,6 @@ int		print_before_procent(char *format)
 	}
 	if (format && format[count] == '%' && format[count + 1] == '%')
 		count++;
-	return (write(1, format, count));
+	return (g_ft_printf_writed_count += write(1, format, count));
 }
 

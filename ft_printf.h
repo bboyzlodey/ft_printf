@@ -64,9 +64,7 @@ typedef struct some_float
 # define COUNT_FLAGS 6
 # define COUNT_TYPES 9
 # define QUE_COUNT 10
-/*
-**       Functions
-*/
+unsigned long long int g_ft_printf_writed_count;
 
 /*
 **       Типы

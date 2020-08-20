@@ -19,7 +19,7 @@ void	ft_printstring(t_string str)
 {
 	if (str.str == 0)
 		return;
-	write(1, str.str, str.len);
+	g_ft_printf_writed_count += write(1, str.str, str.len);
 }
 
 t_string	ft_concat(t_string a, t_string b)
