@@ -266,6 +266,8 @@ void		precision_management(void);
 void		flag_management(void);
 void		width_management(void);
 void		init_size_management(void);
+void		integer_calculate(void);
+
 
 
 
