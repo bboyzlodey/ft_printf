@@ -198,20 +198,10 @@ int		ft_printf(const char *format, ...);
 **	Функции для перевода value в строку
 */
 
-char	*str(void *value);
-char	*char_str(void *value);
-char	*addr_str(void *value);
-char	*dec_int_str(void *value);
-char	*oct_int_str(void *value);
-char	*hex_int_str(void *value);
-char	*dec_unint_str(void *value);
-char	*dec_float_str(void *value);
-
-void	convert_int(long long int src, int delim);
-void	convert_unint(unsigned long long  int src, int delim);
+void	ft_tolowercase(char *ptr);
 
 char	*ft_strjoindel(char *s1, char *s2);
-void	ft_tolowercase(char *ptr);
+
 void	ft_printstring(t_string str);
 
 /**
@@ -228,24 +218,14 @@ void	get_binary(unsigned int src, int delim);
 char	*ft_strjoindel(char *s1, char *s2);
 void	global_free(void);
 
-/**
- ** 	Deprecated
- * */
-void	do_dprint(char print);
-void	convert_size_t_int(size_t src, int delim);
-char	*ft_itoa_base(t_ll_int value, int base);
-char	*ft_itoa_unsig_base(t_ull_int value, int base, int reg);
-char	*get_decimal(int dec);
-char	*get_hexodecimal(int input);
-void	add_prefix(char *prefix);
 
 
-void	flag_management(void);
+
 
 
 t_long_num	positive_pow(int exp);
 t_long_num	summ_big_int(t_long_num one, t_long_num two);
-void		convert_float_str(float f);
+
 t_long_num	calcutate_integer(simple_float *f);
 t_real_num	calcutate_real(simple_float *fl);
 t_real_num	negative_pow(int exp, int precision);
@@ -260,14 +240,33 @@ t_string	repeat_char(char a, size_t size);
 int			count_digits(t_long_num count);
 void		round_integer_part(simple_float *f);
 void		round_simple_float(simple_float *f);
-void		init_flags_convertions(void);
+
+
+
+void		float_calculate(void);
+void		str_calculate(void);
+void		char_calculate(void);
+void		pointer_calculate(void);
 void		calculate(void);
-void		precision_management(void);
-void		flag_management(void);
-void		width_management(void);
-void		init_size_management(void);
 void		integer_calculate(void);
 
+
+void	convert_int(long long int src, int delim);
+void	convert_unint(unsigned long long  int src, int delim);
+void	convert_size_t_int(size_t src, int delim);
+void	convert_float_str(float f);
+
+void		precision_management(void);
+void		width_management(void);
+void		init_size_management(void);
+
+void		flag_management(void);
+void		flag_management_d(void);
+void		flag_management_i(void);
+void		flag_management_o(void);
+void		flag_management_x(void);
+void		flag_management_f(void);
+void		init_flags_convertions(void);
 
 
 

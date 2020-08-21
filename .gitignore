@@ -7,3 +7,6 @@
 testing/test2
 ./*test*
 ./*test*/*test*
+*test*
+cmake-build-debug
+*.o

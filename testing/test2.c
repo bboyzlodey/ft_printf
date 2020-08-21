@@ -2,44 +2,7 @@
 // Created by Agrajag Sybil on 26/02/2020.
 //
 #include "../ft_printf.h"
-/**
-** 
-** printdoubles() - функция печатает даблы в формате [sign]--[exp]--[mantissa]
-**	Работает только для обычных даблов.
-** printu(double f) - содержит логику вычисления двочного представления даблов.
-**	Работает только для обычных даблов.
-**/
 
-void printdoubles()
-{
-	int size = sizeof(double) * 8;
-	char *delim = "--";
-	int len = size - g_current_data.str.len;
-	if (len != 0)
-	{
-		g_current_data.str.str = ft_strjoindel(ft_memset(ft_strnew(len), '0', len), g_current_data.str.str);
-	}
-	write(1, "[", 1);
-	write(1, g_current_data.str.str, 1);
-	write(1, "]", 1);
-	write(1, delim, 2);
-	write(1, "[", 1);
-	write(1, g_current_data.str.str + 1, 11);
-	write(1, "]", 1);
-	write(1, delim, 2);
-	write(1, "[", 1);
-	write(1, g_current_data.str.str + 12, 52);
-	write(1, "]", 1);
-	write(1, "\n", 1);
-}
-
-void print_binary(unsigned int c){
-	convert_unint(c, 2);
-	printf("Value: %d\t", c);
-	printf(ANSI_COLOR_YELLOW"Count of Bits:%d\n"ANSI_COLOR_RESET, g_current_data.str.len);
-	printf(ANSI_COLOR_GREEN"Bits: %s\n\n"ANSI_COLOR_RESET, g_current_data.str.str);
-	ft_strdel(&(g_current_data.str.str));
-}
 
 // static unsigned int float_to_unint(float f)
 // {
