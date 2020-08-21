@@ -5,8 +5,13 @@
 ./*/*.exe
 ./.vscode
 testing/test2
-./*test*
 ./*test*/*test*
-*test*
 cmake-build-debug
 *.o
+CMake*
+
+*.a
+/libft
+!*/logs
+test
+test_make
