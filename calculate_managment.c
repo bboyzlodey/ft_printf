@@ -47,11 +47,19 @@ void	float_calculate(void)
 void	str_calculate(void)
 {
 	char	*str;
+	int		len;
 
 	str = NULL;
 	str = ((char *)g_current_data.value);
-	g_current_data.str.str = ft_strdup(str);
-	g_current_data.str.len = ft_strlen(str);
+	len = ft_strlen(str);
+	if (g_current_data.precision != 0 && len)
+	{
+		g_current_data.str.str = ft_strsub(str, 0, g_current_data.precision);
+	}
+	else
+		g_current_data.str.str = ft_strdup(str);
+	g_current_data.str.len = ft_strlen(g_current_data.str.str);
+	g_current_data.precision = 0;
 }
 
 void	char_calculate(void)

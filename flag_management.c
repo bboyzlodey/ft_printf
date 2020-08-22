@@ -60,7 +60,7 @@ void		flag_management_x(void)
 {
 	if (g_current_data.flags[PLUS])
 		g_current_data.str = ft_concat(repeat_char(g_current_data.sign, 1), g_current_data.str);
-	if (g_current_data.flags[OCTOTORP] && g_current_data.flags[NULL_FLAG] == 0 && ft_strcmp(g_current_data.str.str, "0") != 0)
+	if (g_current_data.flags[OCTOTORP] && ft_strcmp(g_current_data.str.str, "0") != 0)
 	{
 		g_current_data.str.str = ft_strjoindel(ft_strdup(g_current_data.upper == 0 ? "0x" : "0X"), g_current_data.str.str);
 		g_current_data.str.len += 2;

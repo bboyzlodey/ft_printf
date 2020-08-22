@@ -20,12 +20,17 @@ typedef struct personal_float
 
 int main()
 {
-	int i;
+	// int i;
 
-	i = 0;
-	 i = ft_printf("%lx", 4294967296l);
-	printf("\n%d\n", i);
-	printf("%lx", 4294967296l);
+	// i = 123;
+	//  i = ft_printf("%lx", 4294967296l);
+	// printf("\n%d\n", i);
+	// printf("%lx", 4294967296l);
+	int i = printf("%.2s is a string", "");
+	printf("\n");
+	int j = ft_printf("%.2s is a string", "");
+	printf("\n%d\n%d\n", i, j);
+
 	return 0;
 }
 

@@ -53,4 +53,6 @@ void	convert_float_str(float f)
 	integer = integer_part_str(flo->integer_part);
 	real = real_part_str(flo->real_part, g_current_data.precision);
 	g_current_data.str = ft_concat(integer, real);
+	free(flo);
+	flo = NULL;
 }
