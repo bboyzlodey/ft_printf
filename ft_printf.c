@@ -173,10 +173,12 @@ int		find_size(char *format)
 static void evaluate(void)
 {
 	init_size_management();
-	calculate();
-	precision_management();
-	flag_management();
-	width_management();
+	// calculate();
+	// precision_management();
+	// flag_management();
+	// width_management();
+	set_func_que();
+	iterate_func_que();
 	ft_printstring(g_current_data.str);
 	global_free();
 }

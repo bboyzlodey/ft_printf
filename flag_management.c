@@ -17,7 +17,7 @@ static void delete_flag(enum e_flags flag)
 	g_current_data.flags[flag] = 0;
 }
 
-void		flag_management(void)
+void		remove_ignored_flags(void)
 {
 	if (g_current_data.flags[PLUS] && g_current_data.flags[SPACE])
 		delete_flag(SPACE);
@@ -26,6 +26,10 @@ void		flag_management(void)
 	{
 		delete_flag(NULL_FLAG);
 	}
+}
+
+void		flag_management(void)
+{
 	if (flags_convertions[g_current_data.spec] != NULL)
 		flags_convertions[g_current_data.spec]();
 }
