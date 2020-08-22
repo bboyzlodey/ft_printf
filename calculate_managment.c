@@ -14,7 +14,7 @@
 
 void	integer_calculate(void)
 {
-	if (g_current_data.type == INTEGERS)
+	if (g_current_data.type == INTEGERS && g_current_data.delimeters != HEX)
 	{
 		g_current_data.sign = (*((long long*)g_current_data.value)) >= 0 ? '+' : '-';
 		convert_int(*((long long*)g_current_data.value), g_current_data.delimeters);
@@ -22,6 +22,15 @@ void	integer_calculate(void)
 	else if (g_current_data.type == UNSIGNED)
 	{
 		convert_unint(*((unsigned long long*)g_current_data.value), g_current_data.delimeters);
+	}
+	else if (g_current_data.spec == X)
+	{
+		if (g_current_data.size == LL)
+			convert_unint(*((unsigned long long*)g_current_data.value), g_current_data.delimeters);
+		else if (g_current_data.size == L)
+			convert_unint(*((unsigned long*)g_current_data.value), g_current_data.delimeters);
+		else
+			convert_unint(*((unsigned*)g_current_data.value), g_current_data.delimeters);
 	}
 }
 

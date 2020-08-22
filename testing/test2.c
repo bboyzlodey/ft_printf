@@ -20,23 +20,12 @@ typedef struct personal_float
 
 int main()
 {
-	char i;
+	int i;
 
 	i = 0;
-	 i = ft_printf("With f: %f\n",10.5);
-	 printf("writed: %llu\n", g_ft_printf_writed_count);
-	 i = printf("With f: %f\n",10.5);
-	 printf("writed ft_printf: %llu\n", g_ft_printf_writed_count);
-	 ft_printf("With d: %-012d\n",11);
-	 ft_printf("With i:%+07i\n",11);
-	 printf("With i:%+7i\n",11);
-	 ft_printf("With x: %#x\n", 255);
-	 ft_printf("With X: %#X\n", 255);
-	 ft_printf("With o: %o\n", 564);
-	ft_printf("With p: %p\n", &i);
-	 printf("With p: %#X\n", 255);
-	 ft_printf("With c: %c\n", 'c');
-	 ft_printf("With s: %7s\n", "Hello World!");
+	 i = ft_printf("%lx", 4294967296l);
+	printf("\n%d\n", i);
+	printf("%lx", 4294967296l);
 	return 0;
 }
 

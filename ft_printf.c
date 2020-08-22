@@ -140,7 +140,7 @@ int		find_size(char *format)
 	if (format[0] == 'h')
 	{
 		g_current_data.size = (format[1] == 'h') ? HH : H;
-		return format[1] == 'h' ? 2 : 0;
+		return format[1] == 'h' ? 2 : 1;
 	}
 	else if (format[0] == 'l')
 	{
@@ -196,7 +196,7 @@ int		ft_printf(const char *format, ...)
 
 	tmp = ft_strdup(format);
 	// i += print_before_procent(((char *)tmp + i));
-	while (tmp[i])
+	while (tmp && tmp[i])
 	{
 		i += print_before_procent(((char *)tmp + i));
 		if (tmp[i] == '%')
@@ -211,20 +211,25 @@ int		ft_printf(const char *format, ...)
 		}
 	}
 	va_end(g_current_data.list);
+	ft_strdel(&tmp);
 	return g_ft_printf_writed_count;
 }
 
 int		print_before_procent(char *format)
 {
 	int		count;
+	int		skip;
 
+	skip = 0;
 	count = 0;
 	while (format && format[count] && format[count] != '%')
 	{
 		count++;
 	}
+	skip = count;
 	if (format && format[count] == '%' && format[count + 1] == '%')
-		count++;
-	return (g_ft_printf_writed_count += write(1, format, count));
+		skip = (++count) + 1;
+	(g_ft_printf_writed_count += write(1, format, count));
+	return (skip);
 }
 
