@@ -15,6 +15,7 @@
 # define MAX_DIGITS 100
 # define BIG_INT_BASE 10
 # define DEFAULT_PRECISION_FLOAT 6
+# define MAX_FUNC_QUE_SIZE 10
 
 # include "./libft/libft.h"
 # include <stdlib.h>
@@ -22,6 +23,8 @@
 # include <stdio.h>
 # include <stdarg.h>
 # include <math.h>
+
+
 
 typedef int t_big_int[MAX_DIGITS];
 
@@ -179,7 +182,7 @@ struct 				data{
 	void 				*value;
 	t_string			str;
 	void				(*print)(t_string);
-	void				(*que[10])(void);
+	void				(*que[MAX_FUNC_QUE_SIZE])(void);
 	va_list				list;
 	int					(*pars[5])(void); 
 	int					precision;
@@ -267,6 +270,10 @@ void		flag_management_o(void);
 void		flag_management_x(void);
 void		flag_management_f(void);
 void		init_flags_convertions(void);
+void		remove_ignored_flags(void);
+
+void	set_func_que(void);
+void	iterate_func_que(void);
 
 
 
