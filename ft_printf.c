@@ -1,19 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/28 20:33:59 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/16 08:10:18 by asybil           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "ft_printf.h"
 
 
-static void	set_spec(char form)
+static void		set_spec(char form)
 {
 	if (form == 'i')
 		g_current_data.spec = I;
@@ -35,13 +24,14 @@ static void	set_spec(char form)
 		g_current_data.spec = P;
 }
 
-int		find_type(char	*f)
+int				find_type(char *f)
 {
 	char	form;
 
 	form = *f;
 	set_spec(*f);
-	if (form == 'x' || form == 'X' || form == 'd' || form == 'i' || form == 'o')
+	if (form == 'x' || form == 'X' || form == 'd' || \
+	form == 'i' || form == 'o')
 	{
 		g_current_data.type = INTEGERS;
 		if (form == 'd' || form == 'i')
@@ -71,12 +61,12 @@ int		find_type(char	*f)
 		g_current_data.delimeters = DEC;
 	}
 	else
-		return 0;
-	return 1;
+		return (0);
+	return (1);
 }
 
 
-int find_precision(char *prec)  // пропускает точку и возвращает что и иширина
+int				find_precision(char *prec)
 {
 	int count;
 
@@ -88,12 +78,12 @@ int find_precision(char *prec)  // пропускает точку и возвр
 		while (ft_isdigit(prec[count]))
 			count++;
 	}
-	return count;
+	return (count);
 }
 
 
 
-int find_width(char *width) // вернет количество на которое нужно сдвинуть
+int				find_width(char *width)
 {
 	int count;
 
@@ -103,17 +93,17 @@ int find_width(char *width) // вернет количество на котор
 	{
 		count++;
 	}
-	return count;
+	return (count);
 }
 
-static int	isflag(char c)
+static int		isflag(char c)
 {
 	if (c == '+' || c == '-' || c == ' ' || c == '#' || c == '0')
-		return 1;
-	return 0;
+		return (1);
+	return (0);
 }
 
-int		find_flags(char *format) // тоже что и ширина
+int				find_flags(char *format)
 {
 	int count;
 
@@ -132,45 +122,48 @@ int		find_flags(char *format) // тоже что и ширина
 			g_current_data.flags[OCTOTORP] = OCTOTORP;
 		count++;
 	}
-	return count;
+	return (count);
 }
 
-int		find_size(char *format)
+int				find_size(char *format)
 {
 	if (format[0] == 'h')
 	{
 		g_current_data.size = (format[1] == 'h') ? HH : H;
-		return format[1] == 'h' ? 2 : 1;
+		return (format[1] == 'h' ? 2 : 1);
 	}
 	else if (format[0] == 'l')
 	{
 		g_current_data.size = (format[1] == 'l') ? LL : L;
-		return format[1] == 'l' ? 2 : 1;
+		return (format[1] == 'l' ? 2 : 1);
 	}
 	else if (format[0] == 'L')
 	{
 		g_current_data.size = L_BIG;
-		return 1;
+		return (1);
 	}
 	else
 		g_current_data.size = -1;
-	return 0;
+	return (0);
 }
- void	init_struct_data(void)
- {
- 	int i;
- 	i = -1;
- 	ft_bzero(g_current_data.flags, 6);
- 	while (++i < 10)
- 		g_current_data.que[i] = NULL;
- 	g_current_data.str.str = NULL;
- 	g_current_data.print = ft_printstring;
- 	g_current_data.width = 0;
- 	g_current_data.precision = -1;
- 	g_current_data.skip = 0;
- }
+void			init_struct_data(void)
+{
+	int i;
+	i = -1;
+	ft_bzero(g_current_data.flags, 6);
+	while (++i < 10)
+	{
+		g_current_data.que[i] = NULL;
+		g_current_data.str.str = NULL;
+		g_current_data.print = ft_printstring;
+		g_current_data.width = 0;
+		g_current_data.precision = -1;
+		g_current_data.skip = 0;
+	}
+		
+}
 
-static void evaluate(void)
+static void		evaluate(void)
 {
 	init_size_management();
 	calculate();
@@ -181,13 +174,12 @@ static void evaluate(void)
 	global_free();
 }
 
-int		ft_printf(const char *format, ...)
+int				ft_printf(const char *format, ...)
 {
 	int i;
 
 	i = 0;
 	g_ft_printf_writed_count = 0;
-	// init_struct_data();
 	init_flags_convertions();
 	initstructure();
 	va_start(g_current_data.list, format);
@@ -195,7 +187,6 @@ int		ft_printf(const char *format, ...)
 	char *tmp;
 
 	tmp = ft_strdup(format);
-	// i += print_before_procent(((char *)tmp + i));
 	while (tmp && tmp[i])
 	{
 		i += print_before_procent(((char *)tmp + i));
@@ -212,10 +203,10 @@ int		ft_printf(const char *format, ...)
 	}
 	va_end(g_current_data.list);
 	ft_strdel(&tmp);
-	return g_ft_printf_writed_count;
+	return (g_ft_printf_writed_count);
 }
 
-int		print_before_procent(char *format)
+int				print_before_procent(char *format)
 {
 	int		count;
 	int		skip;

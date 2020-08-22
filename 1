@@ -1,25 +1,25 @@
-/* ***************************************************************************/
-/*                                                                           */
-/*                                                        :::      ::::::::  */
-/*   calculate_managment.c                              :+:      :+:    :+:  */
-/*                                                    +:+ +:+         +:+    */
-/*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+       */
-/*                                                +#+#+#+#+#+   +#+          */
-/*   Created: 2020/08/22 16:58:11 by jsabina           #+#    #+#            */
-/*   Updated: 2020/08/22 17:06:14 by jsabina          ###   ########.fr      */
-/*                                                                           */
-/****************************************************************************/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   calculate_managment.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/22 16:58:11 by jsabina           #+#    #+#             */
+/*   Updated: 2020/08/22 17:06:11 by jsabina          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "ft_printf.h"
 
-
-void	integer_calculate(void)
+void		integer_calculate(void)
 {
 	if (g_current_data.type == INTEGERS && \
 			g_current_data.delimeters != HEX)
 	{
-		g_current_data.sign = (*((long long*)g_current_data.value)) >= \
-		0 ? '+' : '-';
+		g_current_data.sign = (*((long long*)g_current_data.value)) \
+							  >= 0 ? '+' : '-';
 		convert_int(*((long long*)g_current_data.value), \
 				g_current_data.delimeters);
 	}
@@ -42,8 +42,7 @@ void	integer_calculate(void)
 	}
 }
 
-
-void	float_calculate(void)
+void		float_calculate(void)
 {
 	if (g_current_data.type == FLOAT)
 	{
@@ -53,8 +52,7 @@ void	float_calculate(void)
 	}
 }
 
-
-void	str_calculate(void)
+void		str_calculate(void)
 {
 	char	*str;
 
@@ -64,8 +62,7 @@ void	str_calculate(void)
 	g_current_data.str.len = ft_strlen(str);
 }
 
-
-void	char_calculate(void)
+void		char_calculate(void)
 {
 	char	*ch;
 
@@ -74,8 +71,7 @@ void	char_calculate(void)
 	g_current_data.str.len = 1;
 }
 
-
-void	pointer_calculate(void)
+void		pointer_calculate(void)
 {
 	size_t	val;
 
@@ -84,8 +80,7 @@ void	pointer_calculate(void)
 	ft_striter(g_current_data.str.str, ft_tolowercase);
 }
 
-
-void	calculate(void)
+void		calculate(void)
 {
 	if (g_current_data.type == STRING)
 		str_calculate();

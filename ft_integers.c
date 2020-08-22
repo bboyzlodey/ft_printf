@@ -1,46 +1,21 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/28 20:31:57 by asybil            #+#    #+#             */
-/*   Updated: 2020/07/28 20:31:57 by asybil           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "./ft_printf.h"
 
-/**
- ** Статический массив, который используется при конвертации числа в строку
- * */
-static char number_arr[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', '\0'};
-
-/**
-**	convert_int 	- вернет строковое представление числа для long long int 
-**	convert_unint	- вернет строковое представление числа для long long unsigned int
-**/
-
-/**
- **  tmp - переменная, которая хранит остаток деления от delim
- ** 	В этой convert_int обрабатывается знаковый тип.
- ** 	У нас может быть отрицательное число, поэтому
- ** 	остаток от деления тоже может быть отрицательным.
- ** 	tmp = (tmp + (tmp >> 31)) ^ (tmp >> 31); - это формула для получения числа по модулю.
-**/
+static char number_arr[] = {'0', '1', '2', '3', '4', '5', '6', '7', \
+	'8', '9', 'A', 'B', 'C', 'D', 'E', 'F', '\0'};
 
 void	convert_int(long long int src, int delim)
 {
-	long long int			tmp = 0;
-	static int	stat;
+	long long int	tmp;
+	static int		stat;
 
+	tmp = 0;
 	stat++;
-	if(src == 0)
+	if (src == 0)
 	{
 		g_current_data.str.str = ft_strdup("0");
 		g_current_data.str.len = 1;
-		return;
+		return (0);
 	}
 	tmp = (src % delim);
 	tmp = (tmp + (tmp >> 31)) ^ (tmp >> 31);
@@ -48,7 +23,7 @@ void	convert_int(long long int src, int delim)
 	{
 		convert_int(src / delim, delim);
 	}
-	else if ( src / delim == 0)
+	else if (src / delim == 0)
 	{
 		g_current_data.str.len = src > 0 ? stat : stat + 1;
 		g_current_data.str.str = ft_strnew(g_current_data.str.len);
@@ -60,15 +35,16 @@ void	convert_int(long long int src, int delim)
 
 void	convert_unint(unsigned long long int src, int delim)
 {
-	int			tmp = 0;
+	int			tmp;
 	static int	stat;
 
+	tmp = 0;
 	stat++;
-	if(src == 0)
+	if (src == 0)
 	{
 		g_current_data.str.str = ft_strdup("0");
 		g_current_data.str.len = 1;
-		return;
+		return (0);
 	}
 	tmp = src % delim;
 	if (src / delim != 0)
@@ -84,10 +60,6 @@ void	convert_unint(unsigned long long int src, int delim)
 	stat--;
 }
 
-/**
- ** 	Вспомогательная функция, которая строку приводит к нижнему регистру.
- ** 	Это актуально для флага x
- **/
 void	ft_tolowercase(char *ptr)
 {
 	ptr[0] = (char)ft_tolower(*ptr);
@@ -100,11 +72,11 @@ void	convert_size_t_int(size_t src, int delim)
 
 	stat++;
 	tmp = src % delim;
-	if(src == 0)
+	if (src == 0)
 	{
 		g_current_data.str.str = ft_strdup("0");
 		g_current_data.str.len = 1;
-		return;
+		return (0);
 	}
 	if (src / delim != 0)
 	{

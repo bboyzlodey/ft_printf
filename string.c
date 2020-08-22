@@ -6,7 +6,7 @@
 /*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 20:32:07 by asybil            #+#    #+#             */
-/*   Updated: 2020/07/28 20:32:07 by asybil           ###   ########.fr       */
+/*   Updated: 2020/08/22 17:59:27 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,4 @@ t_string	repeat_char(char a, size_t size)
 
 	tmp.str = ft_memset(ft_strnew(size), a, size);
 	tmp.len = size;
-	return tmp;
-}
+	return tmp;}

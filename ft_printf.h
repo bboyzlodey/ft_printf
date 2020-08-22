@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/28 20:48:40 by asybil            #+#    #+#             */
-/*   Updated: 2020/07/28 20:48:40 by asybil           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef FT_PRINTF_FT_PRINTF_H
 # define FT_PRINTF_FT_PRINTF_H
@@ -23,22 +12,19 @@
 # include <stdarg.h>
 # include <math.h>
 
-typedef int t_big_int[MAX_DIGITS];
+typedef int			t_big_int[MAX_DIGITS];
 
-/*
-** 	Structure for big number
-*/
-typedef struct long_num{
+typedef struct		long_num{
 	int value[MAX_DIGITS];
 	int digits;
-} t_long_num;
+}	t_long_num;
 
-typedef struct real_num{
+typedef struct		real_num{
 	t_long_num number;
 	int negative_pow;
 } t_real_num;
 
-typedef struct some_float
+typedef struct		some_float
 {
 	t_long_num integer_part;
 	t_real_num real_part;
@@ -50,15 +36,6 @@ typedef struct some_float
 	int current_exp;
 }	simple_float;
 
-
-/*
-** spec: d, i, u, p, x, X, o, f, s, c, %		--- спецификаторы
-** flag: -, +, #, 0, ' '  						--- флаги
-** width: *, (num)								--- ширина
-** prec: .(num), .*   							--- точность
-** leng: (none), hh, h, l, ll, L   				--- модификаторы длины
-*/
-
 # define CURRENT_SIZE 150
 # define DONE_PARS 1
 # define COUNT_FLAGS 6
@@ -66,48 +43,20 @@ typedef struct some_float
 # define QUE_COUNT 10
 unsigned long long int g_ft_printf_writed_count;
 
-/*
-**       Типы
-*/
-typedef long long int t_ll_int;
-typedef long long unsigned int t_ull_int;
+typedef long long int	t_ll_int;
+typedef long long unsigned int	t_ull_int;
 
-enum	e_flags // For flags management: 
+enum				e_flags 
 {
-	// NONE,			//without_flags
-	OCTOTORP = 1,		//	'#'
-	/*
-	**	При выводе чисел в формате перед числом будет указываться особенность формата
-	*/
-	SPACE,			//	' '
-	/*
-	**	Символ + имеет больший приоритет, чем пробел. Используется только для десятичных числовых значений.
-	**
-	**	В отсутсвие: вывод может начинаться с цифры.
-	**
-	*/
-	MINUS,			//	'-'
-	/*
-	**	В отсутсвие: по правому
-	*/
-	PLUS,			//	'+'
-	/*
-	**	В отсутсвие: только для отрицательных чисел
-	*/
-	NULL_FLAG		//	'0'
-	/*
-	**	Используется для типов d, i, o, u, x, X, a, A, e, E, f, F, g, G.
-	**	Для типов d, i, o, u, x, X, если точность указана, этот флаг игнорируется.
-	**	Для остальных типов поведение не определено.
-	**
-	**	В отсутсвие: дополнять пробелами
-	**
-	*/
+	OCTOTORP = 1,
+	SPACE,
+	MINUS,
+	PLUS,
+	NULL_FLAG
 }	g_flags;
 
 
-enum e_type{
-	// NONE,
+enum	e_type{
 	STRING,
 	CHAR,
 	POINTER,
@@ -119,7 +68,7 @@ enum e_type{
 	PERCENT
 };
 
-enum e_specs{
+enum	e_specs{
 	D,
 	I,
 	U,
@@ -131,14 +80,14 @@ enum e_specs{
 	F
 };
 
-enum e_conversions{
+enum	e_conversions{
 	CALCULATION,
 	PRECISION,
 	FLAG_CONVERS,
 	WIDTH_CONV,
 };
 
-enum e_size{
+enum	e_size{
 	H,
 	HH,
 	L,
@@ -146,30 +95,18 @@ enum e_size{
 	L_BIG
 };
 
-enum e_delimeters{
+enum	e_delimeters{
 	OCT = 8,
 	DEC = 10,
 	HEX = 16
 };
 
-/**
- ** 	Структура для строки. Можно сразу выводить через write
- **/
 typedef struct	s_string
 {
 	int				len;
 	char			*str;
 }				t_string;
 
-/**
- ** 	Глобальная структура.
- ** 	type - тип (целочисленный знаковый, беззнаковый, и тд.)
- ** 	flags - флаги
- ** 	str - текущая строка, преобразованная в строку
- ** 	print - указатель на функцию, которая ничего не принимает
- ** и не возвращает
- ** 	que[10] - массив функций. Это для очереди. Итерационно будет вызываться.  
- * */
 struct 				data{
 	enum e_type 		type;
 	enum e_flags		flags[6];
@@ -193,28 +130,11 @@ void				(*flags_convertions[COUNT_TYPES])(void);
 void				(*size_management[COUNT_TYPES])(void);
 
 int		ft_printf(const char *format, ...);
-
-/*
-**	Функции для перевода value в строку
-*/
-
 void	ft_tolowercase(char *ptr);
-
 char	*ft_strjoindel(char *s1, char *s2);
-
 void	ft_printstring(t_string str);
-
-/**
- ** Debuging
- */
 void	initstructure();
 void	get_binary(unsigned int src, int delim);
-
-
-/**
- ** Вспомогательные функции (utils.c)
- **
- * */
 char	*ft_strjoindel(char *s1, char *s2);
 void	global_free(void);
 
@@ -268,17 +188,9 @@ void		flag_management_x(void);
 void		flag_management_f(void);
 void		init_flags_convertions(void);
 
-
-
-/*
-** For debuging only
-*/
 void	print_real_part(t_real_num real);
 void	print_big_int(t_long_num tmp);
 void	print_integer_part(t_long_num tmp);
-/**
- ** Parsing functions
- * */
 int		find_flags(char *format);
 int		find_width(char *width);
 int		find_size(char *format);

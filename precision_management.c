@@ -12,13 +12,16 @@
 
 #include "ft_printf.h"
 
-void precision_management(void)
+void		precision_management(void)
 {
 	int size;
 
 	size = g_current_data.precision - g_current_data.str.len;
-	if (g_current_data.spec == F){
-		return;}
+	if (g_current_data.spec == F)
+	{
+		return (0);
+	}
 	if (size > 0)
-		g_current_data.str = ft_concat(repeat_char('0', size),g_current_data.str);
+		g_current_data.str = ft_concat \
+		(repeat_char('0', size), g_current_data.str);
 }
