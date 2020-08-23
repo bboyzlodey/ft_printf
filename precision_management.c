@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void precision_management(void)
+void	precision_management(void)
 {
 	int size;
 
@@ -21,4 +21,10 @@ void precision_management(void)
 		return;}
 	if (size > 0)
 		g_current_data.str = ft_concat(repeat_char('0', size),g_current_data.str);
+}
+
+void	validate_precision(void)
+{
+	if (g_current_data.spec != X && g_current_data.precision == -1)
+		g_current_data.precision = 0;
 }

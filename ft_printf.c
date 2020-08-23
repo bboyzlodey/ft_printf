@@ -88,6 +88,8 @@ int find_precision(char *prec)  // пропускает точку и возвр
 		while (ft_isdigit(prec[count]))
 			count++;
 	}
+	if (count <= 1 && g_current_data.precision == 0)
+		g_current_data.precision = -1;
 	return count;
 }
 

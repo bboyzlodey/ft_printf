@@ -82,6 +82,7 @@ void	pointer_calculate(void)
 
 void	calculate(void)
 {
+	validate_precision();
 	if (g_current_data.type == STRING)
 		str_calculate();
 	else if (g_current_data.type == CHAR)

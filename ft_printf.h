@@ -272,8 +272,8 @@ void		flag_management_f(void);
 void		init_flags_convertions(void);
 void		remove_ignored_flags(void);
 
-void	set_func_que(void);
-void	iterate_func_que(void);
+void		set_func_que(void);
+void		iterate_func_que(void);
 
 
 
@@ -291,6 +291,7 @@ int		find_width(char *width);
 int		find_size(char *format);
 int		find_type(char *f);
 int		find_precision(char *prec);
+void	validate_precision(void);
 int		print_before_procent(char *format);
 int		print_percent(char **format, char **next_percent);
 

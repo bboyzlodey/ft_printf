@@ -26,9 +26,9 @@ int main()
 	//  i = ft_printf("%lx", 4294967296l);
 	// printf("\n%d\n", i);
 	// printf("%lx", 4294967296l);
-	int i = printf("%.2s is a string", "");
+	int i = printf("%x", 4294967296);
 	printf("\n");
-	int j = ft_printf("%.2s is a string", "");
+	int j = ft_printf("%x", 4294967296);
 	printf("\n%d\n%d\n", i, j);
 
 	return 0;
