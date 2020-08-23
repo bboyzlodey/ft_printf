@@ -40,9 +40,9 @@ int main()
 //	ft_printf("%0+5d", -42);
 //	1. (    7) -->--00042<--
 //			2. (    5) -->-0042<--
-	int i = printf("%+d", 0);
+	int i = printf("@moulitest: %.d %.0d", 0, 0);
 	printf("\n");
-	int j = ft_printf("%+d", 0);
+	int j = ft_printf("@moulitest: %.d %.0d", 0, 0);
 	printf("\n%d\n%d\n", i, j);
 //	i = printf("%05d", -42);
 //	printf("\n");
