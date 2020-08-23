@@ -42,10 +42,14 @@ void		flag_management_d(void)
 	{
 		if (g_current_data.str.str[0] == '0' && g_current_data.str.len != g_current_data.precision)
 		{
-			g_current_data.str.str[0] = g_current_data.sign;
+			if (g_current_data.flags[PLUS] && g_current_data.flags[NULL_FLAG] != NULL_FLAG)
+				g_current_data.str = ft_concat(repeat_char(g_current_data.sign, 1), g_current_data.str);
+			else
+				g_current_data.str.str[0] = g_current_data.sign;
 		}
 		else
-			g_current_data.str = ft_concat(repeat_char(g_current_data.sign, 1), g_current_data.str);}
+			g_current_data.str = ft_concat(repeat_char(g_current_data.sign, 1), g_current_data.str);
+	}
 }
 
 void		flag_management_i(void)
