@@ -66,7 +66,7 @@ void	convert_unint(unsigned long long int src, int delim)
 	stat++;
 	if(src == 0)
 	{
-		if (g_current_data.precision < 0 && g_current_data.spec == X)
+		if (g_current_data.precision < 0)
 			return;
 		g_current_data.str.str = ft_strdup("0");
 		g_current_data.str.len = 1;

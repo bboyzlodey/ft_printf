@@ -26,9 +26,9 @@ int main()
 	//  i = ft_printf("%lx", 4294967296l);
 	// printf("\n%d\n", i);
 	// printf("%lx", 4294967296l);
-	int i = printf("@moulitest: %s", NULL);
+	int i = printf("@moulitest: %.o %.0o", 0, 0);
 	printf("\n");
-	int j = ft_printf("@moulitest: %s", "");
+	int j = ft_printf("@moulitest: %.o %.0o", 0, 0);
 	printf("\n%d\n%d\n", i, j);
 	return 0;
 }
