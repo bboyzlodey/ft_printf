@@ -10,27 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "ft_printf.h"
 
 void	integer_calculate(void)
 {
-	if (g_current_data.type == INTEGERS && g_current_data.delimeters != HEX && g_current_data.delimeters != OCT)
+	if (g_current_data.type == INTEGERS && g_current_data.delimeters \
+	!= HEX && g_current_data.delimeters != OCT)
 	{
-		g_current_data.sign = (*((long long*)g_current_data.value)) >= 0 ? '+' : '-';
-		convert_int(*((long long*)g_current_data.value), g_current_data.delimeters);
+		g_current_data.sign = (*((long long*)g_current_data.value)) >= \
+		0 ? '+' : '-';
+		convert_int(*((long long*)g_current_data.value), \
+		g_current_data.delimeters);
 	}
 	else if (g_current_data.type == UNSIGNED)
 	{
-		convert_unint(*((unsigned long long*)g_current_data.value), g_current_data.delimeters);
+		convert_unint(*((unsigned long long*)g_current_data.value), \
+		g_current_data.delimeters);
 	}
 	else if (g_current_data.spec == X || g_current_data.spec == O)
 	{
 		if (g_current_data.size == LL)
-			convert_unint(*((unsigned long long*)g_current_data.value), g_current_data.delimeters);
+			convert_unint(*((unsigned long long*)g_current_data.value), \
+			g_current_data.delimeters);
 		else if (g_current_data.size == L)
-			convert_unint(*((unsigned long*)g_current_data.value), g_current_data.delimeters);
+			convert_unint(*((unsigned long*)g_current_data.value), \
+			g_current_data.delimeters);
 		else
-			convert_unint(*((unsigned*)g_current_data.value), g_current_data.delimeters);
+			convert_unint(*((unsigned*)g_current_data.value), \
+			g_current_data.delimeters);
 	}
 }
 
@@ -54,7 +62,8 @@ void	str_calculate(void)
 	len = ft_strlen(str);
 	if (g_current_data.precision != 0 && len)
 	{
-		g_current_data.str.str = ft_strsub(str, 0, g_current_data.precision);
+		g_current_data.str.str = ft_strsub(str, 0, \
+		g_current_data.precision);
 	}
 	else
 		g_current_data.str.str = ft_strdup(str);
@@ -87,7 +96,8 @@ void	calculate(void)
 		str_calculate();
 	else if (g_current_data.type == CHAR)
 		char_calculate();
-	else if (g_current_data.type == INTEGERS || g_current_data.type == UNSIGNED)
+	else if (g_current_data.type == INTEGERS || \
+	g_current_data.type == UNSIGNED)
 		integer_calculate();
 	else if (g_current_data.type == POINTER)
 		pointer_calculate();

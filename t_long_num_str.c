@@ -39,6 +39,7 @@ t_string	real_part_str(t_real_num real, int precision)
 	int			i;
 	int			count;
 
+	count = 0;
 	i = real.negative_pow - 1;
 	tmp = real.number;
 	str.str = ft_strdup(".");
