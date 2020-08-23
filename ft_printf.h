@@ -198,7 +198,7 @@ void				(*size_management[COUNT_TYPES])(void);
 int		ft_printf(const char *format, ...);
 
 /*
-**	Функции для перевода value в строку
+**	Функции для перевода value
 */
 
 void	ft_tolowercase(char *ptr);
