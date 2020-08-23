@@ -22,7 +22,7 @@ void		remove_ignored_flags(void)
 	if (g_current_data.flags[PLUS] && g_current_data.flags[SPACE])
 		delete_flag(SPACE);
 	if ((g_current_data.flags[MINUS] && g_current_data.flags[NULL_FLAG]) || 
-	(g_current_data.precision != 0 && g_current_data.spec != F))
+	(g_current_data.precision > 0 && g_current_data.spec != F))
 	{
 		delete_flag(NULL_FLAG);
 	}

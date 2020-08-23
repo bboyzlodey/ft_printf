@@ -9,6 +9,7 @@ void	set_func_que(void)
 	i = 0;
 	g_current_data.que[i++] = calculate;
 	g_current_data.que[i++] = precision_management;
+	g_current_data.que[i++] = validate_precision;
 	g_current_data.que[i++] = remove_ignored_flags;
 	if (g_current_data.flags[NULL_FLAG] == NULL_FLAG)
 	{
