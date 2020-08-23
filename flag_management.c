@@ -38,7 +38,7 @@ void		flag_management_d(void)
 {
 	if (g_current_data.flags[SPACE] && g_current_data.sign == '+')
 		g_current_data.str = ft_concat(repeat_char(' ', 1), g_current_data.str);
-	if (g_current_data.flags[PLUS])
+	if (g_current_data.flags[PLUS] || g_current_data.sign == '-')
 		g_current_data.str = ft_concat(repeat_char(g_current_data.sign, 1), g_current_data.str);
 }
 

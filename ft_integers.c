@@ -50,9 +50,9 @@ void	convert_int(long long int src, int delim)
 	}
 	else if ( src / delim == 0)
 	{
-		g_current_data.str.len = src > 0 ? stat : stat + 1;
+		g_current_data.str.len = stat;
 		g_current_data.str.str = ft_strnew(g_current_data.str.len);
-		g_current_data.str.str[0] = '-';
+//		g_current_data.str.str[0] = '-';
 	}
 	g_current_data.str.str[g_current_data.str.len - stat] = number_arr[tmp];
 	stat--;
