@@ -77,6 +77,8 @@ void	pointer_calculate(void)
 
 	val = *((size_t*)g_current_data.value);
 	convert_size_t_int(val, g_current_data.delimeters);
+	g_current_data.str.str = ft_strjoindel(ft_strdup("0x"), g_current_data.str.str);
+	g_current_data.str.len += 2;
 	ft_striter(g_current_data.str.str, ft_tolowercase);
 }
 

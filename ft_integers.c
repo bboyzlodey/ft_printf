@@ -35,7 +35,6 @@ void	convert_int(long long int src, int delim)
 	long long int			tmp = 0;
 	static int	stat;
 
-	stat++;
 	if(src == 0)
 	{
 		if (g_current_data.precision < 0)
@@ -44,6 +43,7 @@ void	convert_int(long long int src, int delim)
 		g_current_data.str.len = 1;
 		return;
 	}
+	stat++;
 	tmp = (src % delim);
 	tmp = (tmp + (tmp >> 31)) ^ (tmp >> 31);
 	if (src / delim != 0)
@@ -65,7 +65,6 @@ void	convert_unint(unsigned long long int src, int delim)
 	int			tmp = 0;
 	static int	stat;
 
-	stat++;
 	if(src == 0)
 	{
 		if (g_current_data.precision < 0)
@@ -74,6 +73,7 @@ void	convert_unint(unsigned long long int src, int delim)
 		g_current_data.str.len = 1;
 		return;
 	}
+	stat++;
 	tmp = src % delim;
 	if (src / delim != 0)
 	{

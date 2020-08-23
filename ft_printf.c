@@ -203,7 +203,7 @@ int		ft_printf(const char *format, ...)
 	while (tmp && tmp[i])
 	{
 		i += print_before_procent(((char *)tmp + i));
-		if (tmp[i] == '%')
+		if (tmp[i] == '%' && tmp[i + 1] != '%')
 		{
 			i++;
 			i += find_flags(((char *)tmp + i));

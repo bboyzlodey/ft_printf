@@ -2,7 +2,7 @@
 // Created by Agrajag Sybil on 26/02/2020.
 //
 #include "../ft_printf.h"
-
+#include <limits.h>
 
 // static unsigned int float_to_unint(float f)
 // {
@@ -40,9 +40,11 @@ int main()
 //	ft_printf("%0+5d", -42);
 //	1. (    7) -->--00042<--
 //			2. (    5) -->-0042<--
-	int i = printf("@moulitest: %.d %.0d", 0, 0);
+	// int y = 90;
+
+	int i = printf("%u", UINT_MAX);
 	printf("\n");
-	int j = ft_printf("@moulitest: %.d %.0d", 0, 0);
+	int j = ft_printf("%u", UINT_MAX);
 	printf("\n%d\n%d\n", i, j);
 //	i = printf("%05d", -42);
 //	printf("\n");
