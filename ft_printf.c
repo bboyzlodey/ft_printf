@@ -211,6 +211,7 @@ int		ft_printf(const char *format, ...)
 			i += find_precision(((char *)tmp + i));
 			i += find_size(((char *)tmp + i));
 			i += find_type((((char *)tmp + i)));
+			remove_ignored_flags();
 			evaluate();
 		}
 	}

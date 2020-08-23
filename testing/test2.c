@@ -26,9 +26,9 @@ int main()
 	//  i = ft_printf("%lx", 4294967296l);
 	// printf("\n%d\n", i);
 	// printf("%lx", 4294967296l);
-	int i = printf("%010x", 542);
+	int i = printf("%#-08x", 42);
 	printf("\n");
-	int j = ft_printf("%010x", 542);
+	int j = ft_printf("%#-08x", 42);
 	printf("\n%d\n%d\n", i, j);
 
 	return 0;
