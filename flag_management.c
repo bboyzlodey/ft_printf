@@ -39,15 +39,18 @@ void		flag_management_d(void)
 	if (g_current_data.flags[SPACE] && g_current_data.sign == '+')
 		g_current_data.str = ft_concat(repeat_char(' ', 1), g_current_data.str);
 	if (g_current_data.flags[PLUS] || g_current_data.sign == '-')
-		g_current_data.str = ft_concat(repeat_char(g_current_data.sign, 1), g_current_data.str);
+	{
+		if (g_current_data.str.str[0] == '0' && g_current_data.str.len != g_current_data.precision)
+		{
+			g_current_data.str.str[0] = g_current_data.sign;
+		}
+		else
+			g_current_data.str = ft_concat(repeat_char(g_current_data.sign, 1), g_current_data.str);}
 }
 
 void		flag_management_i(void)
 {
-	if (g_current_data.flags[SPACE] && g_current_data.sign == '+')
-		g_current_data.str = ft_concat(repeat_char(' ', 1), g_current_data.str);
-	if (g_current_data.flags[PLUS])
-		g_current_data.str = ft_concat(repeat_char(g_current_data.sign, 1), g_current_data.str);
+	flag_management_d();
 }
 
 void		flag_management_o(void)

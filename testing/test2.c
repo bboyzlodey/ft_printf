@@ -26,10 +26,32 @@ int main()
 	//  i = ft_printf("%lx", 4294967296l);
 	// printf("\n%d\n", i);
 	// printf("%lx", 4294967296l);
-	int i = printf("%d", -4242);
+//# 0125 (int)
+//	ft_printf("%0+5d", 42);
+//	1. (    7) -->++00042<--
+//			2. (    5) -->+0042<--
+//
+//# 0127 (int)
+//	ft_printf("%05d", -42);
+//	1. (    7) -->--00042<--
+//			2. (    5) -->-0042<--
+//
+//# 0128 (int)
+//	ft_printf("%0+5d", -42);
+//	1. (    7) -->--00042<--
+//			2. (    5) -->-0042<--
+	int i = printf("%+10.5d", 4242);
 	printf("\n");
-	int j = ft_printf("%d", -4242);
+	int j = ft_printf("%+10.5d", 4242);
 	printf("\n%d\n%d\n", i, j);
+//	i = printf("%05d", -42);
+//	printf("\n");
+//	j = ft_printf("%0+5d", -42);
+//	printf("\n%d\n%d\n", i, j);
+//	i = printf("%05d", -42);
+//	printf("\n");
+//	j = ft_printf("%0+5d", -42);
+//	printf("\n%d\n%d\n", i, j);
 	return 0;
 }
 
