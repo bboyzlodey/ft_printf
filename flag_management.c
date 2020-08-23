@@ -38,6 +38,8 @@ void		flag_management_d(void)
 {
 	if (g_current_data.flags[SPACE] && g_current_data.sign == '+')
 		g_current_data.str = ft_concat(repeat_char(' ', 1), g_current_data.str);
+	else if(g_current_data.flags[SPACE] == SPACE && g_current_data.sign != '-')
+		g_current_data.str = ft_concat(repeat_char(' ', 1), g_current_data.str);
 	if (g_current_data.flags[PLUS] || g_current_data.sign == '-')
 	{
 		if (g_current_data.str.str[0] == '0' && g_current_data.str.len != g_current_data.precision)
@@ -59,7 +61,7 @@ void		flag_management_i(void)
 
 void		flag_management_o(void)
 {
-	if (g_current_data.flags[OCTOTORP])
+	if (g_current_data.flags[OCTOTORP] && !(g_current_data.str.len == 1 && g_current_data.str.str[0] == '0'))
 		g_current_data.str = ft_concat(repeat_char('0', 1), g_current_data.str);
 }
 

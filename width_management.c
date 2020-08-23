@@ -17,6 +17,8 @@ void	width_management(void)
 	int size;
 
 	size = g_current_data.width - g_current_data.str.len;
+	if (g_current_data.flags[SPACE] == SPACE && g_current_data.str.str[0] != ' ')
+		size--;
 	if (g_current_data.spec == X && g_current_data.flags[OCTOTORP] == OCTOTORP && g_current_data.flags[NULL_FLAG] == NULL_FLAG)
 		size -= 2;
 	if (size <= 0)

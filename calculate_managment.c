@@ -29,6 +29,10 @@ void	integer_calculate(void)
 			convert_unint(*((unsigned long long*)g_current_data.value), g_current_data.delimeters);
 		else if (g_current_data.size == L)
 			convert_unint(*((unsigned long*)g_current_data.value), g_current_data.delimeters);
+		else if (g_current_data.size == H)
+			convert_unint(*((unsigned short*)g_current_data.value), g_current_data.delimeters);
+		else if (g_current_data.size == HH)
+			convert_unint(*((unsigned char*)g_current_data.value), g_current_data.delimeters);
 		else
 			convert_unint(*((unsigned*)g_current_data.value), g_current_data.delimeters);
 	}
@@ -56,7 +60,7 @@ void	str_calculate(void)
 	{
 		g_current_data.str.str = ft_strsub(str, 0, g_current_data.precision);
 	}
-	else
+	else if (g_current_data.precision >= 0)
 		g_current_data.str.str = ft_strdup(str);
 	g_current_data.str.len = ft_strlen(g_current_data.str.str);
 	g_current_data.precision = 0;
