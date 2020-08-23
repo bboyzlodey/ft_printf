@@ -26,11 +26,10 @@ int main()
 	//  i = ft_printf("%lx", 4294967296l);
 	// printf("\n%d\n", i);
 	// printf("%lx", 4294967296l);
-	int i = printf("%#x", 0);
+	int i = printf("@moulitest: %s", NULL);
 	printf("\n");
-	int j = ft_printf("%#x", 0);
+	int j = ft_printf("@moulitest: %s", "");
 	printf("\n%d\n%d\n", i, j);
-
 	return 0;
 }
 

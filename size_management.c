@@ -72,12 +72,14 @@ static void	size_management_char(void)
 
 static void	size_management_string(void)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = 0;
-	
 	tmp = va_arg(g_current_data.list, char *);
-	g_current_data.value = ft_strdup(tmp);
+	if (tmp == NULL)
+		g_current_data.value = ft_strdup("(null)");
+	else
+		g_current_data.value = ft_strdup(tmp);
 }
 
 static void	size_management_float(void)
