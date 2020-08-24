@@ -1,7 +1,7 @@
 NAME = libftprintf.a
 LIBFTA = libft.a
 SRCS = functions_que.c ft_integers.c calculate_managment.c flag_management.c ft_float.c ft_printf.c precision_management.c size_management.c \
-string.c t_long_num.c t_long_num_str.c t_long_num_util.c utils.c width_management.c ft_double.c
+string.c t_long_num.c t_long_num_str.c calculate.c t_long_num_util.c utils.c width_management.c ft_double.c
 OBJ = $(SRCS:.c=.o)
 LIBDIR = libft/
 LIBNAME = libft/libft.a

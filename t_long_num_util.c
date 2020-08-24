@@ -6,21 +6,11 @@
 /*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 07:22:27 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/24 16:51:14 by jsabina          ###   ########.fr       */
+/*   Updated: 2020/08/24 18:40:18 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int			count_digits(t_long_num count)
-{
-	int i;
-
-	i = MAX_DIGITS - 1;
-	while (count.value[i] == 0)
-		i--;
-	return (i + 1);
-}
 
 t_real_num	calcutate_real(simple_float *fl)
 {

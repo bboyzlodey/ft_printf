@@ -6,14 +6,14 @@
 /*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 20:31:57 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/24 16:02:08 by jsabina          ###   ########.fr       */
+/*   Updated: 2020/08/24 18:26:42 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./ft_printf.h"
 
 static char number_arr[] = {'0', '1', '2', '3', '4', '5', '6', \
-'7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', '\0'};
+	'7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', '\0'};
 
 void	convert_int(long long int src, int delim)
 {

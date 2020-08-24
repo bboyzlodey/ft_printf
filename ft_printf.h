@@ -6,7 +6,7 @@
 /*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 20:48:40 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/24 17:40:19 by jsabina          ###   ########.fr       */
+/*   Updated: 2020/08/24 17:58:49 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ void			convert_size_t_int(size_t src, int delim);
 void			convert_float_str(float f);
 void			precision_management(void);
 void			width_management(void);
-void			_init_size_management(void);
+void			init_size_management(void);
 void			flag_management(void);
 void			flag_management_d(void);
 void			flag_management_i(void);
