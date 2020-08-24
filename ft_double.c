@@ -27,11 +27,6 @@ int						exp_calc_double(unsigned long long int raw)
 	return (raw << 1) >> 53;
 }
 
-int						sign_calc_double(unsigned long long int raw)
-{
-	return (raw >> 63);
-}
-
 simple_double			*get_structure_double(void)
 {
 	simple_double *tmp;

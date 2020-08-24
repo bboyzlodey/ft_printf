@@ -263,14 +263,16 @@ char	*ft_strappend_xx(char **dst, char **s2);
 char	*ft_strappend_xo(char **dst, char *s2);
 char	*ft_strappend_ox(char *s2, char **dst);
 int	ft_numlen_base_unsigned(unsigned long long int n, size_t base);
-char	*ft_itoa_base_unsigned(unsigned long long int n, int b);
-int			ft_abs(int n);
-long double	ft_pow(long double n, int pow);
-long double	ft_ldmod(long double x, long double y);
-int			ft_round_half_to_even(long double nbr, int precision);
-long double	ft_dtoa_round(long double nbr, int precision);
-char		*ft_dtoa(long double d, size_t p, size_t base);
-void	convert_l_double_str(long double f);
-
-
+char					*ft_itoa_base_unsigned(unsigned long long int n, int b);
+int						ft_abs(int n);
+long double				ft_pow(long double n, int pow);
+long double				ft_ldmod(long double x, long double y);
+int						ft_round_half_to_even(long double nbr, int precision);
+long double				ft_dtoa_round(long double nbr, int precision);
+char					*ft_dtoa(long double d, size_t p, size_t base);
+void					convert_l_double_str(long double f);
+unsigned long long int	double_to_unint(double f);
+unsigned long long int	manti_calc_double(unsigned long long int tmp);
+int						exp_calc_double(unsigned long long int raw);
+simple_double			*get_structure_double(void);
 #endif
