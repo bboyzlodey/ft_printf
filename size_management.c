@@ -56,8 +56,6 @@ static void	size_management_ponter(void)
 	
 	tmp = (size_t) va_arg(g_current_data.list, size_t);
 	g_current_data.value = ft_memcpy(ft_memalloc(sizeof(tmp)), &tmp, sizeof(tmp));
-	// printf("tmp : %#lx", tmp);
-	// printf("tmp : %#lx", (*(size_t*)g_current_data.value));
 }
 
 static void	size_management_char(void)
@@ -86,11 +84,9 @@ static void	size_management_float(void)
 {
 	double		d;
 	long double	ld;
-	// float		f;
 
 	d = 0;
 	ld = 0;
-	// f = 0;
 	if (g_current_data.size == L)
 	{
 		d = (va_arg(g_current_data.list, double));
@@ -99,7 +95,7 @@ static void	size_management_float(void)
 	else if (g_current_data.size == L_BIG)
 	{
 		ld = va_arg(g_current_data.list, long double);
-		g_current_data.value = ft_memcpy(ft_memalloc(sizeof(ld)), &d, sizeof(ld));
+		g_current_data.value = ft_memcpy(ft_memalloc(sizeof(ld)), &ld, sizeof(ld));
 	}
 	else
 	{

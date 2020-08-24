@@ -5,6 +5,7 @@
     <mapping directory="$PROJECT_DIR$/42FileChecker" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/42FileChecker/moulitest_42projects" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/42FileChecker/pft" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ft_printf" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/libft" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/moulitest" vcs="Git" />
   </component>

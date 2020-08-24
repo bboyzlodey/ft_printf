@@ -65,6 +65,18 @@ typedef struct	some_double
 	int						current_exp;
 }				simple_double;
 
+typedef struct	s_long_double
+{
+	t_long_num				integer_part;
+	t_real_num				real_part;
+	int						sign;
+	int						exponenta;
+	__uint128_t				mantissa;
+	unsigned int			precision;
+	int						current_bit;
+	int						current_exp;
+}				t_long_double;
+
 /*
 ** spec: d, i, u, p, x, X, o, f, s, c, %		--- спецификаторы
 ** flag: -, +, #, 0, ' '  						--- флаги
@@ -235,5 +247,30 @@ t_long_num	calcutate_integer_double(simple_double *f);
 void		round_simple_double(simple_double *f);
 t_real_num	calcutate_real_double(simple_double *fl);
 void		convert_double_str(double f);
+
+/*
+**	Long double
+*/
+void		convert_l_double_str(long double f);
+int			exp_calc_l_double(__uint128_t raw);
+int			sign_calc_l_double(__uint128_t raw);
+t_long_num	calcutate_integer_l_double(t_long_double *f);
+t_real_num	calcutate_real_l_double(t_long_double *fl);
+void		round_simple_l_double(t_long_double *f);
+
+char	*ft_strrealloc(char **ptr, size_t size);
+char	*ft_strappend_xx(char **dst, char **s2);
+char	*ft_strappend_xo(char **dst, char *s2);
+char	*ft_strappend_ox(char *s2, char **dst);
+int	ft_numlen_base_unsigned(unsigned long long int n, size_t base);
+char	*ft_itoa_base_unsigned(unsigned long long int n, int b);
+int			ft_abs(int n);
+long double	ft_pow(long double n, int pow);
+long double	ft_ldmod(long double x, long double y);
+int			ft_round_half_to_even(long double nbr, int precision);
+long double	ft_dtoa_round(long double nbr, int precision);
+char		*ft_dtoa(long double d, size_t p, size_t base);
+void	convert_l_double_str(long double f);
+
 
 #endif

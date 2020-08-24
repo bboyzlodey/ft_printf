@@ -21,16 +21,16 @@ typedef struct personal_float
 int main()
 {
 	int i, j;
-	double lo = 10992.9765;
+	long double lo = 1444565444646.6465424242242L;
+	// printf("%d\n", sizeof(long double));
 //	 i = printf("s: %f", lo);
 //	printf("\n");
 //	 j = ft_printf("s: %f", lo);
 //	printf("\n%d\n%d\n", i, j);
 
-	lo = 0.9999;
-	i = printf("s: %f", lo);
+	i = printf("s: %Lf", lo);
 	printf("\n");
-	j = ft_printf("s: %f", lo);
+	j = ft_printf("s: %Lf", lo);
 	printf("\n%d\n%d\n", i, j);
 
 	// i = printf("{%f}{%lf}{%Lf}", 1444565444646.6465424242242f, 1444565444646.6465424242242, 1444565444646.6465424242242l);
