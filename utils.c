@@ -12,7 +12,7 @@
 
 #include "./ft_printf.h"
 
-char	*ft_strjoindel(char *s1, char *s2)
+char		*ft_strjoindel(char *s1, char *s2)
 {
 	char	*new;
 
@@ -22,7 +22,7 @@ char	*ft_strjoindel(char *s1, char *s2)
 	return (new);
 }
 
-void	global_free(void)
+void		global_free(void)
 {
 	ft_strdel(&(g_current_data.str.str));
 	g_current_data.str.len = 0;
@@ -36,7 +36,7 @@ void	global_free(void)
 	ft_memdel(&(g_current_data.value));
 }
 
-void	initstructure(void)
+void		initstructure(void)
 {
 	g_current_data.value = NULL;
 	g_current_data.str.str = NULL;
@@ -54,7 +54,7 @@ void	initstructure(void)
 	g_current_data.spec = -1;
 }
 
-char	*ft_strrealloc(char **ptr, size_t size)
+char		*ft_strrealloc(char **ptr, size_t size)
 {
 	char	*newptr;
 	size_t	len;
