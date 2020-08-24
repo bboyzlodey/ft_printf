@@ -34,8 +34,11 @@ static void	set_spec(char form)
 		g_current_data.spec = P;
 }
 
-static void	init_integer_type(char *form)
+static void	init_integer_type(char *f)
 {
+	char	form;
+
+	form = *f;
 	g_current_data.type = INTEGERS;
 	if (form == 'd' || form == 'i')
 		g_current_data.delimeters = DEC;

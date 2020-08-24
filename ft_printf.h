@@ -275,4 +275,12 @@ unsigned long long int	double_to_unint(double f);
 unsigned long long int	manti_calc_double(unsigned long long int tmp);
 int						exp_calc_double(unsigned long long int raw);
 simple_double			*get_structure_double(void);
+void	size_management_float(void);
+void	size_management_integers(void);
+void	size_management_unsigned(void);
+void	size_management_ponter(void);
+void	size_management_string(void);
+void	size_management_char(void);
+
+
 #endif
