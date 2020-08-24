@@ -6,7 +6,7 @@
 /*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 07:14:58 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/24 18:37:57 by jsabina          ###   ########.fr       */
+/*   Updated: 2020/08/24 18:56:07 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void			round_simple_float(simple_float *f)
 {
 	int i;
 	int	old_digits;
+
 	old_digits = f->real_part.number.digits;
 	i = f->real_part.number.digits - f->precision - 1;
 	if (i > 0 && i < old_digits - 1)
@@ -81,6 +82,7 @@ t_long_num		summ_big_int(t_long_num one, t_long_num two)
 	int		max;
 	int		i;
 	int		c;
+
 	max = one.digits > two.digits ? one.digits : two.digits;
 	i = 0;
 	c = 0;

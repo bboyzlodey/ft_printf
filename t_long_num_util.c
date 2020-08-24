@@ -6,7 +6,7 @@
 /*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 07:22:27 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/24 18:40:18 by jsabina          ###   ########.fr       */
+/*   Updated: 2020/08/24 19:01:02 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_real_num	calcutate_real(simple_float *fl)
 	int mask;
 	int mantissa;
 	t_long_num tmp;
+
 	exp = (fl->current_exp) * (-1);
 	current_bit = fl->current_bit;
 	mask = 1;
@@ -52,6 +53,7 @@ t_real_num	calcutate_real_double(simple_double *fl)
 	unsigned long long	mask;
 	unsigned long long	mantissa;
 	t_long_num tmp;
+
 	exp = (fl->current_exp) * (-1);
 	current_bit = fl->current_bit;
 	result.negative_pow = 0;
@@ -82,6 +84,7 @@ t_long_num	calcutate_integer(simple_float *f)
 	int count_bits;
 	int mask;
 	t_long_num accum;
+
 	current_exp = f->exponenta;
 	count_bits = 23;
 	mask = 1;
@@ -105,6 +108,7 @@ t_long_num	calcutate_integer_double(simple_double *f)
 	int count_bits;
 	unsigned long long mask;
 	t_long_num accum;
+
 	current_exp = f->exponenta;
 	count_bits = 52;
 	mask = 1;

@@ -6,7 +6,7 @@
 /*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/16 07:09:27 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/24 18:19:04 by jsabina          ###   ########.fr       */
+/*   Updated: 2020/08/24 18:50:50 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	str_calculate(void)
 void	char_calculate(void)
 {
 	char *ch;
-	
+
 	ch = ((char*)g_current_data.value);
 	g_current_data.str.str = ft_strncpy(ft_strnew(1), ch, 1);
 	g_current_data.str.len = 1;

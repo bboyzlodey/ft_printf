@@ -6,7 +6,7 @@
 /*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 15:45:11 by jsabina           #+#    #+#             */
-/*   Updated: 2020/08/24 18:21:04 by jsabina          ###   ########.fr       */
+/*   Updated: 2020/08/24 18:49:41 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ int								sign_calc_double(unsigned long long int raw)
 	return (raw >> 63);
 }
 
-static simple_double			*get_structure_double()
+static simple_double			*get_structure_double(void)
 {
 	simple_double *tmp;
+
 	tmp = (simple_double*)malloc(sizeof(simple_double));
 	return (tmp);
 }

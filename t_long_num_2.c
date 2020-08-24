@@ -6,7 +6,7 @@
 /*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 18:38:03 by jsabina           #+#    #+#             */
-/*   Updated: 2020/08/24 18:38:52 by jsabina          ###   ########.fr       */
+/*   Updated: 2020/08/24 18:59:22 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 t_long_num		positive_pow(int exp)
 {
+	int i;
 	t_long_num tmp;
 	ft_bzero(&tmp.value, sizeof(tmp.value));
+
 	tmp.value[0] = 1;
 	tmp.digits = 1;
-	int i;
-
 	i = 0;
 	while (exp > 0)
 	{
@@ -49,10 +49,10 @@ t_long_num		base_pow(int base, int exp)
 {
 	t_long_num tmp;
 	ft_bzero(&tmp.value, sizeof(tmp.value));
-	tmp.value[0] = 1;
-	tmp.digits = 1;
 	int i;
 
+	tmp.value[0] = 1;
+	tmp.digits = 1;
 	i = 0;
 	while (exp > 0)
 	{

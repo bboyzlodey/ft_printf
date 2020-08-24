@@ -6,7 +6,7 @@
 /*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 20:33:59 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/24 18:30:49 by jsabina          ###   ########.fr       */
+/*   Updated: 2020/08/24 18:53:59 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ int			ft_printf(const char *format, ...)
 	init_flags_convertions();
 	initstructure();
 	va_start(g_current_data.list, format);
-
 	char *tmp;
-
 	tmp = ft_strdup(format);
 	while (tmp && tmp[i])
 	{
