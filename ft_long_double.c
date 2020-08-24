@@ -1,88 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_long_double.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/28 20:31:57 by asybil            #+#    #+#             */
+/*   Updated: 2020/08/24 18:26:42 by jsabina          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
-
-char	*ft_strrealloc(char **ptr, size_t size)
-{
-	char	*newptr;
-	size_t	len;
-
-	len = ft_strlen(*ptr);
-	if (!size)
-		size = 120;
-	if (!(newptr = ft_strnew((len + size) * sizeof(char))))
-		return (NULL);
-	ft_strcpy(newptr, *ptr);
-	free(*ptr);
-	*ptr = newptr;
-	return (newptr);
-}
-
-char	*ft_strappend_xx(char **dst, char **s2)
-{
-	ft_strrealloc(dst, ft_strlen(*s2));
-	ft_strcpy(*dst + ft_strlen(*dst), *s2);
-	ft_strdel(s2);
-	return (*dst);
-}
-
-char	*ft_strappend_xo(char **dst, char *s2)
-{
-	ft_strrealloc(dst, ft_strlen(s2));
-	ft_strcpy(*dst + ft_strlen(*dst), s2);
-	return (*dst);
-}
-
-char	*ft_strappend_ox(char *s2, char **dst)
-{
-	char *new;
-
-	if (!*dst || !s2)
-		return (NULL);
-	if (!(new = ft_strnew(ft_strlen(*dst) + ft_strlen(s2))))
-		return (NULL);
-	ft_strcpy(new, s2);
-	ft_strcat(new, *dst);
-	ft_strdel(dst);
-	*dst = new;
-	return (*dst);
-}
-
-int	ft_numlen_base_unsigned(unsigned long long int n, size_t base)
-{
-	if (n >= (unsigned long long int)base)
-		return (ft_numlen_base_unsigned(n / base, base) + 1);
-	return (1);
-}
-
-char	*ft_itoa_base_unsigned(unsigned long long int n, int b)
-{
-	char	*new;
-	int		len;
-	int		digit;
-
-	len = ft_numlen_base_unsigned(n, b);
-	if (!(new = ft_strnew(len)))
-		return (NULL);
-	while (len--)
-	{
-		digit = ft_abs(n % b);
-		new[len] = (digit < 10) ? digit + 48 : digit + 55;
-		n /= b;
-	}
-	return (new);
-}
-
-int			ft_abs(int n)
-{
-	return (n < 0 ? -n : n);
-}
-
-long double	ft_pow(long double n, int pow)
-{
-	if (pow < 0)
-		return (1 / ft_pow(n, ft_abs(pow)));
-	else
-		return (pow ? n * ft_pow(n, pow - 1) : 1);
-}
 
 long double	ft_ldmod(long double x, long double y)
 {

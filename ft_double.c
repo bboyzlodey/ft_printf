@@ -12,8 +12,6 @@
 
 #include "ft_printf.h"
 
-#define FLOAT_SIZE ((sizeof(float) * 8))
-
 unsigned long long int	double_to_unint(double f)
 {
 	return (*(unsigned long long int*)&f);
@@ -24,12 +22,12 @@ unsigned long long int	manti_calc_double(unsigned long long int tmp)
 	return (tmp & 0x00FFFFFFFFFFFFFllu);
 }
 
-int								exp_calc_double(unsigned long long int raw)
+int						exp_calc_double(unsigned long long int raw)
 {
 	return (raw << 1) >> 53;
 }
 
-int								sign_calc_double(unsigned long long int raw)
+int						sign_calc_double(unsigned long long int raw)
 {
 	return (raw >> 63);
 }

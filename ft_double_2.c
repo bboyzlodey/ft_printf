@@ -12,19 +12,19 @@
 
 #include "ft_printf.h"
 
-#define FLOAT_SIZE ((sizeof(float) * 8))
-
-simple_double			*init_double(double f, simple_double *toInit)
+simple_double			*init_double(double f, simple_double *to_init)
 {
-	unsigned long long int fi = double_to_unint(f);
-	toInit->sign = f >= 0 ? 0 : -1;
-	toInit->exponenta = exp_calc_double(fi) - 1023;
-	toInit->mantissa = manti_calc_double(fi) | (1llu << 52);
-	toInit->precision = g_current_data.precision;
-	return (toInit);
+	unsigned long long int	fi;
+
+	fi = double_to_unint(f);
+	to_init->sign = f >= 0 ? 0 : -1;
+	to_init->exponenta = exp_calc_double(fi) - 1023;
+	to_init->mantissa = manti_calc_double(fi) | (1llu << 52);
+	to_init->precision = g_current_data.precision;
+	return (to_init);
 }
 
-void							convert_double_str(double f)
+void					convert_double_str(double f)
 {
 	simple_double	*flo;
 	t_string		integer;

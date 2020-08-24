@@ -12,33 +12,54 @@
 
 #include "ft_printf.h"
 
-void	integer_calculate(void)
+static void	signed_sized(void)
 {
-	if (g_current_data.type == INTEGERS && g_current_data.delimeters != HEX && g_current_data.delimeters != OCT)
-	{
-		g_current_data.sign = (*((long long*)g_current_data.value)) >= 0 ? '+' : '-';
-		convert_int(*((long long*)g_current_data.value), g_current_data.delimeters);
-	}
-	else if (g_current_data.type == UNSIGNED)
-	{
-		convert_unint(*((unsigned long long*)g_current_data.value), g_current_data.delimeters);
-	}
-	else if (g_current_data.spec == X || g_current_data.spec == O)
+	g_current_data.sign = (*((long long*)g_current_data.value)) >= 0 \
+	? '+' : '-';
+	if (g_current_data.size == LL)
+		convert_int(*((long long*)g_current_data.value),\
+		g_current_data.delimeters);
+	else if (g_current_data.size == L)
+		convert_int(*((long*)g_current_data.value),\
+		g_current_data.delimeters);
+	else if (g_current_data.size == H)
+		convert_int(*((short*)g_current_data.value),\
+		g_current_data.delimeters);
+	else if (g_current_data.size == HH)
+		convert_int(*((char*)g_current_data.value),\
+		g_current_data.delimeters);
+	else
+		convert_int(*((int*)g_current_data.value),\
+		g_current_data.delimeters);
+}
+
+void		integer_calculate(void)
+{
+	if (g_current_data.type == INTEGERS && \
+	g_current_data.delimeters != HEX && g_current_data.delimeters != OCT)
+		signed_sized();
+	else if (g_current_data.type == UNSIGNED || \
+	g_current_data.delimeters == HEX || g_current_data.delimeters == HEX)
 	{
 		if (g_current_data.size == LL)
-			convert_unint(*((unsigned long long*)g_current_data.value), g_current_data.delimeters);
+			convert_unint(*((unsigned long long*)g_current_data.value), \
+			g_current_data.delimeters);
 		else if (g_current_data.size == L)
-			convert_unint(*((unsigned long*)g_current_data.value), g_current_data.delimeters);
+			convert_unint(*((unsigned long*)g_current_data.value), \
+			g_current_data.delimeters);
 		else if (g_current_data.size == H)
-			convert_unint(*((unsigned short*)g_current_data.value), g_current_data.delimeters);
+			convert_unint(*((unsigned short*)g_current_data.value), \
+			g_current_data.delimeters);
 		else if (g_current_data.size == HH)
-			convert_unint(*((unsigned char*)g_current_data.value), g_current_data.delimeters);
+			convert_unint(*((unsigned char*)g_current_data.value), \
+			g_current_data.delimeters);
 		else
-			convert_unint(*((unsigned*)g_current_data.value), g_current_data.delimeters);
+			convert_unint(*((unsigned*)g_current_data.value), \
+			g_current_data.delimeters);
 	}
 }
 
-void	float_calculate(void)
+void		float_calculate(void)
 {
 	if (g_current_data.type == FLOAT)
 	{
@@ -51,7 +72,7 @@ void	float_calculate(void)
 	}
 }
 
-void	str_calculate(void)
+void		str_calculate(void)
 {
 	char	*str;
 	int		len;
@@ -67,24 +88,4 @@ void	str_calculate(void)
 		g_current_data.str.str = ft_strdup(str);
 	g_current_data.str.len = ft_strlen(g_current_data.str.str);
 	g_current_data.precision = 0;
-}
-
-void	char_calculate(void)
-{
-	char	*ch;
-	
-	ch = ((char *)g_current_data.value);
-	g_current_data.str.str = ft_strncpy(ft_strnew(1), ch, 1);
-	g_current_data.str.len = 1;
-}
-
-void	pointer_calculate(void)
-{
-	size_t	val;
-
-	val = *((size_t*)g_current_data.value);
-	convert_size_t_int(val, g_current_data.delimeters);
-	g_current_data.str.str = ft_strjoindel(ft_strdup("0x"), g_current_data.str.str);
-	g_current_data.str.len += 2;
-	ft_striter(g_current_data.str.str, ft_tolowercase);
 }

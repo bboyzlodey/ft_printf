@@ -53,3 +53,27 @@ void	initstructure(void)
 	ft_bzero(g_current_data.que, sizeof(g_current_data.que));
 	g_current_data.spec = -1;
 }
+
+char	*ft_strrealloc(char **ptr, size_t size)
+{
+	char	*newptr;
+	size_t	len;
+
+	len = ft_strlen(*ptr);
+	if (!size)
+		size = 120;
+	if (!(newptr = ft_strnew((len + size) * sizeof(char))))
+		return (NULL);
+	ft_strcpy(newptr, *ptr);
+	free(*ptr);
+	*ptr = newptr;
+	return (newptr);
+}
+
+long double	ft_pow(long double n, int pow)
+{
+	if (pow < 0)
+		return (1 / ft_pow(n, ft_abs(pow)));
+	else
+		return (pow ? n * ft_pow(n, pow - 1) : 1);
+}

@@ -39,7 +39,7 @@ void	size_management_float(void)
 	}
 }
 
-void		init_size_management(void)
+void	init_size_management(void)
 {
 	if (g_current_data.type == INTEGERS)
 		size_management_integers();

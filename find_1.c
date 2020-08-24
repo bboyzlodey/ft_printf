@@ -34,6 +34,20 @@ static void	set_spec(char form)
 		g_current_data.spec = P;
 }
 
+static void	init_integer_type(char *form)
+{
+	g_current_data.type = INTEGERS;
+	if (form == 'd' || form == 'i')
+		g_current_data.delimeters = DEC;
+	else if (form == 'x' || form == 'X')
+	{
+		g_current_data.delimeters = HEX;
+		g_current_data.upper = (form == 'X') ? 1 : 0;
+	}
+	else
+		g_current_data.delimeters = OCT;
+}
+
 int			find_type(char *f)
 {
 	char	form;
@@ -41,18 +55,7 @@ int			find_type(char *f)
 	form = *f;
 	set_spec(*f);
 	if (form == 'x' || form == 'X' || form == 'd' || form == 'i' || form == 'o')
-	{
-		g_current_data.type = INTEGERS;
-		if (form == 'd' || form == 'i')
-			g_current_data.delimeters = DEC;
-		else if (form == 'x' || form == 'X')
-		{
-			g_current_data.delimeters = HEX;
-			g_current_data.upper = (form == 'X') ? 1 : 0;
-		}
-		else
-			g_current_data.delimeters = OCT;
-	}
+		init_integer_type(f);
 	else if (form == 'f')
 		g_current_data.type = FLOAT;
 	else if (form == 'c')
