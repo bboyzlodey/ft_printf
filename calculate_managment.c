@@ -88,18 +88,3 @@ void	pointer_calculate(void)
 	g_current_data.str.len += 2;
 	ft_striter(g_current_data.str.str, ft_tolowercase);
 }
-
-void	calculate(void)
-{
-	validate_precision();
-	if (g_current_data.type == STRING)
-		str_calculate();
-	else if (g_current_data.type == CHAR)
-		char_calculate();
-	else if (g_current_data.type == INTEGERS || g_current_data.type == UNSIGNED)
-		integer_calculate();
-	else if (g_current_data.type == POINTER)
-		pointer_calculate();
-	else if (g_current_data.type == FLOAT)
-		float_calculate();
-}

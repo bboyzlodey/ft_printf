@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 20:32:07 by asybil            #+#    #+#             */
-/*   Updated: 2020/07/28 20:32:07 by asybil           ###   ########.fr       */
+/*   Updated: 2020/08/24 16:22:20 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./ft_printf.h"
-
-/*
-** Print string
-*/
 
 void		ft_printstring(t_string str)
 {
