@@ -86,11 +86,11 @@ static void	size_management_float(void)
 {
 	double		d;
 	long double	ld;
-	float		f;
+	// float		f;
 
 	d = 0;
 	ld = 0;
-	f = 0;
+	// f = 0;
 	if (g_current_data.size == L)
 	{
 		d = (va_arg(g_current_data.list, double));

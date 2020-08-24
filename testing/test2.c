@@ -21,18 +21,19 @@ typedef struct personal_float
 int main()
 {
 	int i, j;
-	//  i = printf("{%f}{%lf}{%Lf}", 1.42, 1.42, 1.42l);
-	// printf("\n");
-	//  j = ft_printf("{%f}{%lf}{%Lf}", 1.42, 1.42, 1.42l);
-	// printf("\n%d\n%d\n", i, j);
+	 i = printf("%4.s", "42");
+	printf("\n");
+	 j = ft_printf("%4.s", "42");
+	printf("\n%d\n%d\n", i, j);
 
 	// i = printf("{%f}{%lf}{%Lf}", -1.42, -1.42, -1.42l);
 	// printf("\n");
 	// j = ft_printf("{%f}{%lf}{%Lf}", -1.42, -1.42, -1.42l);
 	// printf("\n%d\n%d\n", i, j);
-	double o = 0.0135;
-	printf("%f\n", o);
-	ft_printf("%f\n", o);
+//	double o = 0.0135;
+	// printf("%4.s", "42");
+	// printf("\n");
+	// ft_printf("%4.s", "42");
 	// i = printf("{%f}{%lf}{%Lf}", 1444565444646.6465424242242f, 1444565444646.6465424242242, 1444565444646.6465424242242l);
 	// printf("\n");
 	// j = ft_printf("{%f}{%lf}{%Lf}", 1444565444646.6465424242242f, 1444565444646.6465424242242, 1444565444646.6465424242242l);
