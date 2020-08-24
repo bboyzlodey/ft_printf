@@ -158,19 +158,6 @@ int		find_size(char *format)
 		g_current_data.size = -1;
 	return 0;
 }
- void	init_struct_data(void)
- {
- 	int i;
- 	i = -1;
- 	ft_bzero(g_current_data.flags, 6);
- 	while (++i < 10)
- 		g_current_data.que[i] = NULL;
- 	g_current_data.str.str = NULL;
- 	g_current_data.print = ft_printstring;
- 	g_current_data.width = 0;
- 	g_current_data.precision = -1;
- 	g_current_data.skip = 0;
- }
 
 static void evaluate(void)
 {

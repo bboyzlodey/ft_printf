@@ -48,7 +48,6 @@ void	initstructure(void)
 	g_current_data.delimeters = 0;
 	g_current_data.precision = 0;
 	g_current_data.sign = 0;
-	g_current_data.skip = 0;
 	g_current_data.str.len = 0;
 	g_current_data.size = 0;
 	g_current_data.upper = 0;

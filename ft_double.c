@@ -51,6 +51,8 @@ void	convert_double_str(double f)
 	flo->real_part  = calcutate_real_double(flo);
 	round_simple_double(flo);
 	integer = integer_part_str(flo->integer_part);
+	if (integer.len == 0)
+		integer = repeat_char('0', 1);
 	real = real_part_str(flo->real_part, g_current_data.precision);
 	g_current_data.str = ft_concat(integer, real);
 	free(flo);

@@ -112,7 +112,6 @@ t_long_num	calcutate_integer_double(simple_double *f)
 	t_long_num accum;
 	ft_bzero(&accum.value, sizeof(accum.value));
 	accum.digits = 0;
-
 	while (current_exp >= 0 && count_bits)
 	{
 		if ((f->mantissa & (mask << count_bits)) != 0)
