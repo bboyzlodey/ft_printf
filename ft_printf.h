@@ -53,6 +53,17 @@ typedef struct some_float
 	int current_exp;
 }	simple_float;
 
+typedef struct some_double
+{
+	t_long_num integer_part;
+	t_real_num real_part;
+	int sign;
+	int exponenta;
+	unsigned long long int mantissa;
+	unsigned int precision;
+	int current_bit;
+	int current_exp;
+}	simple_double;
 
 /*
 ** spec: d, i, u, p, x, X, o, f, s, c, %		--- спецификаторы
@@ -294,5 +305,10 @@ int		find_precision(char *prec);
 void	validate_precision(void);
 int		print_before_procent(char *format);
 int		print_percent(char **format, char **next_percent);
+
+t_long_num	calcutate_integer_double(simple_double *f);
+void    round_simple_double(simple_double *f);
+t_real_num	calcutate_real_double(simple_double *fl);
+void	convert_double_str(double f);
 
 #endif

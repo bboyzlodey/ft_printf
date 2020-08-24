@@ -2,54 +2,54 @@
 
 #define FLOAT_SIZE ((sizeof(float) * 8))
 
-static unsigned int float_to_unint(float f)
+static unsigned long long int double_to_unint(double f)
 {
-	return *((unsigned int*) &f);
+	return *((unsigned long long int*) &f);
 }
 
-static unsigned int manti_calc(unsigned int tmp)
+static unsigned long long int manti_calc_double(unsigned long long int tmp)
 {
-	return tmp & 0x007FFFFFu;
+	return tmp & 0x00FFFFFFFFFFFFFllu;
 }
 
-int     exp_calc(unsigned int raw)
+int     exp_calc_double(unsigned long long int raw)
 {
-	return (raw << 1) >> 24;
+	return (raw << 1) >> 53;
 }
 
-int		sign_calc(unsigned int raw)
+int		sign_calc_double(unsigned long long int raw)
 {
-	return (raw >> 31);
+	return (raw >> 63);
 }
 
 /***************************/
-static simple_float *get_structure()
+static simple_double *get_structure_double()
 {
-	simple_float *tmp;
-	tmp = (simple_float*)malloc(sizeof(simple_float));
+	simple_double *tmp;
+	tmp = (simple_double*)malloc(sizeof(simple_double));
 	return tmp;
 }
 
-static simple_float *init_floats(float f, simple_float *toInit)
+static simple_double *init_double(double f, simple_double *toInit)
 {
-	unsigned int fi = float_to_unint(f);
+	unsigned long long int fi = double_to_unint(f);
 	toInit->sign = f >= 0 ? 0 : -1;
-	toInit->exponenta = exp_calc(fi) - 127;
-	toInit->mantissa = manti_calc(fi) | (1 << 23);
+	toInit->exponenta = exp_calc_double(fi) - 1023;
+	toInit->mantissa = manti_calc_double(fi) | (1llu << 52);
 	toInit->precision = g_current_data.precision;
 	return toInit;
 }
 
-void	convert_float_str(float f)
+void	convert_double_str(double f)
 {
-	simple_float	*flo;
+	simple_double	*flo;
 	t_string		integer;
 	t_string		real;
 
-	flo = init_floats(f, get_structure());
-	flo->integer_part = calcutate_integer(flo);
-	flo->real_part  = calcutate_real(flo);
-	round_simple_float(flo);
+	flo = init_double(f, get_structure_double());
+	flo->integer_part = calcutate_integer_double(flo);
+	flo->real_part  = calcutate_real_double(flo);
+	round_simple_double(flo);
 	integer = integer_part_str(flo->integer_part);
 	real = real_part_str(flo->real_part, g_current_data.precision);
 	g_current_data.str = ft_concat(integer, real);

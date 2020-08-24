@@ -44,7 +44,7 @@ void	float_calculate(void)
 	{
 		if (g_current_data.precision == 0)
 			g_current_data.precision = DEFAULT_PRECISION_FLOAT;
-		convert_float_str((*(float *)g_current_data.value));
+		convert_double_str((*(double *)g_current_data.value));
 	}
 }
 

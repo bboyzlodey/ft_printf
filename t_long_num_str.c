@@ -42,6 +42,7 @@ t_string	real_part_str(t_real_num real, int precision)
 	i = real.negative_pow - 1;
 	tmp = real.number;
 	str.str = ft_strdup(".");
+	count = 0;
 	while (i >= 0 && count < precision)
 	{
 		str.str = ft_strjoindel(str.str, ft_itoa(tmp.value[i]));

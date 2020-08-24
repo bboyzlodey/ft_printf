@@ -103,8 +103,8 @@ static void	size_management_float(void)
 	}
 	else
 	{
-		f = (float) va_arg(g_current_data.list, double);
-		g_current_data.value = ft_memcpy(ft_memalloc(sizeof(f)), &f, sizeof(f));
+		d = va_arg(g_current_data.list, double);
+		g_current_data.value = ft_memcpy(ft_memalloc(sizeof(d)), &d, sizeof(d));
 	}
 }
 
