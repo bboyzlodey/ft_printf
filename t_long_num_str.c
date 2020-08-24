@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_long_num_str.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 07:37:54 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/15 07:41:51 by asybil           ###   ########.fr       */
+/*   Updated: 2020/08/24 16:39:08 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_string	real_part_str(t_real_num real, int precision)
 	i = real.negative_pow - 1;
 	tmp = real.number;
 	str.str = ft_strdup(".");
+	count = 0;
 	while (i >= 0 && count < precision)
 	{
 		str.str = ft_strjoindel(str.str, ft_itoa(tmp.value[i]));

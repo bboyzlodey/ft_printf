@@ -6,10 +6,9 @@
 /*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/23 19:58:21 by jsabina           #+#    #+#             */
-/*   Updated: 2020/08/23 19:58:21 by jsabina          ###   ########.fr       */
+/*   Updated: 2020/08/24 15:43:10 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ft_printf.h"
 
@@ -22,8 +21,8 @@ void			remove_ignored_flags(void)
 {
 	if (g_current_data.flags[PLUS] && g_current_data.flags[SPACE])
 		delete_flag(SPACE);
-	if ((g_current_data.flags[MINUS] && g_current_data.flags[NULL_FLAG]) || 
-	(g_current_data.precision > 0 && g_current_data.spec != F))
+	if ((g_current_data.flags[MINUS] && g_current_data.flags[NULL_FLAG]) ||\
+		(g_current_data.precision > 0 && g_current_data.spec != F))
 	{
 		delete_flag(NULL_FLAG);
 	}

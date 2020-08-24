@@ -12,10 +12,11 @@
 
 #include "./ft_printf.h"
 
-/**
+/*
  ** ft_strjoindel - join two string and free his.
  ** Return value - joined string allocated with malloc.
- * */
+*/
+
 char	*ft_strjoindel(char *s1, char *s2)
 {
 	char	*new;
@@ -37,17 +38,16 @@ void	global_free(void)
 	ft_bzero(g_current_data.que, sizeof(g_current_data.que));
 	g_current_data.precision = 0;
 	g_current_data.type = 0;
-	ft_memdel(&(g_current_data.value));	
+	ft_memdel(&(g_current_data.value));
 }
 
-void	initstructure()
+void	initstructure(void)
 {
 	g_current_data.value = NULL;
 	g_current_data.str.str = NULL;
 	g_current_data.delimeters = 0;
 	g_current_data.precision = 0;
 	g_current_data.sign = 0;
-	g_current_data.skip = 0;
 	g_current_data.str.len = 0;
 	g_current_data.size = 0;
 	g_current_data.upper = 0;

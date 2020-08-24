@@ -3,22 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 20:32:07 by asybil            #+#    #+#             */
-/*   Updated: 2020/07/28 20:32:07 by asybil           ###   ########.fr       */
+/*   Updated: 2020/08/24 16:22:20 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./ft_printf.h"
 
-/**
- ** Print string
- * */
-void	ft_printstring(t_string str)
+void		ft_printstring(t_string str)
 {
 	if (str.str == 0)
-		return;
+		return ;
 	g_ft_printf_writed_count += write(1, str.str, str.len);
 }
 
@@ -28,7 +25,7 @@ t_string	ft_concat(t_string a, t_string b)
 
 	result.str = ft_strjoindel(a.str, b.str);
 	result.len = a.len + b.len;
-	return result;
+	return (result);
 }
 
 t_string	repeat_char(char a, size_t size)
@@ -37,5 +34,5 @@ t_string	repeat_char(char a, size_t size)
 
 	tmp.str = ft_memset(ft_strnew(size), a, size);
 	tmp.len = size;
-	return tmp;
+	return (tmp);
 }

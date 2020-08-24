@@ -1,0 +1,200 @@
+find: /Users/student/ft_printf/includes: No such file or directory
+find: /Users/student/ft_printf/srcs: No such file or directory
+make exec_tests
+find: /Users/student/ft_printf/includes: No such file or directory
+find: /Users/student/ft_printf/srcs: No such file or directory
+echo "tests/00_no_conv.spec.c tests/01_conv_s_simple.spec.c tests/02_conv_s_multiple.spec.c tests/03_conv_d.spec.c tests/04_conv_p.spec.c tests/05_percent_escape.spec.c tests/06_mix_sdp_percent.spec.c tests/09_conv_i.spec.c tests/10_conv_o.spec.c tests/12_conv_u.spec.c tests/14_conv_x.spec.c tests/15_conv_X.spec.c tests/16_conv_c.spec.c tests/18_mix_all_previous.spec.c tests/40_length_modif_l.spec.c tests/41_length_modif_ll.spec.c tests/42_length_modif_h.spec.c tests/43_length_modif_hh.spec.c tests/50_min_width.spec.c tests/51_min_width_flag_minus.spec.c tests/52_min_width_flag_zero.spec.c tests/60_flag_sharp.spec.c tests/61_flag_plus.spec.c tests/62_flag_space.spec.c tests/69_flag_mix.spec.c tests/70_precision_for_diu.spec.c tests/71_precision_for_oOxX.spec.c tests/72_precision_for_sS.spec.c tests/73_precision_for_cC.spec.c tests/74_precision_for_p.spec.c tests/79_precision_mixed_with_flags.spec.c tests/90_incomptbl_values_sdpi.spec.c tests/91_incomptbl_values_uUSDcC.spec.c tests/92_incomptbl_values_oOxX.spec.c tests/93_conv_f.spec.c tests/bonus_01_wildcard.spec.c tests/bonus_02_wildcard_multi.spec.c tests/bonus_03_wildcard_flag_mix.spec.c"
+tests/00_no_conv.spec.c tests/01_conv_s_simple.spec.c tests/02_conv_s_multiple.spec.c tests/03_conv_d.spec.c tests/04_conv_p.spec.c tests/05_percent_escape.spec.c tests/06_mix_sdp_percent.spec.c tests/09_conv_i.spec.c tests/10_conv_o.spec.c tests/12_conv_u.spec.c tests/14_conv_x.spec.c tests/15_conv_X.spec.c tests/16_conv_c.spec.c tests/18_mix_all_previous.spec.c tests/40_length_modif_l.spec.c tests/41_length_modif_ll.spec.c tests/42_length_modif_h.spec.c tests/43_length_modif_hh.spec.c tests/50_min_width.spec.c tests/51_min_width_flag_minus.spec.c tests/52_min_width_flag_zero.spec.c tests/60_flag_sharp.spec.c tests/61_flag_plus.spec.c tests/62_flag_space.spec.c tests/69_flag_mix.spec.c tests/70_precision_for_diu.spec.c tests/71_precision_for_oOxX.spec.c tests/72_precision_for_sS.spec.c tests/73_precision_for_cC.spec.c tests/74_precision_for_p.spec.c tests/79_precision_mixed_with_flags.spec.c tests/90_incomptbl_values_sdpi.spec.c tests/91_incomptbl_values_uUSDcC.spec.c tests/92_incomptbl_values_oOxX.spec.c tests/93_conv_f.spec.c tests/bonus_01_wildcard.spec.c tests/bonus_02_wildcard_multi.spec.c tests/bonus_03_wildcard_flag_mix.spec.c
+make re -k -C /Users/student/ft_printf/libft
+rm -rf ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o ft_isprint.o ft_memalloc.o ft_memccpy.o ft_memchr.o ft_memcmp.o ft_memcpy.o ft_memdel.o ft_memmove.o ft_memset.o ft_putchar.o ft_putstr.o ft_strcat.o ft_strchr.o ft_strclr.o ft_strcmp.o ft_strcpy.o ft_strdel.o ft_strdup.o ft_strequ.o ft_striter.o ft_striteri.o ft_strjoin.o ft_strlcat.o ft_strlen.o ft_strmap.o ft_strmapi.o ft_strncat.o ft_strncmp.o ft_strncpy.o ft_strnequ.o ft_strnew.o ft_strnstr.o ft_strrchr.o ft_strstr.o ft_strsub.o ft_strtrim.o ft_tolower.o ft_toupper.o ft_putstr_fd.o ft_putnbr_fd.o ft_putchar_fd.o ft_lstdelone.o ft_lstdel.o ft_lstadd.o ft_lstnew.o ft_itoa.o ft_putendl.o ft_putendl_fd.o ft_putnbr.o ft_strsplit.o get_next_line.o
+rm -rf libft.a
+gcc -c -Wall -Wextra -Werror ft_atoi.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_bzero.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_isalnum.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_isalpha.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_isascii.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_isdigit.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_isprint.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_memalloc.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_memccpy.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_memchr.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_memcmp.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_memcpy.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_memdel.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_memmove.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_memset.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_putchar.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_putstr.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strcat.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strchr.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strclr.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strcmp.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strcpy.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strdel.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strdup.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strequ.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_striter.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_striteri.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strjoin.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strlcat.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strlen.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strmap.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strmapi.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strncat.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strncmp.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strncpy.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strnequ.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strnew.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strnstr.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strrchr.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strstr.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strsub.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strtrim.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_tolower.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_toupper.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_putstr_fd.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_putnbr_fd.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_putchar_fd.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_lstdelone.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_lstdel.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_lstadd.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_lstnew.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_itoa.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_putendl.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_putendl_fd.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_putnbr.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strsplit.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror get_next_line.c -I libft.h get_next_line.h
+make re -k -C /Users/student/ft_printf -L /Users/student/ft_printf/libft -lft
+rm -rf ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o ft_isprint.o ft_memalloc.o ft_memccpy.o ft_memchr.o ft_memcmp.o ft_memcpy.o ft_memdel.o ft_memmove.o ft_memset.o ft_putchar.o ft_putstr.o ft_strcat.o ft_strchr.o ft_strclr.o ft_strcmp.o ft_strcpy.o ft_strdel.o ft_strdup.o ft_strequ.o ft_striter.o ft_striteri.o ft_strjoin.o ft_strlcat.o ft_strlen.o ft_strmap.o ft_strmapi.o ft_strncat.o ft_strncmp.o ft_strncpy.o ft_strnequ.o ft_strnew.o ft_strnstr.o ft_strrchr.o ft_strstr.o ft_strsub.o ft_strtrim.o ft_tolower.o ft_toupper.o ft_putstr_fd.o ft_putnbr_fd.o ft_putchar_fd.o ft_lstdelone.o ft_lstdel.o ft_lstadd.o ft_lstnew.o ft_itoa.o ft_putendl.o ft_putendl_fd.o ft_putnbr.o ft_strsplit.o get_next_line.o
+OBJECTS FILES HAS BEEN DELETED.
+rm -rf ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o ft_isprint.o ft_memalloc.o ft_memccpy.o ft_memchr.o ft_memcmp.o ft_memcpy.o ft_memdel.o ft_memmove.o ft_memset.o ft_putchar.o ft_putstr.o ft_strcat.o ft_strchr.o ft_strclr.o ft_strcmp.o ft_strcpy.o ft_strdel.o ft_strdup.o ft_strequ.o ft_striter.o ft_striteri.o ft_strjoin.o ft_strlcat.o ft_strlen.o ft_strmap.o ft_strmapi.o ft_strncat.o ft_strncmp.o ft_strncpy.o ft_strnequ.o ft_strnew.o ft_strnstr.o ft_strrchr.o ft_strstr.o ft_strsub.o ft_strtrim.o ft_tolower.o ft_toupper.o ft_putstr_fd.o ft_putnbr_fd.o ft_putchar_fd.o ft_lstdelone.o ft_lstdel.o ft_lstadd.o ft_lstnew.o ft_itoa.o ft_putendl.o ft_putendl_fd.o ft_putnbr.o ft_strsplit.o get_next_line.o
+rm -rf libft.a
+OBJECT FILES AND EXECUTABLE HAS BEEN DELETED.
+gcc -c -Wall -Wextra -Werror functions_que.c -o functions_que.o
+gcc -c -Wall -Wextra -Werror ft_integers.c -o ft_integers.o
+gcc -c -Wall -Wextra -Werror calculate_managment.c -o calculate_managment.o
+gcc -c -Wall -Wextra -Werror flag_management.c -o flag_management.o
+gcc -c -Wall -Wextra -Werror ft_float.c -o ft_float.o
+gcc -c -Wall -Wextra -Werror ft_printf.c -o ft_printf.o
+gcc -c -Wall -Wextra -Werror precision_management.c -o precision_management.o
+gcc -c -Wall -Wextra -Werror size_management.c -o size_management.o
+gcc -c -Wall -Wextra -Werror string.c -o string.o
+gcc -c -Wall -Wextra -Werror t_long_num.c -o t_long_num.o
+gcc -c -Wall -Wextra -Werror t_long_num_str.c -o t_long_num_str.o
+gcc -c -Wall -Wextra -Werror t_long_num_util.c -o t_long_num_util.o
+gcc -c -Wall -Wextra -Werror utils.c -o utils.o
+gcc -c -Wall -Wextra -Werror width_management.c -o width_management.o
+gcc -c -Wall -Wextra -Werror ft_atoi.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_bzero.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_isalnum.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_isalpha.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_isascii.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_isdigit.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_isprint.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_memalloc.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_memccpy.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_memchr.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_memcmp.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_memcpy.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_memdel.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_memmove.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_memset.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_putchar.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_putstr.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strcat.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strchr.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strclr.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strcmp.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strcpy.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strdel.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strdup.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strequ.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_striter.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_striteri.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strjoin.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strlcat.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strlen.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strmap.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strmapi.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strncat.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strncmp.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strncpy.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strnequ.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strnew.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strnstr.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strrchr.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strstr.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strsub.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strtrim.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_tolower.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_toupper.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_putstr_fd.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_putnbr_fd.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_putchar_fd.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_lstdelone.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_lstdel.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_lstadd.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_lstnew.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_itoa.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_putendl.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_putendl_fd.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_putnbr.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror ft_strsplit.c -I libft.h get_next_line.h
+gcc -c -Wall -Wextra -Werror get_next_line.c -I libft.h get_next_line.h
+make[3]: Nothing to be done for `/Users/student/ft_printf/libft'.
+make -k -C ../testframework/v3/
+rm -f *.o
+cc -Wall -Werror -Wextra -ggdb -I includes -c srcs/**/*.c
+ar rc libmt_framework.a *.o
+cc -Werror -Wextra -Wall -Wno-format -Wno-format-extra-args -I . -I ../testframework/v3//includes -I /Users/student/ft_printf -I /Users/student/ft_printf/includes -I /Users/student/ft_printf/includes/builtin -I /Users/student/ft_printf/libs/libtowel/includes -I /Users/student/ft_printf/libft/includes -I /Users/student/ft_printf/srcs/libft/includes -D__MOULITEST__ -DPROTOTYPES="MT_ADD_PROTO(00_no_conv); MT_ADD_PROTO(01_conv_s_simple); MT_ADD_PROTO(02_conv_s_multiple); MT_ADD_PROTO(03_conv_d); MT_ADD_PROTO(04_conv_p); MT_ADD_PROTO(05_percent_escape); MT_ADD_PROTO(06_mix_sdp_percent); MT_ADD_PROTO(09_conv_i); MT_ADD_PROTO(10_conv_o); MT_ADD_PROTO(12_conv_u); MT_ADD_PROTO(14_conv_x); MT_ADD_PROTO(15_conv_X); MT_ADD_PROTO(16_conv_c); MT_ADD_PROTO(18_mix_all_previous); MT_ADD_PROTO(40_length_modif_l); MT_ADD_PROTO(41_length_modif_ll); MT_ADD_PROTO(42_length_modif_h); MT_ADD_PROTO(43_length_modif_hh); MT_ADD_PROTO(50_min_width); MT_ADD_PROTO(51_min_width_flag_minus); MT_ADD_PROTO(52_min_width_flag_zero); MT_ADD_PROTO(60_flag_sharp); MT_ADD_PROTO(61_flag_plus); MT_ADD_PROTO(62_flag_space); MT_ADD_PROTO(69_flag_mix); MT_ADD_PROTO(70_precision_for_diu); MT_ADD_PROTO(71_precision_for_oOxX); MT_ADD_PROTO(72_precision_for_sS); MT_ADD_PROTO(73_precision_for_cC); MT_ADD_PROTO(74_precision_for_p); MT_ADD_PROTO(79_precision_mixed_with_flags); MT_ADD_PROTO(90_incomptbl_values_sdpi); MT_ADD_PROTO(91_incomptbl_values_uUSDcC); MT_ADD_PROTO(92_incomptbl_values_oOxX); MT_ADD_PROTO(93_conv_f); MT_ADD_PROTO(bonus_01_wildcard); MT_ADD_PROTO(bonus_02_wildcard_multi); MT_ADD_PROTO(bonus_03_wildcard_flag_mix); " -DADD_TESTS="MT_ADD_SUITE(mt, 00_no_conv, suite_00_no_conv); MT_ADD_SUITE(mt, 01_conv_s_simple, suite_01_conv_s_simple); MT_ADD_SUITE(mt, 02_conv_s_multiple, suite_02_conv_s_multiple); MT_ADD_SUITE(mt, 03_conv_d, suite_03_conv_d); MT_ADD_SUITE(mt, 04_conv_p, suite_04_conv_p); MT_ADD_SUITE(mt, 05_percent_escape, suite_05_percent_escape); MT_ADD_SUITE(mt, 06_mix_sdp_percent, suite_06_mix_sdp_percent); MT_ADD_SUITE(mt, 09_conv_i, suite_09_conv_i); MT_ADD_SUITE(mt, 10_conv_o, suite_10_conv_o); MT_ADD_SUITE(mt, 12_conv_u, suite_12_conv_u); MT_ADD_SUITE(mt, 14_conv_x, suite_14_conv_x); MT_ADD_SUITE(mt, 15_conv_X, suite_15_conv_X); MT_ADD_SUITE(mt, 16_conv_c, suite_16_conv_c); MT_ADD_SUITE(mt, 18_mix_all_previous, suite_18_mix_all_previous); MT_ADD_SUITE(mt, 40_length_modif_l, suite_40_length_modif_l); MT_ADD_SUITE(mt, 41_length_modif_ll, suite_41_length_modif_ll); MT_ADD_SUITE(mt, 42_length_modif_h, suite_42_length_modif_h); MT_ADD_SUITE(mt, 43_length_modif_hh, suite_43_length_modif_hh); MT_ADD_SUITE(mt, 50_min_width, suite_50_min_width); MT_ADD_SUITE(mt, 51_min_width_flag_minus, suite_51_min_width_flag_minus); MT_ADD_SUITE(mt, 52_min_width_flag_zero, suite_52_min_width_flag_zero); MT_ADD_SUITE(mt, 60_flag_sharp, suite_60_flag_sharp); MT_ADD_SUITE(mt, 61_flag_plus, suite_61_flag_plus); MT_ADD_SUITE(mt, 62_flag_space, suite_62_flag_space); MT_ADD_SUITE(mt, 69_flag_mix, suite_69_flag_mix); MT_ADD_SUITE(mt, 70_precision_for_diu, suite_70_precision_for_diu); MT_ADD_SUITE(mt, 71_precision_for_oOxX, suite_71_precision_for_oOxX); MT_ADD_SUITE(mt, 72_precision_for_sS, suite_72_precision_for_sS); MT_ADD_SUITE(mt, 73_precision_for_cC, suite_73_precision_for_cC); MT_ADD_SUITE(mt, 74_precision_for_p, suite_74_precision_for_p); MT_ADD_SUITE(mt, 79_precision_mixed_with_flags, suite_79_precision_mixed_with_flags); MT_ADD_SUITE(mt, 90_incomptbl_values_sdpi, suite_90_incomptbl_values_sdpi); MT_ADD_SUITE(mt, 91_incomptbl_values_uUSDcC, suite_91_incomptbl_values_uUSDcC); MT_ADD_SUITE(mt, 92_incomptbl_values_oOxX, suite_92_incomptbl_values_oOxX); MT_ADD_SUITE(mt, 93_conv_f, suite_93_conv_f); MT_ADD_SUITE(mt, bonus_01_wildcard, suite_bonus_01_wildcard); MT_ADD_SUITE(mt, bonus_02_wildcard_multi, suite_bonus_02_wildcard_multi); MT_ADD_SUITE(mt, bonus_03_wildcard_flag_mix, suite_bonus_03_wildcard_flag_mix); " -DRENDU_PATH="\"/Users/student/ft_printf\"" tests/00_no_conv.spec.c tests/01_conv_s_simple.spec.c tests/02_conv_s_multiple.spec.c tests/03_conv_d.spec.c tests/04_conv_p.spec.c tests/05_percent_escape.spec.c tests/06_mix_sdp_percent.spec.c tests/09_conv_i.spec.c tests/10_conv_o.spec.c tests/12_conv_u.spec.c tests/14_conv_x.spec.c tests/15_conv_X.spec.c tests/16_conv_c.spec.c tests/18_mix_all_previous.spec.c tests/40_length_modif_l.spec.c tests/41_length_modif_ll.spec.c tests/42_length_modif_h.spec.c tests/43_length_modif_hh.spec.c tests/50_min_width.spec.c tests/51_min_width_flag_minus.spec.c tests/52_min_width_flag_zero.spec.c tests/60_flag_sharp.spec.c tests/61_flag_plus.spec.c tests/62_flag_space.spec.c tests/69_flag_mix.spec.c tests/70_precision_for_diu.spec.c tests/71_precision_for_oOxX.spec.c tests/72_precision_for_sS.spec.c tests/73_precision_for_cC.spec.c tests/74_precision_for_p.spec.c tests/79_precision_mixed_with_flags.spec.c tests/90_incomptbl_values_sdpi.spec.c tests/91_incomptbl_values_uUSDcC.spec.c tests/92_incomptbl_values_oOxX.spec.c tests/93_conv_f.spec.c tests/bonus_01_wildcard.spec.c tests/bonus_02_wildcard_multi.spec.c tests/bonus_03_wildcard_flag_mix.spec.c main.c utils.c   -o ft_printf_test -L../testframework/v3/ -lmt_framework -lftprintf -L /Users/student/ft_printf
+/Users/student/ft_printf/42FileChecker/moulitest_42projects/ft_printf_tests/ft_printf_test
+
+--
+
+>>>> Tests for ft_printf
+Source: github.com/yyang42/moulitest
+Legend: (.) Ok / (F) Fail / (S) Segfault / (B) Bus error / (T) Timeout / (A) Abort
+
+[ -------STARTING ALL UNIT TESTS------- ]
+>>>> 00_no_conv.spec.c ----------- [Ok !] ....
+>>>> 01_conv_s_simple.spec.c ----- [Ok !] ......
+>>>> 02_conv_s_multiple.spec.c --- [Ok !] ...
+>>>> 03_conv_d.spec.c ------------ [Ok !] .......
+>>>> 04_conv_p.spec.c ------------ [Ok !] .....
+>>>> 05_percent_escape.spec.c ---- [FAIL] ....SS [SEGV] test_modulo_without_valid_specifier -> (null)
+>>>> 06_mix_sdp_percent.spec.c --- [FAIL] FF [FAIL] test_simple_mix -> printf("s: %s, p: %p, d:%d", "a string", &test_simple_mix, 42)
+>>>> 09_conv_i.spec.c ------------ [Ok !] .....
+>>>> 10_conv_o.spec.c ------------ [Ok !] ....
+>>>> 12_conv_u.spec.c ------------ [Ok !] .....
+>>>> 14_conv_x.spec.c ------------ [Ok !] .....
+>>>> 15_conv_X.spec.c ------------ [Ok !] .....
+>>>> 16_conv_c.spec.c ------------ [Ok !] ....
+>>>> 18_mix_all_previous.spec.c -- [FAIL] FF [FAIL] test_simple -> printf("%s %d %p %% %x", "bonjour ", 42, &free, 42)
+>>>> 40_length_modif_l.spec.c ---- [Ok !] ..............
+>>>> 41_length_modif_ll.spec.c --- [Ok !] ..........
+>>>> 42_length_modif_h.spec.c ---- [FAIL] .......FFF [FAIL] test_ho_max -> printf("%ho, %ho", 0, USHRT_MAX)
+>>>> 43_length_modif_hh.spec.c --- [FAIL] ...........FFF.... [FAIL] test_hho_max -> printf("%hho, %hho", 0, UCHAR_MAX)
+>>>> 50_min_width.spec.c --------- [FAIL] .......FF [FAIL] pZero_minus13MinWidth -> printf("{%-13p}", &strlen)
+>>>> 51_min_width_flag_minus.spec. [Ok !] ...
+>>>> 52_min_width_flag_zero.spec.c [Ok !] ......
+>>>> 60_flag_sharp.spec.c -------- [FAIL] .F........ [FAIL] test_octal_zero -> printf("%#o", 0)
+>>>> 61_flag_plus.spec.c --------- [Ok !] ....
+>>>> 62_flag_space.spec.c -------- [Ok !] ....
+>>>> 69_flag_mix.spec.c ---------- [FAIL] ...F.... [FAIL] mix_space_zero -> printf("{% 03d}", 0)
+>>>> 70_precision_for_diu.spec.c - [Ok !] ..............................
+>>>> 71_precision_for_oOxX.spec.c  [Ok !] ...........................
+>>>> 72_precision_for_sS.spec.c -- [FAIL] ........F [FAIL] test_precision_s_implicit_precision -> printf("%4.s", "42")
+>>>> 73_precision_for_cC.spec.c -- [FAIL] .FF [FAIL] cNullChar_positivePrecision -> printf("%.5c", 0)
+>>>> 74_precision_for_p.spec.c --- [FAIL] FFFFFF [FAIL] pNullPointer_zeroPrecision -> printf("%.0p, %.p", 0, 0)
+>>>> 79_precision_mixed_with_flags [FAIL] ..F.F [FAIL] test_precision_p_zero -> printf("%.p, %.0p", 0, 0)
+>>>> 90_incomptbl_values_sdpi.spec [Ok !] .
+>>>> 91_incomptbl_values_uUSDcC.sp [Ok !] ....
+>>>> 92_incomptbl_values_oOxX.spec [FAIL] F.. [FAIL] test_octal_neg -> printf("%o, %ho, %hho", -42, -42, -42)
+>>>> 93_conv_f.spec.c ------------ [FAIL] FFFF [FAIL] simple_small_nbr -> printf("{%f}{%lf}{%Lf}", 1.42, 1.42, 1.42l)
+>>>> bonus_01_wildcard.spec.c ---- [FAIL] SSSSSSSSSSSSS [SEGV] wildcard_for_min_width_positive -> (null)
+>>>> bonus_02_wildcard_multi.spec. [FAIL] S [SEGV] wildcard_for_min_width_positive -> (null)
+>>>> bonus_03_wildcard_flag_mix.sp [FAIL] SS [SEGV] digit_wildcard_and_min_width_value3 -> (null)
+[ ----------END OF UNIT TESTS---------- ]
+
+>>>> Result: 21/38 test suites passed. 219/267 tests passed (dots).

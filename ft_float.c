@@ -6,10 +6,9 @@
 /*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/23 20:05:44 by jsabina           #+#    #+#             */
-/*   Updated: 2020/08/23 20:05:44 by jsabina          ###   ########.fr       */
+/*   Updated: 2020/08/24 15:51:38 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ft_printf.h"
 
@@ -60,7 +59,7 @@ void					convert_float_str(float f)
 
 	flo = init_floats(f, get_structure());
 	flo->integer_part = calcutate_integer(flo);
-	flo->real_part  = calcutate_real(flo);
+	flo->real_part = calcutate_real(flo);
 	round_simple_float(flo);
 	integer = integer_part_str(flo->integer_part);
 	real = real_part_str(flo->real_part, g_current_data.precision);

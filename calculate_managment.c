@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   calculate_managment.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asybil <asybil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/16 07:09:27 by asybil            #+#    #+#             */
-/*   Updated: 2020/08/16 07:57:01 by asybil           ###   ########.fr       */
+/*   Updated: 2020/08/24 15:41:55 by jsabina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ft_printf.h"
 
@@ -74,8 +73,7 @@ void	str_calculate(void)
 void	char_calculate(void)
 {
 	char	*ch;
-	
-	ch = ((char *)g_current_data.value);
+	ch = ((char*)g_current_data.value);
 	g_current_data.str.str = ft_strncpy(ft_strnew(1), ch, 1);
 	g_current_data.str.len = 1;
 }
