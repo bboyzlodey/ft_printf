@@ -21,9 +21,9 @@ typedef struct personal_float
 int main()
 {
 	int i, j;
-	 i = printf("%4.s", "42");
+	 i = printf("s: %s, p: %p, d:%d", "a string", &main, 42);
 	printf("\n");
-	 j = ft_printf("%4.s", "42");
+	 j = ft_printf("s: %s, p: %p, d:%d", "a string", &main, 42);
 	printf("\n%d\n%d\n", i, j);
 
 	// i = printf("{%f}{%lf}{%Lf}", -1.42, -1.42, -1.42l);

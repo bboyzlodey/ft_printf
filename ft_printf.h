@@ -16,6 +16,11 @@
 # define BIG_INT_BASE 10
 # define DEFAULT_PRECISION_FLOAT 6
 # define MAX_FUNC_QUE_SIZE 10
+# define CURRENT_SIZE 150
+# define DONE_PARS 1
+# define COUNT_FLAGS 6
+# define COUNT_TYPES 9
+# define QUE_COUNT 10
 
 # include "./libft/libft.h"
 # include <stdlib.h>
@@ -24,46 +29,41 @@
 # include <stdarg.h>
 # include <math.h>
 
+typedef int		t_big_int[MAX_DIGITS];
 
-
-typedef int t_big_int[MAX_DIGITS];
-
-/*
-** 	Structure for big number
-*/
-typedef struct long_num{
+typedef struct	s_long_num{
 	int value[MAX_DIGITS];
 	int digits;
-} t_long_num;
+}				t_long_num;
 
-typedef struct real_num{
-	t_long_num number;
-	int negative_pow;
-} t_real_num;
+typedef struct	s_real_num{
+	t_long_num	number;
+	int			negative_pow;
+}				t_real_num;
 
-typedef struct some_float
+typedef struct	s_some_float
 {
-	t_long_num integer_part;
-	t_real_num real_part;
-	int sign;
-	int exponenta;
-	int mantissa;
-	unsigned int precision;
-	int current_bit;
-	int current_exp;
-}	simple_float;
+	t_long_num		integer_part;
+	t_real_num		real_part;
+	int				sign;
+	int				exponenta;
+	int				mantissa;
+	unsigned int	precision;
+	int				current_bit;
+	int				current_exp;
+}				simple_float;
 
-typedef struct some_double
+typedef struct	some_double
 {
-	t_long_num integer_part;
-	t_real_num real_part;
-	int sign;
-	int exponenta;
-	unsigned long long int mantissa;
-	unsigned int precision;
-	int current_bit;
-	int current_exp;
-}	simple_double;
+	t_long_num				integer_part;
+	t_real_num				real_part;
+	int						sign;
+	int						exponenta;
+	unsigned long long int	mantissa;
+	unsigned int			precision;
+	int						current_bit;
+	int						current_exp;
+}				simple_double;
 
 /*
 ** spec: d, i, u, p, x, X, o, f, s, c, %		--- спецификаторы
@@ -73,55 +73,20 @@ typedef struct some_double
 ** leng: (none), hh, h, l, ll, L   				--- модификаторы длины
 */
 
-# define CURRENT_SIZE 150
-# define DONE_PARS 1
-# define COUNT_FLAGS 6
-# define COUNT_TYPES 9
-# define QUE_COUNT 10
 unsigned long long int g_ft_printf_writed_count;
+typedef long long int			t_ll_int;
+typedef long long unsigned int	t_ull_int;
 
-/*
-**       Типы
-*/
-typedef long long int t_ll_int;
-typedef long long unsigned int t_ull_int;
-
-enum	e_flags // For flags management: 
+enum	e_flags
 {
-	// NONE,			//without_flags
-	OCTOTORP = 1,		//	'#'
-	/*
-	**	При выводе чисел в формате перед числом будет указываться особенность формата
-	*/
-	SPACE,			//	' '
-	/*
-	**	Символ + имеет больший приоритет, чем пробел. Используется только для десятичных числовых значений.
-	**
-	**	В отсутсвие: вывод может начинаться с цифры.
-	**
-	*/
-	MINUS,			//	'-'
-	/*
-	**	В отсутсвие: по правому
-	*/
-	PLUS,			//	'+'
-	/*
-	**	В отсутсвие: только для отрицательных чисел
-	*/
-	NULL_FLAG		//	'0'
-	/*
-	**	Используется для типов d, i, o, u, x, X, a, A, e, E, f, F, g, G.
-	**	Для типов d, i, o, u, x, X, если точность указана, этот флаг игнорируется.
-	**	Для остальных типов поведение не определено.
-	**
-	**	В отсутсвие: дополнять пробелами
-	**
-	*/
-}	g_flags;
+	OCTOTORP = 1,
+	SPACE,
+	MINUS,
+	PLUS,
+	NULL_FLAG
+}		g_flags;
 
-
-enum e_type{
-	// NONE,
+enum	e_type{
 	STRING,
 	CHAR,
 	POINTER,
@@ -133,7 +98,7 @@ enum e_type{
 	PERCENT
 };
 
-enum e_specs{
+enum	e_specs{
 	D,
 	I,
 	U,
@@ -145,14 +110,14 @@ enum e_specs{
 	F
 };
 
-enum e_conversions{
+enum	e_conversions{
 	CALCULATION,
 	PRECISION,
 	FLAG_CONVERS,
 	WIDTH_CONV,
 };
 
-enum e_size{
+enum	e_size{
 	H,
 	HH,
 	L,
@@ -160,86 +125,56 @@ enum e_size{
 	L_BIG
 };
 
-enum e_delimeters{
+enum	e_delimeters{
 	OCT = 8,
 	DEC = 10,
 	HEX = 16
 };
 
-/**
- ** 	Структура для строки. Можно сразу выводить через write
- **/
+/*
+**		String Structure
+*/
 typedef struct	s_string
 {
-	int				len;
-	char			*str;
+	int			len;
+	char		*str;
 }				t_string;
 
-/**
- ** 	Глобальная структура.
- ** 	type - тип (целочисленный знаковый, беззнаковый, и тд.)
- ** 	flags - флаги
- ** 	str - текущая строка, преобразованная в строку
- ** 	print - указатель на функцию, которая ничего не принимает
- ** и не возвращает
- ** 	que[10] - массив функций. Это для очереди. Итерационно будет вызываться.  
- * */
-struct 				data{
-	enum e_type 		type;
+struct				data{
+	enum e_type			type;
 	enum e_flags		flags[6];
 	enum e_delimeters	delimeters;
 	enum e_specs		spec;
 	enum e_size			size;
-	void 				*value;
+	void				*value;
 	t_string			str;
-	void				(*print)(t_string);
 	void				(*que[MAX_FUNC_QUE_SIZE])(void);
 	va_list				list;
-	int					(*pars[5])(void); 
+	int					(*pars[5])(void);
 	int					precision;
 	int					width;
-	int					skip;
 	int					upper;
 	char				sign;
 }					g_current_data;
 
-void				(*flags_convertions[COUNT_TYPES])(void);
-void				(*size_management[COUNT_TYPES])(void);
+void	(*flags_convertions[COUNT_TYPES])(void);
+void	(*size_management[COUNT_TYPES])(void);
 
 int		ft_printf(const char *format, ...);
-
-/*
-**	Функции для перевода value
-*/
-
 void	ft_tolowercase(char *ptr);
-
 char	*ft_strjoindel(char *s1, char *s2);
-
 void	ft_printstring(t_string str);
 
-/**
- ** Debuging
- */
-void	initstructure();
-void	get_binary(unsigned int src, int delim);
+/*
+** Debuging
+*/
 
-
-/**
- ** Вспомогательные функции (utils.c)
- **
- * */
-char	*ft_strjoindel(char *s1, char *s2);
-void	global_free(void);
-
-
-
-
-
-
+void		initstructure();
+void		get_binary(unsigned int src, int delim);
+char		*ft_strjoindel(char *s1, char *s2);
+void		global_free(void);
 t_long_num	positive_pow(int exp);
 t_long_num	summ_big_int(t_long_num one, t_long_num two);
-
 t_long_num	calcutate_integer(simple_float *f);
 t_real_num	calcutate_real(simple_float *fl);
 t_real_num	negative_pow(int exp, int precision);
@@ -254,26 +189,19 @@ t_string	repeat_char(char a, size_t size);
 int			count_digits(t_long_num count);
 void		round_integer_part(simple_float *f);
 void		round_simple_float(simple_float *f);
-
-
-
 void		float_calculate(void);
 void		str_calculate(void);
 void		char_calculate(void);
 void		pointer_calculate(void);
 void		calculate(void);
 void		integer_calculate(void);
-
-
-void	convert_int(long long int src, int delim);
-void	convert_unint(unsigned long long  int src, int delim);
-void	convert_size_t_int(size_t src, int delim);
-void	convert_float_str(float f);
-
+void		convert_int(long long int src, int delim);
+void		convert_unint(unsigned long long int src, int delim);
+void		convert_size_t_int(size_t src, int delim);
+void		convert_float_str(float f);
 void		precision_management(void);
 void		width_management(void);
 void		init_size_management(void);
-
 void		flag_management(void);
 void		flag_management_d(void);
 void		flag_management_i(void);
@@ -282,33 +210,30 @@ void		flag_management_x(void);
 void		flag_management_f(void);
 void		init_flags_convertions(void);
 void		remove_ignored_flags(void);
-
 void		set_func_que(void);
 void		iterate_func_que(void);
-
-
 
 /*
 ** For debuging only
 */
-void	print_real_part(t_real_num real);
-void	print_big_int(t_long_num tmp);
-void	print_integer_part(t_long_num tmp);
-/**
- ** Parsing functions
- * */
-int		find_flags(char *format);
-int		find_width(char *width);
-int		find_size(char *format);
-int		find_type(char *f);
-int		find_precision(char *prec);
-void	validate_precision(void);
-int		print_before_procent(char *format);
-int		print_percent(char **format, char **next_percent);
+void		print_real_part(t_real_num real);
+void		print_big_int(t_long_num tmp);
+void		print_integer_part(t_long_num tmp);
 
+/*
+** Parsing functions
+*/
+int			find_flags(char *format);
+int			find_width(char *width);
+int			find_size(char *format);
+int			find_type(char *f);
+int			find_precision(char *prec);
+void		validate_precision(void);
+int			print_before_procent(char *format);
+int			print_percent(char **format, char **next_percent);
 t_long_num	calcutate_integer_double(simple_double *f);
-void    round_simple_double(simple_double *f);
+void		round_simple_double(simple_double *f);
 t_real_num	calcutate_real_double(simple_double *fl);
-void	convert_double_str(double f);
+void		convert_double_str(double f);
 
 #endif
