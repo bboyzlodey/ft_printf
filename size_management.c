@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void	size_management_integers(void)
+void	size_management_integers(void)
 {
 	long long int tmp;
 
@@ -31,7 +31,7 @@ static void	size_management_integers(void)
 	&tmp, sizeof(tmp));
 }
 
-static void	size_management_unsigned(void)
+void	size_management_unsigned(void)
 {
 	unsigned long long int tmp;
 
@@ -52,7 +52,7 @@ static void	size_management_unsigned(void)
 	&tmp, sizeof(tmp));
 }
 
-static void	size_management_ponter(void)
+void	size_management_ponter(void)
 {
 	size_t tmp;
 
@@ -62,7 +62,7 @@ static void	size_management_ponter(void)
 	&tmp, sizeof(tmp));
 }
 
-static void	size_management_char(void)
+void	size_management_char(void)
 {
 	char tmp;
 
@@ -72,7 +72,7 @@ static void	size_management_char(void)
 	&tmp, sizeof(tmp));
 }
 
-static void	size_management_string(void)
+void	size_management_string(void)
 {
 	char	*tmp;
 

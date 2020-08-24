@@ -14,7 +14,7 @@
 
 #define FLOAT_SIZE ((sizeof(float) * 8))
 
-static simple_double			*init_double(double f, simple_double *toInit)
+simple_double			*init_double(double f, simple_double *toInit)
 {
 	unsigned long long int fi = double_to_unint(f);
 	toInit->sign = f >= 0 ? 0 : -1;

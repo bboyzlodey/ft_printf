@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void	size_management_float(void)
+void	size_management_float(void)
 {
 	double		d;
 	long double	ld;
