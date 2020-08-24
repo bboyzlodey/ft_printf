@@ -25,6 +25,7 @@ void	precision_management(void)
 
 void	validate_precision(void)
 {
-	if (g_current_data.type != INTEGERS && g_current_data.type != UNSIGNED && g_current_data.precision == -1)
+	if (g_current_data.type != INTEGERS && g_current_data.type != UNSIGNED && g_current_data.precision == -1
+	&& g_current_data.spec != S)
 		g_current_data.precision = 0;
 }
