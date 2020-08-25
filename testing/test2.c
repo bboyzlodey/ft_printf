@@ -6,7 +6,7 @@ int main()
 
 	i = printf("%f", 50.3);
 	printf("\n");
-	j = ft_printf("%f", 48451.22);
+	j = ft_printf("%f", 50.3);
 	printf("\n%d\n%d\n", i , j);
 
 	return 0;

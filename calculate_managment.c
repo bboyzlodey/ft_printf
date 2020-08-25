@@ -68,7 +68,7 @@ void		float_calculate(void)
 		if (g_current_data.size == L_BIG)
 			convert_l_double_str((*(long double *)g_current_data.value));
 		else
-			convert_double_str((*(double *)g_current_data.value));
+			convert_l_double_str((*(double *)g_current_data.value));
 	}
 }
 
