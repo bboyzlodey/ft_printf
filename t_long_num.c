@@ -50,33 +50,6 @@ void			round_simple_double(t_simple_double *f)
 		f->integer_part = summ_big_int(f->integer_part, base_pow(10, 0));
 }
 
-void			round_simple_float(t_simple_float *f)
-{
-	int i;
-	int	old_digits;
-
-	old_digits = f->real_part.number.digits;
-	i = f->real_part.number.digits - f->precision - 1;
-	if (i > 0 && i < old_digits - 1)
-	{
-		if (f->real_part.number.value[i - 1] > 5)
-		{
-			f->real_part.number = summ_big_int(f->real_part.number, \
-			base_pow(10, i));
-		}
-		else if (i > 1 && i < 99 && (f->real_part.number.value[i - 1] \
-		== 5 && f->real_part.number.value[i] % 2 == 1))
-		{
-			f->real_part.number = summ_big_int(f->real_part.number, \
-			base_pow(10, i));
-		}
-		if (old_digits < f->real_part.number.digits)
-			degrease_and_pow_ten(f);
-	}
-	if ((i == (old_digits - 1)) && (f->real_part.number.value[i - 1] > 5))
-		f->integer_part = summ_big_int(f->integer_part, base_pow(10, 0));
-}
-
 t_long_num		summ_big_int(t_long_num one, t_long_num two)
 {
 	int		max;

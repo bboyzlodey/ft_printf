@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_long_num_2.c                                     :+:      :+:    :+:   */
+/*   t_long_num_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsabina <jsabina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,21 +12,14 @@
 
 #include "ft_printf.h"
 
-static void			init_t_long_num(t_long_num *tmp)
-{
-	ft_bzero(&(tmp->value), sizeof(tmp->value));
-	tmp->value[0] = 1;
-	tmp->digits = 1;
-}
-
-static t_long_num	mul_positive(t_long_num tmp)
+static t_long_num	mul_positive_p(t_long_num tmp, int base)
 {
 	int	i;
 
 	i = 0;
 	while (i < MAX_DIGITS)
 	{
-		tmp.value[i] *= 2;
+		tmp.value[i] *= base;
 		i++;
 	}
 	i = 0;
@@ -42,39 +35,18 @@ static t_long_num	mul_positive(t_long_num tmp)
 	return (tmp);
 }
 
-t_long_num			positive_pow(int exp)
+t_long_num			base_pow(int base, int exp)
 {
 	t_long_num tmp;
 
-	init_t_long_num(&tmp);
+	tmp.value[0] = 1;
+	tmp.digits = 1;
+	ft_bzero(&tmp.value, sizeof(tmp.value));
 	while (exp > 0)
 	{
-		tmp = mul_positive(tmp);
+		tmp = mul_positive_p(tmp, base);
 		exp--;
 	}
 	tmp.digits = count_digits(tmp);
 	return (tmp);
-}
-
-t_long_num			mul_long(t_long_num a, int b)
-{
-	int c;
-	int i;
-
-	c = 0;
-	i = 0;
-	while (i < a.digits)
-	{
-		a.value[i] = a.value[i] * b + c;
-		c = a.value[i] / 10;
-		a.value[i] = a.value[i] % 10;
-		i++;
-	}
-	while (c > 0)
-	{
-		a.digits++;
-		a.value[a.digits - 1] = c % 10;
-		c = c / 10;
-	}
-	return (a);
 }
