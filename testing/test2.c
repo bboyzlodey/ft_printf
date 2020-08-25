@@ -4,9 +4,9 @@ int main()
 {
 	int i,j;
 
-	i = printf("{%f}{%lf}{%Lf}", 1.42, 1.42, 1.42l);
+	i = printf("%#o", 0);
 	printf("\n");
-	j = ft_printf("{%f}{%lf}{%Lf}", 1.42, 1.42, 1.42l);
+	j = ft_printf("%#o", 0);
 	printf("\n%d\n%d\n", i , j);
 
 	return 0;

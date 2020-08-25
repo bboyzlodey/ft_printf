@@ -42,7 +42,8 @@ void			flag_management_i(void)
 
 void			flag_management_o(void)
 {
-	if (g_current_data.flags[OCTOTORP])
+	if (g_current_data.flags[OCTOTORP] && g_current_data.str.len \
+	&& g_current_data.str.str[0] != '0')
 		g_current_data.str = ft_concat(repeat_char('0', 1), \
 		g_current_data.str);
 }
