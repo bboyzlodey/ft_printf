@@ -36,6 +36,35 @@ t_long_num	calcutate_integer_double(t_simple_double *f)
 	return (accum);
 }
 
+t_real_num	calcutate_real_double(t_simple_double *fl)
+{
+	t_real_num			result;
+	int					exp;
+	unsigned long long	mask;
+	t_long_num			tmp;
+
+	exp = (fl->current_exp) * (-1);
+	result.negative_pow = 0;
+	result.number.digits = 0;
+	mask = 1;
+	ft_bzero(&result.number.value, sizeof(result.number.value));
+	while (fl->current_bit >= 0)
+	{
+		result.number = mul_long(result.number, 10);
+		if ((fl->mantissa & (mask << fl->current_bit)) != 0)
+		{
+			tmp = base_pow(5, exp);
+			result.number = summ_big_int(result.number, tmp);
+			ft_bzero(&tmp.value, sizeof(tmp.value));
+		}
+		exp++;
+		fl->current_bit--;
+		result.negative_pow++;
+		result.number.digits++;
+	}
+	return (result);
+}
+
 int			comp_big_int(t_long_num a, t_long_num b)
 {
 	int i;
