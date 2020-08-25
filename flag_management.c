@@ -46,6 +46,9 @@ void			flag_management_o(void)
 	&& g_current_data.str.str[0] != '0')
 		g_current_data.str = ft_concat(repeat_char('0', 1), \
 		g_current_data.str);
+	else if (g_current_data.flags[OCTOTORP] && g_current_data.str.len == 0)
+		g_current_data.str = ft_concat(repeat_char('0', 1), \
+		g_current_data.str);
 }
 
 void			flag_management_x(void)
