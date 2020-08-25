@@ -29,7 +29,7 @@ void	size_management_float(void)
 	{
 		ld = va_arg(g_current_data.list, long double);
 		g_current_data.value = ft_memcpy(ft_memalloc(sizeof(ld)), \
-		&d, sizeof(ld));
+		&ld, sizeof(ld));
 	}
 	else
 	{

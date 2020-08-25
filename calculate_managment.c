@@ -39,7 +39,7 @@ void		integer_calculate(void)
 	g_current_data.delimeters != HEX && g_current_data.delimeters != OCT)
 		signed_sized();
 	else if (g_current_data.type == UNSIGNED || \
-	g_current_data.delimeters == HEX || g_current_data.delimeters == HEX)
+	g_current_data.delimeters == HEX || g_current_data.delimeters == OCT)
 	{
 		if (g_current_data.size == LL)
 			convert_unint(*((unsigned long long*)g_current_data.value), \
