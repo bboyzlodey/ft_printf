@@ -74,7 +74,7 @@ char		*ft_dtoa(long double d, size_t p, size_t base)
 	return (ptr1);
 }
 
-void	convert_l_double_str(long double f)
+void		convert_l_double_str(long double f)
 {
 	if (g_current_data.precision > 0)
 		g_current_data.str.str = ft_dtoa(f, g_current_data.precision, 10);

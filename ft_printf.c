@@ -21,16 +21,21 @@ static void	evaluate(void)
 	global_free();
 }
 
-int			ft_printf(const char *format, ...)
+static void	init_ft_printf(void)
 {
-	int i;
-
-	i = 0;
 	g_ft_printf_writed_count = 0;
 	init_flags_convertions();
 	initstructure();
+}
+
+int			ft_printf(const char *format, ...)
+{
+	int		i;
+	char	*tmp;
+
+	i = 0;
+	init_ft_printf();
 	va_start(g_current_data.list, format);
-	char *tmp;
 	tmp = ft_strdup(format);
 	while (tmp && tmp[i])
 	{

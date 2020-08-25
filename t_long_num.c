@@ -17,6 +17,12 @@ void			round_integer_part(t_simple_float *f)
 	f->integer_part = summ_big_int(f->real_part.number, base_pow(10, 3));
 }
 
+static void		degrease_and_pow_ten(t_simple_double *f)
+{
+	f->real_part.number.digits--;
+	f->integer_part = summ_big_int(f->integer_part, base_pow(10, 0));
+}
+
 void			round_simple_double(t_simple_double *f)
 {
 	int i;
@@ -38,10 +44,7 @@ void			round_simple_double(t_simple_double *f)
 			base_pow(10, i));
 		}
 		if (old_digits < f->real_part.number.digits)
-		{
-			f->real_part.number.digits--;
-			f->integer_part = summ_big_int(f->integer_part, base_pow(10, 0));
-		}
+			degrease_and_pow_ten(f);
 	}
 	if ((i == (old_digits - 1)) && (f->real_part.number.value[i - 1] > 5))
 		f->integer_part = summ_big_int(f->integer_part, base_pow(10, 0));
@@ -68,10 +71,7 @@ void			round_simple_float(t_simple_float *f)
 			base_pow(10, i));
 		}
 		if (old_digits < f->real_part.number.digits)
-		{
-			f->real_part.number.digits--;
-			f->integer_part = summ_big_int(f->integer_part, base_pow(10, 0));
-		}
+			degrease_and_pow_ten(f);
 	}
 	if ((i == (old_digits - 1)) && (f->real_part.number.value[i - 1] > 5))
 		f->integer_part = summ_big_int(f->integer_part, base_pow(10, 0));
@@ -100,27 +100,4 @@ t_long_num		summ_big_int(t_long_num one, t_long_num two)
 	}
 	one.digits = max;
 	return (one);
-}
-
-t_long_num		mul_long(t_long_num a, int b)
-{
-	int c;
-	int i;
-
-	c = 0;
-	i = 0;
-	while (i < a.digits)
-	{
-		a.value[i] = a.value[i] * b + c;
-		c = a.value[i] / 10;
-		a.value[i] = a.value[i] % 10;
-		i++;
-	}
-	while (c > 0)
-	{
-		a.digits++;
-		a.value[a.digits - 1] = c % 10;
-		c = c / 10;
-	}
-	return (a);
 }
