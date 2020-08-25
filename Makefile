@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 LIBFTA = libft.a
-SRCS = functions_que.c find_1.c find_2.c ft_integers.c calculate_managment.c calculate.c flag_management_2.c \
+SRCS = ft_strappend.c functions_que.c find_1.c find_2.c ft_integers.c calculate_managment.c calculate.c flag_management_2.c \
 flag_management.c ft_printf.c precision_management.c size_management.c size_management_2.c \
 string.c t_long_num.c t_long_num_2.c t_long_num_str.c calculate.c t_long_num_util.c t_long_num_util_2.c \
 utils.c width_management.c ft_double.c ft_double_2.c ft_long_double.c

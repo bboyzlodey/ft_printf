@@ -230,6 +230,9 @@ void		init_flags_convertions(void);
 void		remove_ignored_flags(void);
 void		set_func_que(void);
 void		iterate_func_que(void);
+long double	ft_pow(long double n, int pow);
+int		ft_abs(int n);
+
 
 /*
 ** For debuging only
