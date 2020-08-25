@@ -27,10 +27,10 @@ int						exp_calc_double(unsigned long long int raw)
 	return (raw << 1) >> 53;
 }
 
-simple_double			*get_structure_double(void)
+t_simple_double			*get_structure_double(void)
 {
-	simple_double *tmp;
+	t_simple_double *tmp;
 
-	tmp = (simple_double*)malloc(sizeof(simple_double));
+	tmp = (t_simple_double*)malloc(sizeof(t_simple_double));
 	return (tmp);
 }

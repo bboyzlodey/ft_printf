@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-simple_double			*init_double(double f, simple_double *to_init)
+t_simple_double			*init_double(double f, t_simple_double *to_init)
 {
 	unsigned long long int	fi;
 
@@ -26,7 +26,7 @@ simple_double			*init_double(double f, simple_double *to_init)
 
 void					convert_double_str(double f)
 {
-	simple_double	*flo;
+	t_simple_double	*flo;
 	t_string		integer;
 	t_string		real;
 

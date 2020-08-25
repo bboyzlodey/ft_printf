@@ -12,12 +12,12 @@
 
 #include "ft_printf.h"
 
-void			round_integer_part(simple_float *f)
+void			round_integer_part(t_simple_float *f)
 {
 	f->integer_part = summ_big_int(f->real_part.number, base_pow(10, 3));
 }
 
-void			round_simple_double(simple_double *f)
+void			round_simple_double(t_simple_double *f)
 {
 	int i;
 	int	old_digits;
@@ -47,7 +47,7 @@ void			round_simple_double(simple_double *f)
 		f->integer_part = summ_big_int(f->integer_part, base_pow(10, 0));
 }
 
-void			round_simple_float(simple_float *f)
+void			round_simple_float(t_simple_float *f)
 {
 	int i;
 	int	old_digits;

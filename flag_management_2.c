@@ -30,15 +30,15 @@ void			remove_ignored_flags(void)
 
 void			flag_management(void)
 {
-	if (flags_convertions[g_current_data.spec] != NULL)
-		flags_convertions[g_current_data.spec]();
+	if (g_flags_convertions[g_current_data.spec] != NULL)
+		g_flags_convertions[g_current_data.spec]();
 }
 
 void			init_flags_convertions(void)
 {
-	ft_bzero(flags_convertions, sizeof(flags_convertions));
-	flags_convertions[D] = flag_management_d;
-	flags_convertions[I] = flag_management_i;
-	flags_convertions[O] = flag_management_o;
-	flags_convertions[X] = flag_management_x;
+	ft_bzero(g_flags_convertions, sizeof(g_flags_convertions));
+	g_flags_convertions[D] = flag_management_d;
+	g_flags_convertions[I] = flag_management_i;
+	g_flags_convertions[O] = flag_management_o;
+	g_flags_convertions[X] = flag_management_x;
 }

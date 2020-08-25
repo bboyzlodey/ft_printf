@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-t_real_num	calcutate_real(simple_float *fl)
+t_real_num	calcutate_real(t_simple_float *fl)
 {
 	t_real_num result;
 	int exp;
@@ -45,7 +45,7 @@ t_real_num	calcutate_real(simple_float *fl)
 	return (result);
 }
 
-t_real_num	calcutate_real_double(simple_double *fl)
+t_real_num	calcutate_real_double(t_simple_double *fl)
 {
 	t_real_num			result;
 	int					exp;
@@ -78,7 +78,7 @@ t_real_num	calcutate_real_double(simple_double *fl)
 	return (result);
 }
 
-t_long_num	calcutate_integer(simple_float *f)
+t_long_num	calcutate_integer(t_simple_float *f)
 {
 	int current_exp;
 	int count_bits;
@@ -102,7 +102,7 @@ t_long_num	calcutate_integer(simple_float *f)
 	return (accum);
 }
 
-t_long_num	calcutate_integer_double(simple_double *f)
+t_long_num	calcutate_integer_double(t_simple_double *f)
 {
 	int current_exp;
 	int count_bits;
